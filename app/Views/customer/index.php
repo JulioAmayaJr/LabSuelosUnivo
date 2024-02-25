@@ -137,3 +137,8 @@
                     </div>
 
 <?php echo $this->endSection(); ?>
+
+
+<?php echo $this->section("Scripts") ?>
+<script src="js/customer/customer.js"></script>
+<?php echo $this->endSection(); ?>

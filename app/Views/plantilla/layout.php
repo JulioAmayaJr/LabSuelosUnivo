@@ -200,7 +200,9 @@
     <script src="vendor/toastr/toastr.min.js"></script>
     <script src="vendor/sweetalert/sweetalert.js"></script>
     
-
+    <?php
+    echo $this->renderSection("Scripts")
+    ?>
 </body>
 
 </html>
