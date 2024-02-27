@@ -56,8 +56,8 @@
                 </a>
                 <div id="collapseAdministracion" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?=base_url()?>user">Usuarios</a>
-                        <a class="collapse-item" href="<?=base_url()?>customer">Clientes</a>
+                        <a class="collapse-item" href="<?= base_url() ?>user">Usuarios</a>
+                        <a class="collapse-item" href="<?= base_url() ?>customer">Clientes</a>
                     </div>
                 </div>
             </li>
@@ -90,8 +90,8 @@
                 </div>
             </li>
 
-             <!-- Nav Item - Reportes Collapse Menu -->
-             <li class="nav-item">
+            <!-- Nav Item - Reportes Collapse Menu -->
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Reportes</span>
@@ -116,10 +116,10 @@
         <div id="content-wrapper" class="d-flex flex-column" style="background-color: #CCCCCC;">
 
             <!-- Main Content -->
-            <div id="content" >
+            <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color: #CCCCCC;" >
+                <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color: #CCCCCC;">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -133,15 +133,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Ruthylia Nolasco</span>
-                                <img class="img-profile rounded-circle"
-                                    src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300">
+                                <img class="img-profile rounded-circle" src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="perfil.html">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
@@ -160,11 +157,11 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid"  >
+                <div class="container-fluid">
                     <?php
                     echo $this->renderSection("contenido")
                     ?>
-                
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -199,7 +196,7 @@
     <script src="tools/loadingoverlay/loadingoverlay.min.js"></script>
     <script src="tools/toastr/toastr.min.js"></script>
     <script src="tools/sweetalert/sweetalert.js"></script>
-    
+
     <?php
     echo $this->renderSection("Scripts")
     ?>
