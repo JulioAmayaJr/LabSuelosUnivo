@@ -20,6 +20,10 @@
     <link href="css/sb-admin-2.css" rel="stylesheet">
     <link href="tools/toastr/toastr.min.css" rel="stylesheet">
     <link href="tools/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="tools/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="tools/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="tools/datatables/extensiones/css/buttons.dataTables.min.css">
 </head>
 
 <body id="page-top">
@@ -196,7 +200,16 @@
     <script src="tools/loadingoverlay/loadingoverlay.min.js"></script>
     <script src="tools/toastr/toastr.min.js"></script>
     <script src="tools/sweetalert/sweetalert.js"></script>
+    
+    <script src="tools/datatables/jquery.dataTables.min.js"></script>
+     <script src="tools/datatables/dataTables.bootstrap4.min.js"></script>
 
+    <script src="tools/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="tools/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="tools/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="tools/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="tools/datatables/extensiones/js/buttons.print.min.js"></script>
     <?php
     echo $this->renderSection("Scripts")
     ?>
