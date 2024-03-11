@@ -156,3 +156,29 @@ CREATE TABLE `tbl_project` (
   `id_customer` integer,
   `date_register` date
 );
+
+ALTER TABLE `tbl_sample` ADD FOREIGN KEY (`id_group_sample`) REFERENCES `tbl_group_sample` (`id_group_sample`);
+
+ALTER TABLE `tbl_customer` ADD FOREIGN KEY (`id_type_customer`) REFERENCES `tbl_type_customer` (`id_type_customer`);
+
+ALTER TABLE `tbl_cylider` ADD FOREIGN KEY (`id_project`) REFERENCES `tbl_project` (`id_project`);
+
+ALTER TABLE `tbl_project` ADD FOREIGN KEY (`id_customer`) REFERENCES `tbl_customer` (`id_customer`);
+
+ALTER TABLE `tbl_cylider` ADD FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
+
+ALTER TABLE `tbl_beam` ADD FOREIGN KEY (`id_project`) REFERENCES `tbl_project` (`id_project`);
+
+ALTER TABLE `tbl_beam` ADD FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
+
+ALTER TABLE `tbl_lodocreto` ADD FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
+
+ALTER TABLE `tbl_lodocreto` ADD FOREIGN KEY (`id_project`) REFERENCES `tbl_project` (`id_project`);
+
+ALTER TABLE `tbl_prisms` ADD FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
+
+ALTER TABLE `tbl_prisms` ADD FOREIGN KEY (`id_project`) REFERENCES `tbl_project` (`id_project`);
+
+ALTER TABLE `tbl_mortar` ADD FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
+
+ALTER TABLE `tbl_mortar` ADD FOREIGN KEY (`id_project`) REFERENCES `tbl_project` (`id_project`);
