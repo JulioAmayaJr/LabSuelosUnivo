@@ -1,30 +1,31 @@
-CREATE TABLE `tbl_rol` (
+CREATE TABLE `rol` (
   `id_rol` integer PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(50)
+  `name` varchar(40)
 );
 
-CREATE TABLE `tbl_user` (
+CREATE TABLE `users` (
   `id_user` integer PRIMARY KEY AUTO_INCREMENT,
   `full_name` varchar(255),
   `date_register` date,
   `image` varchar(100),
-  `status` integer
+  `status` integer,
+  `id_rol` integer
 );
 
-CREATE TABLE `tbl_type_customer` (
+CREATE TABLE `type_customer` (
   `id_type_customer` integer PRIMARY KEY AUTO_INCREMENT,
   `type_customer` varchar(50)
 );
 
-CREATE TABLE `tbl_customer` (
-  `id_customer` integer PRIMARY KEY,
-  `name_customer` varchar(50),
+CREATE TABLE `customer` (
+  `id_customer` integer PRIMARY KEY AUTO_INCREMENT,
+  `name_customer` varchar(100),
   `email` varchar(50),
   `municipality` varchar(50),
-  `deparment` varchar(50),
-  `number_dui` integer,
+  `department` varchar(50),
+  `number_dui` varchar(12),
   `address` varchar(50),
-  `cell_phone` varchar(50),
+  `cell_phone` varchar(20),
   `number_nit` varchar(50),
   `spin` varchar(50),
   `social_reason` varchar(50),
@@ -32,153 +33,63 @@ CREATE TABLE `tbl_customer` (
   `id_type_customer` integer
 );
 
-CREATE TABLE `tbl_group_sample` (
-  `id_group_sample` integer PRIMARY KEY AUTO_INCREMENT,
-  `group_name` varchar(50)
-);
-
-CREATE TABLE `tbl_sample` (
-  `id_sample` integer PRIMARY KEY AUTO_INCREMENT,
-  `sample` varchar(50),
-  `id_group_sample` integer
-);
-
-CREATE TABLE `tbl_cylider` (
-  `id_cylider` integer PRIMARY KEY AUTO_INCREMENT,
-  `id_project` integer,
-  `id_user` integer,
-  `date_register` date,
-  `age` int,
-  `settlement` varchar(50),
-  `diameter1` double,
-  `diameter2` double,
-  `diameter_avg` double,
-  `diameter_aprox` double,
-  `cross_sectional_transversal` double,
-  `weight` double,
-  `height` double,
-  `charge` double,
-  `resistance` double,
-  `resistance_avg` double,
-  `type_fail` varchar(10),
-  `observation` text
-);
-
-CREATE TABLE `tbl_beam` (
-  `id_beam` integer PRIMARY KEY AUTO_INCREMENT,
-  `id_project` integer,
-  `id_user` integer,
-  `date_register` date,
-  `age` int,
-  `design_break_modul` double,
-  `width1` double,
-  `width2` double,
-  `width3` double,
-  `width_avg` double,
-  `thickness1` double,
-  `thickness2` double,
-  `thickness3` double,
-  `thickness_avg` double,
-  `length1` double,
-  `length2` double,
-  `length3` double,
-  `length_avg` double,
-  `length_between_supports` double,
-  `specimen_mass` double,
-  `charge` double,
-  `rupture_stress_mr` double,
-  `avg_mr` double,
-  `type_fail` varchar(50),
-  `observation` text
-);
-
-CREATE TABLE `tbl_mortar` (
-  `id_mortar_strength` integer PRIMARY KEY AUTO_INCREMENT,
-  `id_project` integer,
-  `id_user` integer,
-  `date_register` date,
-  `age` int,
-  `day_meter` double,
-  `height` double,
-  `weight` double,
-  `area` double,
-  `charge` double,
-  `resistance` double,
-  `desing_resistance` double,
-  `percent_resistance_gain` double,
-  `resistance_avg` double,
-  `observation` text
-);
-
-CREATE TABLE `tbl_prisms` (
-  `id_prisms` integer PRIMARY KEY AUTO_INCREMENT,
-  `id_project` integer,
-  `id_user` integer,
-  `date_register` date,
-  `age` int,
-  `width` double,
-  `height` double,
-  `lenght` double,
-  `weight` double,
-  `charge` double,
-  `resistance` double,
-  `resistance_avg` double,
-  `desing_resistance` double,
-  `percentage_resistance` double,
-  `observation` text
-);
-
-CREATE TABLE `tbl_lodocreto` (
-  `id_lodocreto` integer PRIMARY KEY AUTO_INCREMENT,
-  `id_project` integer,
-  `id_user` integer,
-  `date_register` date,
-  `age` int,
-  `day_meter` double,
-  `height` double,
-  `weight` double,
-  `area` double,
-  `charge` double,
-  `resistance` double,
-  `percent_resistance_gain` double,
-  `resistance_avg` double,
-  `observation` text
-);
-
-CREATE TABLE `tbl_test` (
-  `id_test` integer PRIMARY KEY AUTO_INCREMENT,
-  `test` text
-);
-
-CREATE TABLE `tbl_project` (
+CREATE TABLE `project` (
   `id_project` integer PRIMARY KEY AUTO_INCREMENT,
-  `name_project` varchar(100),
+  `name` varchar(100),
   `id_customer` integer,
-  `date_register` date
+  `date_register` date,
+  `coordinates` varchar(200),
+  `id_user` integer
 );
 
-ALTER TABLE `tbl_sample` ADD FOREIGN KEY (`id_group_sample`) REFERENCES `tbl_group_sample` (`id_group_sample`);
+CREATE TABLE `group_sample` (
+  `id_group_sample` integer PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(50)
+);
 
-ALTER TABLE `tbl_customer` ADD FOREIGN KEY (`id_type_customer`) REFERENCES `tbl_type_customer` (`id_type_customer`);
+CREATE TABLE `sample` (
+  `id_sample` integer PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(50),
+  `rules` varchar(50),
+  `id_group_sample` integer,
+  `id_user` integer,
+  `id_project` integer
+);
 
-ALTER TABLE `tbl_cylider` ADD FOREIGN KEY (`id_project`) REFERENCES `tbl_project` (`id_project`);
+CREATE TABLE `field` (
+  `id_field` integer PRIMARY KEY AUTO_INCREMENT,
+  `name_field` varchar(50),
+  `value_field` varchar(100),
+  `type_field` varchar(50)
+);
 
-ALTER TABLE `tbl_project` ADD FOREIGN KEY (`id_customer`) REFERENCES `tbl_customer` (`id_customer`);
+CREATE TABLE `field_sample` (
+  `id_field_sample` integer PRIMARY KEY AUTO_INCREMENT,
+  `id_sample` integer,
+  `id_field` integer,
+  `status` bool
+);
 
-ALTER TABLE `tbl_cylider` ADD FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
+CREATE TABLE `method` (
+  `id_method` integer PRIMARY KEY AUTO_INCREMENT,
+  `id_field_sample` integer,
+  `operation` varchar(50)
+);
 
-ALTER TABLE `tbl_beam` ADD FOREIGN KEY (`id_project`) REFERENCES `tbl_project` (`id_project`);
+ALTER TABLE `users` ADD FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`);
 
-ALTER TABLE `tbl_beam` ADD FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
+ALTER TABLE `customer` ADD FOREIGN KEY (`id_type_customer`) REFERENCES `type_customer` (`id_type_customer`);
 
-ALTER TABLE `tbl_lodocreto` ADD FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
+ALTER TABLE `project` ADD FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
-ALTER TABLE `tbl_lodocreto` ADD FOREIGN KEY (`id_project`) REFERENCES `tbl_project` (`id_project`);
+ALTER TABLE `sample` ADD FOREIGN KEY (`id_group_sample`) REFERENCES `group_sample` (`id_group_sample`);
 
-ALTER TABLE `tbl_prisms` ADD FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
+ALTER TABLE `sample` ADD FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
-ALTER TABLE `tbl_prisms` ADD FOREIGN KEY (`id_project`) REFERENCES `tbl_project` (`id_project`);
+ALTER TABLE `sample` ADD FOREIGN KEY (`id_project`) REFERENCES `project` (`id_project`);
 
-ALTER TABLE `tbl_mortar` ADD FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
+ALTER TABLE `field_sample` ADD FOREIGN KEY (`id_sample`) REFERENCES `sample` (`id_sample`);
 
-ALTER TABLE `tbl_mortar` ADD FOREIGN KEY (`id_project`) REFERENCES `tbl_project` (`id_project`);
+ALTER TABLE `field_sample` ADD FOREIGN KEY (`id_field`) REFERENCES `field` (`id_field`);
+
+ALTER TABLE `method` ADD FOREIGN KEY (`id_field_sample`) REFERENCES `field_sample` (`id_field_sample`);
