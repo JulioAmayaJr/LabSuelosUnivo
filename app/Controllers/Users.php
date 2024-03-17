@@ -40,23 +40,5 @@ class Users extends BaseController
     }
 
 
-    public function delete($userId)
-    {
-        $userModel = new UserModel();
-
-        // Verificar si el usuario existe antes de intentar eliminarlo
-        $existingUser = $userModel->find($userId);
-
-        if ($existingUser) {
-            // Eliminar la imagen asociada al usuario (si es necesario)
-            deleteImg($existingUser['image']);
-
-            // Eliminar el usuario de la base de datos utilizando el método delete del modelo
-            $userModel->delete($userId);
-
-            return redirect()->to(base_url("user"))->with('success', 'Usuario eliminado exitosamente');
-        } else {
-            return redirect()->to(base_url("user"))->with('error', 'No se pudo encontrar el usuario');
-        }
-    }
+   
 }

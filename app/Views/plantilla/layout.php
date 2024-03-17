@@ -70,12 +70,12 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario">
                     <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span>Inventario</span>
+                    <span>Muestras</span>
                 </a>
                 <div id="collapseInventario" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="categorias.html">Categorias</a>
-                        <a class="collapse-item" href="productos.html">Productos</a>
+                        <a class="collapse-item" href="<?= base_url() ?>muestras">Agregar Muestra</a>
+                        <a class="collapse-item" href="productos.html">Mostrar Muestra</a>
                     </div>
                 </div>
             </li>

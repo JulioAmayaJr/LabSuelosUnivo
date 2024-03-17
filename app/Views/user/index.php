@@ -1,6 +1,6 @@
 <?php echo $this->extend("/plantilla/layout"); ?>
 
-<?php echo $this->section("contenido"); ?>
+
 
 
 <div class="card shadow mb-4">
@@ -61,29 +61,6 @@
     </div>
 </div>
 
-<!--Mdal de confirmacion-->
-
-
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>¿Estás seguro de que deseas eliminar este usuario con ID <span id="userIdToDelete"></span>?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                
-                <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!--  Modal-->
@@ -158,30 +135,7 @@
 
 
 
-<?php echo $this->section("Scripts") ?>
-<script>
-    console.log("por la gran")
 
-    function confirmDeleteUser(button) {
-        var userId = button.getAttribute('data-userid');
-        console.log(userId);
-
-        // Asignar el ID al span en el modal
-        var userIdToDelete = document.getElementById('userIdToDelete');
-        if (userIdToDelete) {
-            userIdToDelete.textContent = userId;
-        }
-
-        // Mostrar el modal manualmente
-        var confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
-        confirmDeleteModal.show();
-
-        
-
-        
-    }
-</script>
-<?php echo $this->endSection(); ?>
 =======
 <?php echo $this->section("Scripts"); ?>
 <script>
