@@ -31,14 +31,10 @@ class Users extends BaseController
         $userModel = new UserModel();
         $userModel->insert([
             "full_name" => trim($_POST["name"]),
-            "id_job" => trim($_POST["cboRol"]),
             "image" => trim($image),
-            "date" => $newDate,
-            "state" => '1'
+            "date_register" => $newDate,
+            "status" => '1'
         ]);
         return redirect()->to(base_url("user"));
     }
-
-
-   
 }

@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    protected $table      = 'tbl_user';
+    protected $table      = 'tbl_users';
     protected $primaryKey = 'id_user';
 
     protected $useAutoIncrement = true;
@@ -14,5 +14,5 @@ class UserModel extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['full_name', 'id_job', 'image', 'date', 'state'];
+    protected $allowedFields = ['full_name', 'date_register', 'image', 'status', 'id_rol'];
 }
