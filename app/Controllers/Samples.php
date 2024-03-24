@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 
 
-class Muestras extends BaseController
+class Samples extends BaseController
 {
 
     public function __construct()
@@ -12,12 +12,9 @@ class Muestras extends BaseController
         helper('url');
     }
 
-    
+
     public function index()
     {
-        return view('/muestras/index');
+        return view('/sample/index');
     }
-
-   
-    
 }

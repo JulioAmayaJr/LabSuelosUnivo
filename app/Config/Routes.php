@@ -13,4 +13,4 @@ $routes->post('/user/save', 'Users::save');
 
 $routes->get('/customer', 'Customer::index');
 
-$routes->get('/muestras', 'Muestras::index');
+$routes->get('/sample', 'Sample::index');

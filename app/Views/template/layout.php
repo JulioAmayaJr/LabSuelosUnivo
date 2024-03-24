@@ -21,6 +21,11 @@
     <link href="tools/toastr/toastr.min.css" rel="stylesheet">
     <link href="tools/sweetalert/sweetalert.css" rel="stylesheet">
 
+    <?php
+    echo $this->renderSection("css")
+
+    ?>
+
     <link rel="stylesheet" href="tools/datatables/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="tools/datatables/extensiones/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="tools/datatables/extensiones/css/buttons.dataTables.min.css">
@@ -74,7 +79,7 @@
                 </a>
                 <div id="collapseInventario" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?= base_url() ?>muestras">Agregar Muestra</a>
+                        <a class="collapse-item" href="<?= base_url() ?>sample">Agregar Muestra</a>
                         <a class="collapse-item" href="productos.html">Mostrar Muestra</a>
                     </div>
                 </div>
@@ -163,7 +168,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <?php
-                    echo $this->renderSection("contenido")
+                    echo $this->renderSection("content")
                     ?>
 
                 </div>
@@ -200,9 +205,9 @@
     <script src="tools/loadingoverlay/loadingoverlay.min.js"></script>
     <script src="tools/toastr/toastr.min.js"></script>
     <script src="tools/sweetalert/sweetalert.js"></script>
-    
+
     <script src="tools/datatables/jquery.dataTables.min.js"></script>
-     <script src="tools/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="tools/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script src="tools/datatables/extensiones/js/dataTables.responsive.min.js"></script>
 

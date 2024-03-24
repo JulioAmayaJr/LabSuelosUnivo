@@ -1,6 +1,6 @@
-<?php echo $this->extend("/plantilla/layout"); ?>
+<?php echo $this->extend("/template/layout"); ?>
 
-<?php echo $this->section("contenido"); ?>
+<?php echo $this->section("content"); ?>
 <div>
     <p>JEJE INDEX</p>
 </div>
