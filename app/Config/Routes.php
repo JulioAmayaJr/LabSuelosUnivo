@@ -14,3 +14,6 @@ $routes->post('/user/save', 'Users::save');
 $routes->get('/customer', 'Customer::index');
 
 $routes->get('/sample', 'Sample::index');
+$routes->post("/sample/saveField", "Sample::saveField");
+
+$routes->get('/error', 'Error::index');

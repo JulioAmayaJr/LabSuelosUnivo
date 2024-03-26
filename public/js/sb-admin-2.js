@@ -55,5 +55,4 @@
 
 })(jQuery); // End of use strict
 
-console.log("HOLA DESDE AQUI >:V");
 
