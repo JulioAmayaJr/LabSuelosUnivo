@@ -1,5 +1,11 @@
 <?php echo $this->extend("/template/layout"); ?>
-
+<?php echo $this->section("css"); ?>
+<style>
+    ._hidden {
+        display: none;
+    }
+</style>
+<?php echo $this->endSection() ?>
 <?php echo $this->section("content"); ?>
 
 <div class="card shadow mb-4">
@@ -9,7 +15,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-3">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalData"><i class="fas fa-user-plus"></i> Nuevo Usuario</button>
+                <button class="btn btn-success" id="btnNewUser" data-toggle="modal" data-target="#modalData"><i class="fas fa-user-plus"></i> Nuevo Usuario</button>
             </div>
         </div>
         <hr />
@@ -23,6 +29,7 @@
                             <th>Nombre Completo</th>
                             <th>Cargo</th>
                             <th>Fecha registro</th>
+                            <th>Fecha Modificacion</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -36,16 +43,17 @@
                                 <td><?php echo $user["full_name"]; ?></td>
                                 <td>Gerente de calidad</td>
                                 <td> <?= $user["date_register"] ?> </td>
+                                <td> <?= $user["modification_date"] ?> </td>
                                 <?php if ($user["status"] == 1) { ?>
                                     <td><span class="badge badge-info">Activo</span></td>
                                 <?php } else { ?>
                                     <td><span class="badge badge-danger">Inactivo</span></td>
                                 <?php } ?>
-                                <td>
-                                    <button class="btn btn-primary btn-sm">
+                                <td class="options">
+                                    <button data-toggle="modal" data-target="#modalData" class="btn btn-primary btn-sm" id="btnEdit" data-id="<?= $user['id_user'] ?>">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-sm delete-button" data-userid="<?= $user['id_user'] ?>" onclick="confirmDeleteUser(this)">
+                                    <button class="btn btn-danger btn-sm delete-button" data-id="<?= $user['id_user'] ?>" onclick="confirmDeleteUser(this)">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
 
@@ -69,19 +77,19 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h6>Detalle Usuario</h6>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <button class="close" type="button" id="btnClose" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <?= form_open_multipart(base_url("user/save")); ?>
-                <input type="hidden" value="0" id="txtId">
+
+                <input type="text" value="0" id="txtId">
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-row">
                             <div class="form-group col-sm-6">
-                                <label for="txtNombreCompleto">Nombre Completo</label>
-                                <input type="text" class="form-control form-control-sm input-validar" id="txtNombre" name="name" required>
+                                <label for="txtFullName">Nombre Completo</label>
+                                <input type="text" class="form-control form-control-sm input-validar" id="txtFullName" name="name" required>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="cboRol">Cargo</label>
@@ -99,32 +107,34 @@
 
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-sm-6" hidden>
-                                <label for="cboEstado">Estado</label>
-                                <select class="form-control form-control-sm" id="cboEstado">
+
+                            <div class="form-group col-sm-6 _hidden" id="divStatus">
+                                <label for="cboStatus">Estado</label>
+                                <select class="form-control form-control-sm" id="cboStatus">
                                     <option value="1">Activo</option>
                                     <option value="0">No Activo</option>
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="txtFoto">Foto</label>
-                                <input class="form-control-file" type="file" id="txtFoto" name="image" required />
+                                <label for="txtImage">Foto</label>
+                                <input class="form-control-file" type="file" id="txtImage" name="image" required />
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <img id="imgUsuario" style="max-width:200px;" src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300" class="rounded mx-auto d-block" alt="Foto usuario">
+                        <img id="imgUser" style="max-width:200px;" src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300" class="rounded mx-auto d-block" alt="Foto usuario">
                     </div>
 
                 </div>
 
             </div>
             <div class="modal-footer">
-                <?= form_submit("submit", "Guardar", ["class" => "btn btn-primary btn-sm"]) ?>
+                <button type="submit" class="btn btn-primary btn-sm" id="btnSave">Guardar</button>
+
 
                 <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
             </div>
-            <?= form_close(); ?>
+
         </div>
     </div>
 </div>
@@ -134,9 +144,7 @@
 
 <?php echo $this->section("Scripts") ?>
 <script src="js/user/user.js"></script>
-<?php echo $this->endSection(); ?>
-
-<?php echo $this->section("Scripts"); ?> <script>
+<script>
     $(document).ready(function() {
         $('#tbdata').DataTable({
             "language": {

@@ -24,16 +24,16 @@ if (!function_exists("saveImg")) {
 if (!function_exists('deleteImg')) {
     function deleteImg($imageName)
     {
-        
+
         if ($imageName && file_exists(FCPATH . 'img/' . $imageName)) {
-          
+
             unlink(FCPATH . 'img/' . $imageName);
 
-           
+
 
             return true;
         }
 
-        return false; 
+        return false;
     }
 }

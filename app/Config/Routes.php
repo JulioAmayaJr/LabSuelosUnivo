@@ -9,7 +9,7 @@ $routes->get('/', 'Home::index');
 
 $routes->get('/user', 'Users::index');
 $routes->post('/user/save', 'Users::save');
-
+$routes->get("user/getById/(:num)", "Users::getById/$1");
 
 $routes->get('/customer', 'Customer::index');
 
