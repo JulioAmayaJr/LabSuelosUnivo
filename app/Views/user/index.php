@@ -38,12 +38,17 @@
                     <tbody>
                         <?php foreach ($users as $user) : ?>
                             <tr>
-                                <td hidden> <?= $user["id_user"] ?> </td>
-                                <td><img style="height:60px ;" src="<?= base_url() ?>img/<?= $user["image"] ?> " /></td>
-                                <td><?php echo $user["full_name"]; ?></td>
-                                <td>Gerente de calidad</td>
-                                <td> <?= $user["date_register"] ?> </td>
-                                <td> <?= $user["modification_date"] ?> </td>
+                                <td hidden><?= $user["id_user"] ?></td>
+                                <td><img style="height:60px;" src="<?= base_url() ?>img/<?= $user["image"] ?>" /></td>
+                                <td><?= $user["full_name"] ?></td>
+                                <?php foreach ($roles as $rol) {
+                                    if ($user["id_rol"] == $rol["id_rol"]) { ?>
+                                        <td><?= $rol["name"] ?></td>
+                                <?php break;
+                                    }
+                                } ?>
+                                <td><?= $user["date_register"] ?></td>
+                                <td><?= $user["modification_date"] ?></td>
                                 <?php if ($user["status"] == 1) { ?>
                                     <td><span class="badge badge-info">Activo</span></td>
                                 <?php } else { ?>
@@ -56,12 +61,9 @@
                                     <button class="btn btn-danger btn-sm delete-button" data-id="<?= $user['id_user'] ?>" onclick="confirmDeleteUser(this)">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-
                     </tbody>
                 </table>
             </div>
@@ -95,10 +97,9 @@
                                 <label for="cboRol">Cargo</label>
                                 <select class="form-control form-control-sm" id="cboRol" name="cboRol" required>
                                     <option selected disabled>-- Seleccione un cargo --</option>
-                                    <option value="1">Gerente de calidad</option>
-                                    <option value="2">Jefe Tecnico</option>
-                                    <option value="3">Tecnico de planta</option>
-                                    <option value="4">Tecnico eventual</option>
+                                    <?php foreach ($roles as $rol) { ?>
+                                        <option value="<?= $rol['id_rol'] ?>"><?= $rol['name'] ?></option>
+                                    <?php } ?>
                                 </select>
 
                             </div>

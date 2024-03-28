@@ -1,4 +1,4 @@
-const btnEdit = document.querySelectorAll('#btnEdit');
+
 const btnNewUser = document.getElementById('btnNewUser');
 const txtFullName = document.getElementById("txtFullName");
 const cboRol = document.getElementById('cboRol');
@@ -10,22 +10,86 @@ const txtId = document.getElementById("txtId");
 const txtImage = document.getElementById("txtImage");
 
 
-const add = (e) => {
-    const userId = e.target.dataset.id
-    console.log(userId);
-    getData(userId);
-}
+const add = (userId) => {
+    const url = "http://localhost/LabSuelosUnivo/public/user/getById/" + userId;
+    fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+
+            }
+        })
+        .then(data => {
+            txtFullName.value = data.full_name;
+            cboRol.value = data.id_rol;
+            txtId.value = data.id_user;
+            imgUser.src = "img/" + data.image;
+            divStatus.classList.remove("_hidden");
+
+            if (data.status == 1) {
+                cboStatus.selectedIndex = 0;
+            } else {
+                cboStatus.selectedIndex = 1;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("#tbdata .options button[data-id]");
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const userId = button.dataset.id;
+            add(userId);
+        });
+    });
+})
 
 
-btnEdit.forEach((boton) => boton.addEventListener("click", add))
 
 btnSave.addEventListener('click', () => {
-    if (txtId.value == 0) {
-        //Llamando al metodo post
-        postData();
-    } else if (txtId.value == 1) {
-        getData();
 
+    if (txtId.value == 0) {
+        //Bloque para la creacion de un usuario
+        postData();
+
+    } else if (txtId.value > 0) {
+        //Bloque para la modificacion de un usuario
+
+        const formData = new FormData();
+        formData.append("name", txtFullName.value);
+        formData.append("id_rol", cboRol.value);
+        formData.append("image", txtImage.files[0]);
+        formData.append("status", cboStatus.value);
+
+        const url = "http://localhost/LabSuelosUnivo/public/user/update/" + txtId.value;
+        fetch(url, {
+            method: "POST",
+            body: formData
+        })
+            .then(response => {
+                if (response.ok) {
+                    location.href = "http://localhost/LabSuelosUnivo/public/user";
+
+                } else {
+                    console.log(response);
+                }
+            }).then(data => {
+                if (data === "Se actualizo :D") {
+                    location.href = "http://localhost/LabSuelosUnivo/public/user";
+
+                }
+                console.log(data)
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 });
 
@@ -80,43 +144,6 @@ const postData = async () => {
     }
 }
 
-const getData = async (userId) => {
-    try {
-        const response = await fetch("http://localhost/LabSuelosUnivo/public/user/getById/" + userId,
-            {
-                method: "GET",
-                headers: { "Content-Type": "application/json" }
-            });
-        if (response.ok) {
-            const contentType = response.headers.get('content-type');
-            if (contentType && contentType.indexOf('application/json') !== -1) {
-                const data = await response.json();
-
-                txtFullName.value = data.full_name;
-                cboRol.value = data.id_rol;
-                txtId.value = data.id_user;
-                imgUser.src = "img/" + data.image;
-                divStatus.classList.remove("_hidden");
-
-                if (data.status == 1) {
-
-                    cboStatus.selectedIndex = 0
-                } else {
-                    cboStatus.selectedIndex = 1
-                }
-
-            } else {
-                console.log("Respuesta no es JSON");
-            }
-        } else {
-            console.log("NOOO")
-            console.log(response)
-        }
-
-    } catch (error) {
-        console.log(error)
-    }
-}
 
 
 

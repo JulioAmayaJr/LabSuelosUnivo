@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\RolModel;
 use App\Models\UserModel;
 
 class Users extends BaseController
@@ -14,9 +15,15 @@ class Users extends BaseController
     public function index()
     {
         $model = new UserModel();
-        $resultado = $model->findAll();
+        $rolModel = new RolModel();
 
-        $data = ["users" => $resultado];
+        $resultado = $model->findAll();
+        $resultadoRol = $rolModel->findAll();
+
+        $data = [
+            "users" => $resultado,
+            "roles" => $resultadoRol
+        ];
         helper("form");
         return view('/user/index', $data);
     }
@@ -56,19 +63,21 @@ class Users extends BaseController
         die();
     }
 
-    public function updateUser($id)
+    public function updateUser($id = null)
     {
         helper("img_helper");
         $date = date('Y-m-d');
         $newDate = date('Y-m-d', strtotime($date . ' -1 day'));
-        $image = saveImg($_FILES["image"]["name"], $_FILES["image"]["tmp_name"]);
+
 
         $userModel = new UserModel();
         $userModel->update($id, [
             "full_name" => trim($_POST["name"]),
-            "image" => trim($image),
+
             'modification_date' => $newDate,
-            "status" => '1'
+            "status" => $_POST["status"],
+            "id_rol" => $_POST['id_rol']
         ]);
+        echo json_encode(["message" => "Usuario actualizado correctamente"]);
     }
 }
