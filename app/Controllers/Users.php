@@ -69,15 +69,31 @@ class Users extends BaseController
         $date = date('Y-m-d');
         $newDate = date('Y-m-d', strtotime($date . ' -1 day'));
 
-
+        // Obtener el nombre de la imagen actual del usuario
         $userModel = new UserModel();
-        $userModel->update($id, [
-            "full_name" => trim($_POST["name"]),
+        $userData = $userModel->find($id);
+        $oldImage = $userData['image'];
 
-            'modification_date' => $newDate,
+        $newImage = null;
+        if (!empty($_FILES['image']['name'])) {
+            // Guardar la nueva imagen
+            $newImageName = saveImg($_FILES['image']['name'], $_FILES['image']['tmp_name']);
+            $newImage = $newImageName;
+            // Eliminar la imagen antigua si existe
+            if (!empty($oldImage)) {
+                deleteImg($oldImage);
+            }
+        }
+        // Actualizar los datos del usuario, incluida la imagen si se cambió
+        $updateData = [
+            "full_name" => trim($_POST["name"]),
+            "modification_date" => $newDate,
             "status" => $_POST["status"],
-            "id_rol" => $_POST['id_rol']
-        ]);
+            "id_rol" => $_POST['id_rol'],
+            "image" => $newImage
+        ];
+        $userModel->update($id, $updateData);
+
         echo json_encode(["message" => "Usuario actualizado correctamente"]);
     }
 }
