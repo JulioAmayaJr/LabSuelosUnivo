@@ -8,7 +8,7 @@ const cboStatus = document.getElementById("cboStatus");
 const btnSave = document.getElementById("btnSave");
 const txtId = document.getElementById("txtId");
 const txtImage = document.getElementById("txtImage");
-
+const btnDelete = document.querySelectorAll(".delete-button");
 
 const add = (userId) => {
     const url = "http://localhost/LabSuelosUnivo/public/user/getById/" + userId;
@@ -117,6 +117,26 @@ function validate() {
 
     }
 }
+
+btnDelete.forEach(element => {
+    element.addEventListener("click", function () {
+        event.preventDefault();
+        const id = element.getAttribute("data-id");
+        const nombre = element.getAttribute("data-nombre");
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Se eliminara el usuario ' + nombre,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `http://localhost/LabSuelosUnivo/public/user/delete/${id}`;
+            }
+        });
+    });
+});
 
 const postData = async () => {
     const formData = new FormData();

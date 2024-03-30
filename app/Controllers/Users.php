@@ -96,4 +96,41 @@ class Users extends BaseController
 
         echo json_encode(["message" => "Usuario actualizado correctamente"]);
     }
+
+    public function deleteUser($id)
+    {
+        // Validar si el id es válido
+        if (!is_numeric($id)) {
+            return redirect()->to(base_url('user'))->with('error', 'ID de usuario no válido.');
+        }
+
+        $userModel = new UserModel();
+
+        // Verificar si el usuario existe antes de eliminar
+        $user = $userModel->find($id);
+        if (!$user) {
+            return redirect()->to(base_url('user'))->with('error', 'El usuario que intenta eliminar no existe.');
+        }
+
+        $imageName = $user['image'];
+
+        // Eliminar la imagen si existe
+        if (!empty($imageName)) {
+            $directory = 'img/';
+            $filePath = $directory . $imageName;
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+
+        // Eliminar el usuario seleccionado
+        $deleted = $userModel->delete($id);
+
+        // Verificar si se elimino correctamente
+        if ($deleted) {
+            return redirect()->to(base_url('user'))->with('success', 'Usuario eliminado correctamente.');
+        } else {
+            return redirect()->to(base_url('user'))->with('error', 'Error al eliminar el usuario.');
+        }
+    }
 }

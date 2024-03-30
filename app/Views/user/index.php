@@ -58,7 +58,7 @@
                                     <button data-toggle="modal" data-target="#modalData" class="btn btn-primary btn-sm" id="btnEdit" data-id="<?= $user['id_user'] ?>">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-sm delete-button" data-id="<?= $user['id_user'] ?>" onclick="confirmDeleteUser(this)">
+                                    <button class="btn btn-danger btn-sm delete-button" data-nombre="<?= $user['full_name'] ?>" data-id="<?= $user['id_user'] ?>">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
@@ -145,6 +145,7 @@
 
 <?php echo $this->section("Scripts") ?>
 <script src="js/user/user.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function() {
         $('#tbdata').DataTable({
