@@ -149,7 +149,6 @@ const postData = async () => {
         const response = await fetch("http://localhost/LabSuelosUnivo/public/user/save",
             {
                 method: "POST",
-
                 body: formData
             });
         if (response.ok) {

@@ -81,6 +81,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="<?= base_url() ?>sample">Agregar Muestra</a>
                         <a class="collapse-item" href="productos.html">Mostrar Muestra</a>
+                        <a class="collapse-item" href="<?= base_url() ?>groupSample">Ramas</a>
                     </div>
                 </div>
             </li>

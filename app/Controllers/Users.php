@@ -103,7 +103,7 @@ class Users extends BaseController
         if (!is_numeric($id)) {
             return redirect()->to(base_url('user'))->with('error', 'ID de usuario no válido.');
         }
-
+        
         $userModel = new UserModel();
 
         // Verificar si el usuario existe antes de eliminar

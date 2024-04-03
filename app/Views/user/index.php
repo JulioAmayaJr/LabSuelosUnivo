@@ -85,7 +85,7 @@
             </div>
             <div class="modal-body">
 
-                <input type="text" value="0" id="txtId">
+                <input type="text" hidden value="0" id="txtId">
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-row">
