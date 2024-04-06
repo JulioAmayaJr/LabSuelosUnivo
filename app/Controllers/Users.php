@@ -74,7 +74,7 @@ class Users extends BaseController
         $userData = $userModel->find($id);
         $oldImage = $userData['image'];
 
-        $newImage = null;
+        $newImage = $oldImage;
         if (!empty($_FILES['image']['name'])) {
             // Guardar la nueva imagen
             $newImageName = saveImg($_FILES['image']['name'], $_FILES['image']['tmp_name']);
@@ -103,7 +103,7 @@ class Users extends BaseController
         if (!is_numeric($id)) {
             return redirect()->to(base_url('user'))->with('error', 'ID de usuario no válido.');
         }
-        
+
         $userModel = new UserModel();
 
         // Verificar si el usuario existe antes de eliminar
