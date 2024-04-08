@@ -2,16 +2,16 @@
 
 const txtId = document.getElementById('txtId')
 const cboType = document.getElementById('cboType')
-const txtNombre = document.getElementById('txtNombre')
-const txtCorreo = document.getElementById('txtCorreo')
-const txtTelefono = document.getElementById('txtTelefono')
+const txtName = document.getElementById('txtNombre')
+const txtEmail = document.getElementById('txtCorreo')
+const txtCellphone = document.getElementById('txtTelefono')
 const txtDepartment = document.getElementById('txtDepartment')
 const txtMunicipality = document.getElementById('txtMunicipality')
 const txtNIT = document.getElementById('txtNIT')
-const txtGiro = document.getElementById('txtGiro')
-const txtRazon = document.getElementById('txtRazon')
+const txtSpin = document.getElementById('txtGiro')
+const txtReason = document.getElementById('txtRazon')
 const txtDUI = document.getElementById('txtDUI')
-const txtNoRegistro = document.getElementById('txtNoRegistro')
+const txtNoRegister= document.getElementById('txtNoRegistro')
 const txtAddress = document.getElementById('txtAddress')
 
 //capture buttons
@@ -33,5 +33,115 @@ cboType.addEventListener('change', () => {
             item.style.display = "block"
         }
     })
-
 })
+
+const add = (customId) => {
+    const url = "http://localhost/LabSuelosUnivo/public/customer/getCustomerById/" + userId
+    fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+    })
+        .then(response => {
+            if (response.ok){
+                return response.json()
+            }
+            else {
+
+            }
+        })
+        .then(data =>{
+            txtName.value = data.name_customer
+            txtEmail.value = data.email
+            txtCellphone.value = data.cell_phone
+            txtDepartment.value = data.department
+            txtMunicipality.value = data.municipality
+            txtNIT.value = data.number_nit
+            txtSpin.value = data.spin
+            txtReason.value = data.social_reason
+            txtDUI.value = data.number_dui
+            txtNoRegister.value = data.no_register_nrc
+            txtAddress.value = data.address
+            cboType.value = data.id_type_customer
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("#tbdata .options button[data-id]")
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const userId = button.dataset.id
+            add(userId)
+        })
+    })
+})
+
+btnSave.addEventListener('click', () =>{
+    if (txtId.value == 0){
+        //Bloque para la creacion de un cliente
+        postData()
+    }
+    else if(txtId.value > 0){
+        //Bloque para la modificacion de un usuario
+        const formData = new FormData()
+        formData.append("name_customer", txtName.value)
+        formData.append("email", txtEmail,value)
+        formData.append("cell_phone", txtCellphone.value)
+        formData.append("department", txtDepartment.value)
+        formData.append("municipality", txtMunicipality.value)
+        formData.append("number_nit", txtNIT.value)
+        formData.append("spin", txtSpin.value)
+        formData.append("social_reason", txtReason.value)
+        formData.append("no_register_nrc", txtNoRegister.value)
+        formData.append("id_type_customer", cboType.value)
+
+        const url = "http://localhost/LabSuelosUnivo/public/customer/updateCustomer/" + txtId.value
+        fetch(url, {
+            method: "POST",
+            body: formData
+        })
+            .then(response => {
+                if (response.ok){
+                    location.href = "http://localhost/LabSuelosUnivo/public/customer"
+                }
+                else {
+                    console.log(response)
+                }
+            })
+            .then(data => {
+                if (data === "se actualizo"){
+                    location.href = "http://localhost/LabSuelosUnivo/public/customer"
+                }
+                console.log(data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+})
+
+//Limpiar campos
+function clearFields() {
+    txtName.value = ""
+    cboType.value = "-- Seleccione tipo de cliente --"
+    txtEmail.value = ""
+    txtCellphone.value = ""
+    txtDepartment.value = ""
+    txtMunicipality.value = ""
+    txtNIT.value = ""
+    txtSpin.value = ""
+    txtReason.value = ""
+    txtDUI.value = ""
+    txtNoRegister.value = ""
+    txtAddress.value = ""
+}
+
+btnNewUser.addEventListener('click', () => {
+    clearFields()
+})
+
+function validate(){
+    
+}
