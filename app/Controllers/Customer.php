@@ -12,7 +12,7 @@ class Customer extends BaseController
         helper('url');
     }
 
-    public function index(): string
+    public function index()
     {
         $model = new CustomerModel();
         $typeCustomer = new TypeCustomerModel();
@@ -25,7 +25,7 @@ class Customer extends BaseController
             "typecustomers" => $resultType
         ];
         helper("form");
-        return view('/customer/index');
+        return view('/customer/index', $data);
     }
 
     public function saveCustomer()

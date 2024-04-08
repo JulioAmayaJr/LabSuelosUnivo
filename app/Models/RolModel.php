@@ -13,3 +13,5 @@ class RolModel extends Model
     protected $useSoftDeletes = false;
     protected $allowedFields = ['name'];
 }
+
+?>
