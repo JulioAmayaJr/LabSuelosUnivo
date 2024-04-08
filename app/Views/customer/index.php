@@ -75,6 +75,19 @@
                 <form>
                     <input type="hidden" value="0" id="txtId">
                     <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="cboType">Tipo de cliente</label>
+                            <select class="form-control form-control-sm input-validar" name="id_type" id="cboType">
+                                <option selected disabled>-- Seleccione tipo de cliente --</option>
+                                <?php foreach ($typecustomers as $type){ ?> 
+                                    <option value="<?= $type["id_type_customer"] ?>"><?= $type["type_customer"] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="txtNombre">Nombre completo</label>
                             <input type="text" class="form-control form-control-sm input-validar" id="txtNombre" name="name">
@@ -100,9 +113,29 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-4">
+                            <label for="txtNIT">NIT</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtNIT" name="nit">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="txtGiro">Giro</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtGiro" name="spin">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="txtRazon">Razón social</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtRazon" name="social_reason">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-sm-4">
                             <label for="txtDUI">DUI</label>
                             <input type="text" class="form-control form-control-sm input-validar" id="txtDUI" name="dui">
                         </div>
+                        <div class="form-group col-sm-4">
+                            <label for="txtNoRegistro">No de registro NRC</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtNoRegistro" name="no_nrc">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
                         <div class="form-group col-sm-8">
                             <label for="txtAddress">Direccion</label>
                             <textarea name="address" id="txtAddress" class="form-control form-control-sm input-validar" style="width: 100%; height: 100px; resize: none;"></textarea>
@@ -123,4 +156,5 @@
 
 <?php echo $this->section("Scripts") ?>
 <script src="js/customer/customer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php echo $this->endSection(); ?>
