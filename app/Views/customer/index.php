@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-3">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalData"><i class="fas fa-user-plus"></i> Nuevo Cliente </button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalData" id="btnNewCustom"><i class="fas fa-user-plus"></i> Nuevo Cliente </button>
             </div>
         </div>
         <hr />
@@ -45,10 +45,10 @@
                                 <td><?= $customer["number_dui"] ?></td>
                                 <td><span class="badge badge-danger">No Activo</span></td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm">
+                                    <button data-toggle="modal" data-target="#modalData" id="btnEdit" data-id="<?= $customer["id_customer"] ?>" class="btn btn-primary btn-sm">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-sm">
+                                    <button class="btn btn-danger btn-sm" id="btnDelete" data-nombre="<?= $customer["name_customer"] ?>" data-id="<?= $customer["id_customer"] ?>">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
@@ -75,52 +75,76 @@
                 <form>
                     <input type="hidden" value="0" id="txtId">
                     <div class="row">
-                        <div class="col-sm-8">
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="txtNombre">Nombre</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtNombre" name="Nombre">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="txtCorreo">Correo</label>
-                                    <input type="email" class="form-control form-control-sm input-validar" id="txtCorreo" name="Correo">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="txtTelefono">Telefono</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtTelefono" name="Telefono">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="cboRol">Rol</label>
-                                    <select class="form-control form-control-sm" id="cboRol">
-                                        <option value="1">Administrador</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="cboEstado">Estado</label>
-                                    <select class="form-control form-control-sm" id="cboEstado">
-                                        <option value="1">Activo</option>
-                                        <option value="0">No Activo</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="txtFoto">Foto</label>
-                                    <input class="form-control-file" type="file" id="txtFoto" />
-                                </div>
-                            </div>
+                        <div class="form-group col-sm-4">
+                            <label for="cboType">Tipo de cliente</label>
+                            <select class="form-control form-control-sm input-validar" name="id_type" id="cboType">
+                                <option selected disabled>-- Seleccione tipo de cliente --</option>
+                                <?php foreach ($typecustomers as $type){ ?> 
+                                    <option value="<?= $type["id_type_customer"] ?>"><?= $type["type_customer"] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
-                        <div class="col-sm-4">
-                            <img id="imgUsuario" style="max-width:200px;" src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300" class="rounded mx-auto d-block" alt="Foto usuario">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="txtNombre">Nombre completo</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtNombre" name="name">
                         </div>
-
+                        <div class="form-group col-sm-6">
+                            <label for="txtCorreo">Correo</label>
+                            <input type="email" class="form-control form-control-sm input-validar" id="txtCorreo" name="email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="txtTelefono">Telefono</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtTelefono" name="cell_phone">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="txtDepartment">Departamento</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtDepartment" name="department">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="txtMunicipality">Municipio</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtMunicipality" name="municipality">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-4 hide">
+                            <label for="txtNIT">NIT</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtNIT" name="nit">
+                        </div>
+                        <div class="form-group col-sm-4 hide">
+                            <label for="txtGiro">Giro</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtGiro" name="spin">
+                        </div>
+                        <div class="form-group col-sm-4 hide">
+                            <label for="txtRazon">Razón social</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtRazon" name="social_reason">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-sm-4">
+                            <label for="txtDUI">DUI</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtDUI" name="dui">
+                        </div>
+                        <div class="form-group col-sm-4 hide">
+                            <label for="txtNoRegistro" class="hide">No de registro NRC</label>
+                            <input type="text" class="form-control form-control-sm input-validar" id="txtNoRegistro" name="no_nrc">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-sm-8">
+                            <label for="txtAddress">Direccion</label>
+                            <textarea name="address" id="txtAddress" class="form-control form-control-sm input-validar" style="width: 100%; height: 100px; resize: none;"></textarea>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">Guardar</button>
+                <button class="btn btn-primary btn-sm" type="submit" id="btnSave">Guardar</button>
                 <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -132,4 +156,5 @@
 
 <?php echo $this->section("Scripts") ?>
 <script src="js/customer/customer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php echo $this->endSection(); ?>

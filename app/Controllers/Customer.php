@@ -37,12 +37,12 @@ class Customer extends BaseController
             "cell_phone" => trim($_POST["cell_phone"]),
             "department" => trim($_POST["department"]),
             "email" => trim($_POST["email"]),
-            "id_type_customer" => trim($_POST["id_type_customer"]),
+            "id_type_customer" => trim($_POST["id_type"]),
             "municipality" => trim($_POST["municipality"]),
-            "name_customer" => trim($_POST["name_customer"]),
-            "no_register_nrc" => trim($_POST["no_register_nrc"]),
-            "number_dui" => trim($_POST["number_dui"]),
-            "number_nit" => trim($_POST["number_nit"]),
+            "name_customer" => trim($_POST["name"]),
+            "no_register_nrc" => trim($_POST["no_nrc"]),
+            "number_dui" => trim($_POST["dui"]),
+            "number_nit" => trim($_POST["nit"]),
             "social_reason" => trim($_POST["social_reason"]),
             "spin" => trim($_POST["spin"])
         ]);
