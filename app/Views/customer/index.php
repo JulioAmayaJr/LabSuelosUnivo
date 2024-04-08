@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-3">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalData"><i class="fas fa-user-plus"></i> Nuevo Cliente </button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modalData" id="btnNewCustom"><i class="fas fa-user-plus"></i> Nuevo Cliente </button>
             </div>
         </div>
         <hr />
@@ -45,10 +45,10 @@
                                 <td><?= $customer["number_dui"] ?></td>
                                 <td><span class="badge badge-danger">No Activo</span></td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm">
+                                    <button data-toggle="modal" data-target="#modalData" id="btnEdit" data-id="<?= $customer["id_customer"] ?>" class="btn btn-primary btn-sm">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-sm">
+                                    <button class="btn btn-danger btn-sm" id="btnDelete" data-nombre="<?= $customer["name_customer"] ?>" data-id="<?= $customer["id_customer"] ?>">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
@@ -112,15 +112,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-sm-4">
+                        <div class="form-group col-sm-4 hide">
                             <label for="txtNIT">NIT</label>
                             <input type="text" class="form-control form-control-sm input-validar" id="txtNIT" name="nit">
                         </div>
-                        <div class="form-group col-sm-4">
+                        <div class="form-group col-sm-4 hide">
                             <label for="txtGiro">Giro</label>
                             <input type="text" class="form-control form-control-sm input-validar" id="txtGiro" name="spin">
                         </div>
-                        <div class="form-group col-sm-4">
+                        <div class="form-group col-sm-4 hide">
                             <label for="txtRazon">Razón social</label>
                             <input type="text" class="form-control form-control-sm input-validar" id="txtRazon" name="social_reason">
                         </div>
@@ -130,8 +130,8 @@
                             <label for="txtDUI">DUI</label>
                             <input type="text" class="form-control form-control-sm input-validar" id="txtDUI" name="dui">
                         </div>
-                        <div class="form-group col-sm-4">
-                            <label for="txtNoRegistro">No de registro NRC</label>
+                        <div class="form-group col-sm-4 hide">
+                            <label for="txtNoRegistro" class="hide">No de registro NRC</label>
                             <input type="text" class="form-control form-control-sm input-validar" id="txtNoRegistro" name="no_nrc">
                         </div>
                     </div>
