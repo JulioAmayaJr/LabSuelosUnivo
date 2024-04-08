@@ -18,51 +18,42 @@
                 <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Foto</th>
+                            <th hidden>Id</th>
                             <th>Nombre</th>
+                            <th>Tipo de cliente</th>
                             <th>Correo</th>
                             <th>Telefono</th>
-                            <th>Rol</th>
+                            <th>DUI</th>
                             <th>Estado</th>
                             <th>Acciones</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><img style="height:60px ;" src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300" class="rounded mx-auto d-block" /></td>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td><span class="badge badge-info">Activo</span></td>
-                            <td>
-                                <button class="btn btn-primary btn-sm">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><img style="height:60px ;" src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300" class="rounded mx-auto d-block" /></td>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td><span class="badge badge-danger">No Activo</span></td>
-                            <td>
-                                <button class="btn btn-primary btn-sm">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php foreach ($customers as $customer): ?> 
+                            <tr>
+                                <td hidden><?= $customer["id_customer"]?></td>
+                                <td><?= $customer["name_customer"] ?></td>
+                                <?php foreach ($typecustomers as $type){
+                                    if ($customer["id_type_customer"] == $type["id_type_customer"]){ ?>
+                                        <td><?= $type["type_customer"] ?></td>
+                                    <?php  break;
+                                    }
+                                } ?>
+                                <td><?= $customer["email"] ?></td>
+                                <td><?= $customer["cell_phone"] ?></td>
+                                <td><?= $customer["number_dui"] ?></td>
+                                <td><span class="badge badge-danger">No Activo</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
                     </tbody>
                 </table>
             </div>
