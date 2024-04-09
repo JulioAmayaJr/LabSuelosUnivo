@@ -36,7 +36,7 @@ cboType.addEventListener('change', () => {
 })
 
 const add = (customId) => {
-    const url = "http://localhost/LabSuelosUnivo/public/customer/getCustomerById/" + userId
+    const url = "http://localhost/LabSuelosUnivo/public/customer/getById/" + customId;
     fetch(url, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
@@ -72,8 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll("#tbdata .options button[data-id]")
     buttons.forEach(button => {
         button.addEventListener("click", () => {
-            const userId = button.dataset.id
-            add(userId)
+            const customId = button.dataset.id
+            console.log(customId)
+            add(customId)
         })
     })
 })
@@ -138,7 +139,7 @@ function clearFields() {
     txtAddress.value = ""
 }
 
-btnNewUser.addEventListener('click', () => {
+btnNewCustom.addEventListener('click', () => {
     clearFields()
 })
 

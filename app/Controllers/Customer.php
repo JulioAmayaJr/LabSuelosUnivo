@@ -52,9 +52,9 @@ class Customer extends BaseController
         die();
     }
 
-    public function getCustomerById($Id = null)
+    public function getById($Id = null)
     {
-        if(Id == null){
+        if($Id == null){
             return redirect()->to(base_url('customer'));
         }
         $customModel = new CustomerModel();
