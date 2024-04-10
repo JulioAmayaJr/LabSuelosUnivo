@@ -24,7 +24,6 @@
                             <th>Correo</th>
                             <th>Telefono</th>
                             <th>DUI</th>
-                            <th>Estado</th>
                             <th>Acciones</th>
                             
                         </tr>
@@ -43,12 +42,11 @@
                                 <td><?= $customer["email"] ?></td>
                                 <td><?= $customer["cell_phone"] ?></td>
                                 <td><?= $customer["number_dui"] ?></td>
-                                <td><span class="badge badge-danger">No Activo</span></td>
                                 <td class="options">
-                                    <button data-toggle="modal" data-target="#modalData" id="btnEdit" data-id="<?= $customer['id_customer'] ?>" class="btn btn-primary btn-sm">
+                                    <button data-toggle="modal" data-target="#modalData" id="btnEdit" data-id="<?= $customer["id_customer"] ?>" class="btn btn-primary btn-sm">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
-                                    <button class="btn btn-danger btn-sm" id="btnDelete" data-nombre="<?= $customer['name_customer'] ?>" data-id="<?= $customer['id_customer'] ?>">
+                                    <button class="btn btn-danger btn-sm delete-button" id="btnDelete" data-nombre="<?= $customer["name_customer"] ?>" data-id="<?= $customer["id_customer"] ?>">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>

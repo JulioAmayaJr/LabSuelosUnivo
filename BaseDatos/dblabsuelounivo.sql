@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2024 a las 05:47:47
+-- Tiempo de generación: 09-04-2024 a las 19:00:55
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -77,7 +77,8 @@ CREATE TABLE `tbl_field_sample` (
 
 CREATE TABLE `tbl_group_sample` (
   `id_group_sample` int(11) NOT NULL,
-  `name` varchar(50) DEFAULT NULL
+  `name` varchar(50) DEFAULT NULL,
+  `statu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -103,7 +104,8 @@ CREATE TABLE `tbl_project` (
   `name` varchar(100) DEFAULT NULL,
   `id_customer` int(11) DEFAULT NULL,
   `date_register` date DEFAULT NULL,
-  `coordinates` varchar(200) DEFAULT NULL,
+  `lactitud` varchar(50) NOT NULL,
+  `longitud` varchar(50) NOT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -175,12 +177,11 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id_user`, `full_name`, `date_register`, `modification_date`, `image`, `status`, `id_rol`) VALUES
-(1, 'Michell Zelaya', '2024-03-19', '2024-03-19', 'avatar.png', 0, 1),
-(2, 'julio', '2024-03-26', '2024-03-26', 'wmeir9017k.png', 1, 1),
-(7, 'Ruthylia', '2024-03-26', '2024-03-27', 'kx97t5ijh4.png', 0, 4),
-(16, 'asdasd', '2024-03-26', '2024-03-26', '5s3gf7xwdu.png', 1, 1),
-(17, 'Irving', '2024-03-26', '2024-03-26', 'fn2p5y3z4q.png', 1, 4),
-(18, 'Elias el gei', '2024-03-26', '2024-03-26', '5nfopwxvt0.png', 1, 3);
+(1, 'Michell Zelaya', '2024-03-19', '2024-03-27', 'avatar.png', 1, 1),
+(2, 'julio', '2024-03-26', '2024-03-27', 'avatar.png', 1, 1),
+(7, 'Ruthylia', '2024-03-26', '2024-03-27', 'avatar.png', 1, 4),
+(17, 'Irving', '2024-03-26', '2024-03-26', 'avatar.png', 1, 4),
+(18, 'Elias el gei', '2024-03-26', '2024-03-29', 'o604y7ethd.png', 1, 3);
 
 --
 -- Índices para tablas volcadas
@@ -317,7 +318,7 @@ ALTER TABLE `tbl_type_customer`
 -- AUTO_INCREMENT de la tabla `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Restricciones para tablas volcadas

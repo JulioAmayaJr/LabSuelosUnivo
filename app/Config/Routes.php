@@ -27,11 +27,13 @@ $routes->get("customer/delete/(:num)", "Customer::deleteCustomer/$1");
 //Sample
 $routes->get('/sample', 'Sample::index');
 $routes->post("/sample/saveField", "Sample::saveField");
-
-$routes->get('/groupSample','GroupSample::index');
+//groupSample
+$routes->get('/groupSample', 'GroupSample::index');
 $routes->post("/groupSample/save", "GroupSample::save");
 $routes->get("groupSample/getById/(:num)", "GroupSample::getById/$1");
 $routes->post("groupSample/update/(:num)", "GroupSample::update/$1");
 $routes->get("groupSample/delete/(:num)", "GroupSample::delete/$1");
+//Project
+$routes->get('/project', 'Project::index');
 
 $routes->get('/error', 'Error::index');
