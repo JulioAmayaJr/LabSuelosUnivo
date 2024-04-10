@@ -90,11 +90,11 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVenta">
                     <i class="fas fa-fw fa-tags"></i>
-                    <span>Ventas</span>
+                    <span>Proyectos</span>
                 </a>
                 <div id="collapseVenta" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="nueva_venta.html">Nueva Venta</a>
+                        <a class="collapse-item" href="<?= base_url() ?>project">Proyecto</a>
                         <a class="collapse-item" href="historial_venta.html">Historial Venta</a>
                     </div>
                 </div>
