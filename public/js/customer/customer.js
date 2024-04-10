@@ -17,7 +17,7 @@ const txtAddress = document.getElementById('txtAddress')
 //capture buttons
 const btnNewCustom = document.getElementById('btnNewCustom')
 const btnSave = document.getElementById('btnSave')
-const btnDelete = document.getElementById('btnDelete')
+const btnDelete = document.querySelectorAll(".delete-button")
 
 //Capture class to hide controls
 const items = document.querySelectorAll(".hide")
@@ -36,7 +36,7 @@ cboType.addEventListener('change', () => {
 })
 
 const add = (customId) => {
-    const url = "http://localhost/LabSuelosUnivo/public/customer/getCustomerById/" + userId
+    const url = "http://localhost/LabSuelosUnivo/public/customer/getById/" + customId;
     fetch(url, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
@@ -50,6 +50,7 @@ const add = (customId) => {
             }
         })
         .then(data =>{
+            txtId.value = data.id_customer
             txtName.value = data.name_customer
             txtEmail.value = data.email
             txtCellphone.value = data.cell_phone
@@ -72,32 +73,71 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll("#tbdata .options button[data-id]")
     buttons.forEach(button => {
         button.addEventListener("click", () => {
-            const userId = button.dataset.id
-            add(userId)
+            const customId = button.dataset.id
+            console.log(customId)
+            add(customId)
         })
     })
 })
 
+const postData = async () =>{
+    const formData = new FormData()
+    console.log(formData)
+    formData.append("name_customer", txtName.value)
+    formData.append("email", txtEmail.value)
+    formData.append("cell_phone", txtCellphone.value)
+    formData.append("department", txtDepartment.value)
+    formData.append("municipality", txtMunicipality.value)
+    formData.append("number_nit", txtNIT.value)
+    formData.append("number_dui", txtDUI.value)
+    formData.append("spin", txtSpin.value)
+    formData.append("social_reason", txtReason.value)
+    formData.append("no_register_nrc", txtNoRegister.value)
+    formData.append("id_type_customer", cboType.value)
+    formData.append("address", txtAddress.value)
+
+    try {
+        const response = await fetch("http://localhost/LabSuelosUnivo/public/customer/save",
+        {
+            method: "POST",
+            body: formData
+        })
+        if (response.ok) {
+            location.href = "http://localhost/LabSuelosUnivo/public/customer/"
+        }
+        else {
+            console.log("error")
+            console.log(response)
+        }
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
 btnSave.addEventListener('click', () =>{
+
     if (txtId.value == 0){
         //Bloque para la creacion de un cliente
-        postData()
+        postData();
     }
     else if(txtId.value > 0){
         //Bloque para la modificacion de un usuario
         const formData = new FormData()
         formData.append("name_customer", txtName.value)
-        formData.append("email", txtEmail,value)
+        formData.append("email", txtEmail.value)
         formData.append("cell_phone", txtCellphone.value)
         formData.append("department", txtDepartment.value)
         formData.append("municipality", txtMunicipality.value)
+        formData.append("number_dui", txtDUI.value)
         formData.append("number_nit", txtNIT.value)
         formData.append("spin", txtSpin.value)
         formData.append("social_reason", txtReason.value)
         formData.append("no_register_nrc", txtNoRegister.value)
         formData.append("id_type_customer", cboType.value)
+        formData.append("address", txtAddress.value)
 
-        const url = "http://localhost/LabSuelosUnivo/public/customer/updateCustomer/" + txtId.value
+        const url = "http://localhost/LabSuelosUnivo/public/customer/update/" + txtId.value
         fetch(url, {
             method: "POST",
             body: formData
@@ -138,10 +178,31 @@ function clearFields() {
     txtAddress.value = ""
 }
 
-btnNewUser.addEventListener('click', () => {
+btnNewCustom.addEventListener('click', () => {
     clearFields()
 })
 
 function validate(){
     
 }
+
+btnDelete.forEach(element => {
+    element.addEventListener("click", function () {
+        event.preventDefault();
+        const id = element.getAttribute("data-id");
+        const nombre = element.getAttribute("data-nombre");
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Se eliminara el cliente ' + nombre,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `http://localhost/LabSuelosUnivo/public/customer/delete/${id}`;
+            }
+        });
+    });
+});
+
