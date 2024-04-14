@@ -5,8 +5,8 @@ const cboType = document.getElementById('cboType')
 const txtName = document.getElementById('txtNombre')
 const txtEmail = document.getElementById('txtCorreo')
 const txtCellphone = document.getElementById('txtTelefono')
-const txtDepartment = document.getElementById('txtDepartment')
-const txtMunicipality = document.getElementById('txtMunicipality')
+const cboDepartment = document.getElementById('cboDepartment')
+const cboMunicipality = document.getElementById('cboMunicipality')
 const txtNIT = document.getElementById('txtNIT')
 const txtSpin = document.getElementById('txtGiro')
 const txtReason = document.getElementById('txtRazon')
@@ -21,19 +21,6 @@ const btnDelete = document.querySelectorAll(".delete-button")
 
 //Capture class to hide controls
 const items = document.querySelectorAll(".hide")
-
-cboType.addEventListener('change', () => {
-    const selectedValue = cboType.value
-
-    items.forEach((item) => {
-        if (selectedValue === "1"){
-            item.style.display = "none"
-        }
-        else {
-            item.style.display = "block"
-        }
-    })
-})
 
 const add = (customId) => {
     const url = "http://localhost/LabSuelosUnivo/public/customer/getById/" + customId;
@@ -54,8 +41,8 @@ const add = (customId) => {
             txtName.value = data.name_customer
             txtEmail.value = data.email
             txtCellphone.value = data.cell_phone
-            txtDepartment.value = data.department
-            txtMunicipality.value = data.municipality
+            cboDepartment.value = data.id_department
+            cboMunicipality.value = data.id_municipality
             txtNIT.value = data.number_nit
             txtSpin.value = data.spin
             txtReason.value = data.social_reason
@@ -69,6 +56,26 @@ const add = (customId) => {
         })
 }
 
+const municipality = (munId) => {
+    const url = "http://localhost/LabSuelosUnivo/public/customer/getMunicipalities/" + munId;
+    fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+    })
+        .then(response => {
+            if (response.ok){
+                return response.json()
+            }
+            else{
+
+            }
+        })
+        .then(data => {
+            cboMunicipality.value = data.id_municipality
+            cboMunicipality.text = data.name_municipality
+        })
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll("#tbdata .options button[data-id]")
     buttons.forEach(button => {
@@ -78,6 +85,23 @@ document.addEventListener("DOMContentLoaded", () => {
             add(customId)
         })
     })
+
+    cboType.addEventListener('change', () => {
+        const selectedValue = cboType.value
+    
+        items.forEach((item) => {
+            if (selectedValue === "1"){
+                item.style.display = "none"
+            }
+            else {
+                item.style.display = "block"
+            }
+        })
+    })
+
+    cboDepartment.addEventListener('change', () => {
+
+    })
 })
 
 const postData = async () =>{
@@ -86,8 +110,8 @@ const postData = async () =>{
     formData.append("name_customer", txtName.value)
     formData.append("email", txtEmail.value)
     formData.append("cell_phone", txtCellphone.value)
-    formData.append("department", txtDepartment.value)
-    formData.append("municipality", txtMunicipality.value)
+    formData.append("department", cboDepartment.value)
+    formData.append("municipality", cboMunicipality.value)
     formData.append("number_nit", txtNIT.value)
     formData.append("number_dui", txtDUI.value)
     formData.append("spin", txtSpin.value)
@@ -127,8 +151,8 @@ btnSave.addEventListener('click', () =>{
         formData.append("name_customer", txtName.value)
         formData.append("email", txtEmail.value)
         formData.append("cell_phone", txtCellphone.value)
-        formData.append("department", txtDepartment.value)
-        formData.append("municipality", txtMunicipality.value)
+        formData.append("department", cboDepartment.value)
+        formData.append("municipality", cboMunicipality.value)
         formData.append("number_dui", txtDUI.value)
         formData.append("number_nit", txtNIT.value)
         formData.append("spin", txtSpin.value)
@@ -168,8 +192,8 @@ function clearFields() {
     cboType.value = "-- Seleccione tipo de cliente --"
     txtEmail.value = ""
     txtCellphone.value = ""
-    txtDepartment.value = ""
-    txtMunicipality.value = ""
+    cboDepartment.value = ""
+    cboMunicipality.value = ""
     txtNIT.value = ""
     txtSpin.value = ""
     txtReason.value = ""

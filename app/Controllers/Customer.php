@@ -24,12 +24,11 @@ class Customer extends BaseController
         $result = $model->findAll();
         $resultType = $typeCustomer->findAll();
         $resultDepartment = $departMent->findAll();
-        $resultMunicipality = $municipality->findAll();
         
         $data = [
             "customers" => $result,
             "typecustomers" => $resultType,
-            "deparment" => $resultDepartment,
+            "department" => $resultDepartment,
             "municipality" => $resultMunicipality
         ];
         helper("form");
@@ -67,6 +66,18 @@ class Customer extends BaseController
         }
         $customModel = new CustomerModel();
         $data = $customModel->find($Id);
+
+        header("Content-Type: application/json");
+        echo json_encode($data);
+        die();
+    }
+
+    public function getMunicipalities($id = null){
+        if($id == null){
+            return redirect()->to(base_url('customer'));
+        }
+        $municipality = new MunicipalityModel();
+        $data = $municipality->where('id_department', $id)->findAll();
 
         header("Content-Type: application/json");
         echo json_encode($data);
