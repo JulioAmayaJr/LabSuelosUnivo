@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\CustomerModel;
 use App\Models\TypeCustomerModel;
+use App\Models\DepartmentModel;
+use App\Models\MunicipalityModel;
 
 class Customer extends BaseController
 {
@@ -16,13 +18,19 @@ class Customer extends BaseController
     {
         $model = new CustomerModel();
         $typeCustomer = new TypeCustomerModel();
+        $departMent = new DepartmentModel();
+        $municipality = new MunicipalityModel();
 
         $result = $model->findAll();
         $resultType = $typeCustomer->findAll();
+        $resultDepartment = $departMent->findAll();
+        $resultMunicipality = $municipality->findAll();
         
         $data = [
             "customers" => $result,
-            "typecustomers" => $resultType
+            "typecustomers" => $resultType,
+            "deparment" => $resultDepartment,
+            "municipality" => $resultMunicipality
         ];
         helper("form");
         return view('/customer/index', $data);
@@ -35,16 +43,16 @@ class Customer extends BaseController
         $success = $customModel->insert([
             "address" => trim($_POST["address"]),
             "cell_phone" => trim($_POST["cell_phone"]),
-            "department" => trim($_POST["department"]),
             "email" => trim($_POST["email"]),
             "id_type_customer" => trim($_POST["id_type_customer"]),
-            "municipality" => trim($_POST["municipality"]),
             "name_customer" => trim($_POST["name_customer"]),
             "no_register_nrc" => trim($_POST["no_register_nrc"]),
             "number_dui" => trim($_POST["number_dui"]),
             "number_nit" => trim($_POST["number_nit"]),
             "social_reason" => trim($_POST["social_reason"]),
-            "spin" => trim($_POST["spin"])
+            "spin" => trim($_POST["spin"]),
+            "id_department" => trim($_POST["id_department"]),
+            "id_municipality" => trim($_POST["id_municipality"])
         ]);
 
         // Devuelve true si la inserción fue exitosa, de lo contrario, devuelve false
@@ -71,16 +79,16 @@ class Customer extends BaseController
         $updateData = [
             "address" => trim($_POST["address"]),
             "cell_phone" => trim($_POST["cell_phone"]),
-            "department" => trim($_POST["department"]),
             "email" => trim($_POST["email"]),
             "id_type_customer" => trim($_POST["id_type_customer"]),
-            "municipality" => trim($_POST["municipality"]),
             "name_customer" => trim($_POST["name_customer"]),
             "no_register_nrc" => trim($_POST["no_register_nrc"]),
             "number_dui" => trim($_POST["number_dui"]),
             "number_nit" => trim($_POST["number_nit"]),
             "social_reason" => trim($_POST["social_reason"]),
-            "spin" => trim($_POST["spin"])
+            "spin" => trim($_POST["spin"]),
+            "id_department" => trim($_POST["id_department"]),
+            "id_municipality" => trim($_POST["id_municipality"])
         ];
 
         $customModel->update($Id, $updateData);
