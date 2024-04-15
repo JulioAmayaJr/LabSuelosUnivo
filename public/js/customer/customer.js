@@ -18,11 +18,13 @@ const txtAddress = document.getElementById('txtAddress')
 const btnNewCustom = document.getElementById('btnNewCustom')
 const btnSave = document.getElementById('btnSave')
 const btnDelete = document.querySelectorAll(".delete-button")
+const btnEdit = document.getElementById('btnEdit')
 
 //Capture class to hide controls
 const items = document.querySelectorAll(".hide")
 
 const add = (customId) => {
+    hideItems()
     const url = "http://localhost/LabSuelosUnivo/public/customer/getById/" + customId;
     fetch(url, {
         method: "GET",
@@ -37,6 +39,7 @@ const add = (customId) => {
             }
         })
         .then(data =>{
+            //const name_municipality = municipality(data.id_department)
             txtId.value = data.id_customer
             txtName.value = data.name_customer
             txtEmail.value = data.email
@@ -57,7 +60,7 @@ const add = (customId) => {
 }
 
 const municipality = (munId) => {
-    const url = "http://localhost/LabSuelosUnivo/public/customer/getMunicipalities/" + munId;
+    const url = "http://localhost/LabSuelosUnivo/public/customer/municipality/" + munId;
     fetch(url, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
@@ -71,8 +74,16 @@ const municipality = (munId) => {
             }
         })
         .then(data => {
-            cboMunicipality.value = data.id_municipality
-            cboMunicipality.text = data.name_municipality
+            data.forEach(element => {
+                cboMunicipality.innerHTML += `
+                    <option value="${element.id_municipality}">   
+                        ${element.name_municipality}
+                    </option>
+                `
+            });
+        })
+        .catch(error =>{
+            console.log(error)
         })
 }
 
@@ -86,23 +97,31 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     })
 
-    cboType.addEventListener('change', () => {
-        const selectedValue = cboType.value
-    
-        items.forEach((item) => {
-            if (selectedValue === "1"){
-                item.style.display = "none"
-            }
-            else {
-                item.style.display = "block"
-            }
-        })
-    })
-
     cboDepartment.addEventListener('change', () => {
-
+        if (cboDepartment.value !== null){
+            cboMunicipality.options.length = 0
+            cboMunicipality.options[0] = new Option("-- Seleccionar un municipio --")
+            municipality(cboDepartment.value)
+        }
     })
 })
+
+cboType.addEventListener('change', () => {
+    hideItems()
+})
+
+function hideItems (){
+    const selectedValue = cboType.value
+    
+    items.forEach((item) => {
+        if (selectedValue === "1"){
+            item.style.display = "none"
+        }
+        else {
+            item.style.display = "block"
+        }
+    })
+}
 
 const postData = async () =>{
     const formData = new FormData()
@@ -110,8 +129,8 @@ const postData = async () =>{
     formData.append("name_customer", txtName.value)
     formData.append("email", txtEmail.value)
     formData.append("cell_phone", txtCellphone.value)
-    formData.append("department", cboDepartment.value)
-    formData.append("municipality", cboMunicipality.value)
+    formData.append("id_department", cboDepartment.value)
+    formData.append("id_municipality", cboMunicipality.value)
     formData.append("number_nit", txtNIT.value)
     formData.append("number_dui", txtDUI.value)
     formData.append("spin", txtSpin.value)

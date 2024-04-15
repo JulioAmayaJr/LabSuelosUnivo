@@ -23,6 +23,8 @@ $routes->get("customer/getById/(:num)", "Customer::getById/$1");
 $routes->post("customer/update/(:num)", "Customer::updateCustomer/$1");
 //route to delete customer
 $routes->get("customer/delete/(:num)", "Customer::deleteCustomer/$1");
+//route para obtener municipios
+$routes->get("customer/municipality/(:num)", "Customer::getMunicipalities/$1");
 
 //Sample
 $routes->get('/sample', 'Sample::index');

@@ -117,7 +117,7 @@
                             <label for="cboMunicipality">Municipio</label>
                             <select class="form-control form-control-sm input-validar" id="cboMunicipality" name="municipality">
                                 <option selected disabled>-- Seleccionar municipio --</option>
-                                <?php foreach ($municipality as $mun) { ?>
+                                <?php foreach($municipality as $mun) { ?>
                                     <option value="<?= $mun["id_municipality"] ?>"><?= $mun["name_municipality"] ?></option>
                                 <?php
                                 }    
@@ -152,7 +152,7 @@
                     <div class="row justify-content-center">
                         <div class="form-group col-sm-8">
                             <label for="txtAddress">Direccion</label>
-                            <textarea name="address" id="txtAddress" class="form-control form-control-sm input-validar" style="width: 100%; height: 100px; resize: none;"></textarea>
+                            <textarea name="address" id="txtAddress" class="form-control form-control-sm input-validar" style="width: 100%; height: 75px; resize: none;"></textarea>
                         </div>
                     </div>
                 </form>

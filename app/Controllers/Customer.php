@@ -24,6 +24,7 @@ class Customer extends BaseController
         $result = $model->findAll();
         $resultType = $typeCustomer->findAll();
         $resultDepartment = $departMent->findAll();
+        $resultMunicipality = $municipality->findAll();
         
         $data = [
             "customers" => $result,
@@ -77,7 +78,7 @@ class Customer extends BaseController
             return redirect()->to(base_url('customer'));
         }
         $municipality = new MunicipalityModel();
-        $data = $municipality->where('id_department', $id)->findAll();
+        $data = $municipality->where('id_deparment', $id)->findAll();
 
         header("Content-Type: application/json");
         echo json_encode($data);
