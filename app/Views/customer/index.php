@@ -1,5 +1,7 @@
 <?php echo $this->extend("/template/layout"); ?>
+<?php echo $this->section("css"); ?>
 
+<?php echo $this->endSection() ?>
 <?php echo $this->section("content"); ?>
 
 <div class="card shadow mb-4">
@@ -101,12 +103,26 @@
                             <input type="text" class="form-control form-control-sm input-validar" id="txtTelefono" name="cell_phone">
                         </div>
                         <div class="form-group col-sm-4">
-                            <label for="txtDepartment">Departamento</label>
-                            <input type="text" class="form-control form-control-sm input-validar" id="txtDepartment" name="department">
+                            <label for="cboDepartment">Departamento</label>
+                            <select class="form-control form-control-sm input-validar" id="cboDepartment" name="department">
+                                <option selected disabled>-- Seleccionar departamento --</option>
+                                <?php foreach ($department as $dep) { ?>
+                                    <option value="<?= $dep["id_deparment"] ?>"><?= $dep["name_deparment"] ?></option>
+                                <?php 
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group col-sm-4">
-                            <label for="txtMunicipality">Municipio</label>
-                            <input type="text" class="form-control form-control-sm input-validar" id="txtMunicipality" name="municipality">
+                            <label for="cboMunicipality">Municipio</label>
+                            <select class="form-control form-control-sm input-validar" id="cboMunicipality" name="municipality">
+                                <option selected disabled>-- Seleccionar municipio --</option>
+                                <?php foreach($municipality as $mun) { ?>
+                                    <option value="<?= $mun["id_municipality"] ?>"><?= $mun["name_municipality"] ?></option>
+                                <?php
+                                }    
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -136,7 +152,7 @@
                     <div class="row justify-content-center">
                         <div class="form-group col-sm-8">
                             <label for="txtAddress">Direccion</label>
-                            <textarea name="address" id="txtAddress" class="form-control form-control-sm input-validar" style="width: 100%; height: 100px; resize: none;"></textarea>
+                            <textarea name="address" id="txtAddress" class="form-control form-control-sm input-validar" style="width: 100%; height: 75px; resize: none;"></textarea>
                         </div>
                     </div>
                 </form>
@@ -155,4 +171,34 @@
 <?php echo $this->section("Scripts") ?>
 <script src="js/customer/customer.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        $('#tbdata').DataTable({
+            "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            }
+        });
+    });
+</script>
 <?php echo $this->endSection(); ?>

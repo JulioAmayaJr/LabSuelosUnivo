@@ -5,8 +5,8 @@ const cboType = document.getElementById('cboType')
 const txtName = document.getElementById('txtNombre')
 const txtEmail = document.getElementById('txtCorreo')
 const txtCellphone = document.getElementById('txtTelefono')
-const txtDepartment = document.getElementById('txtDepartment')
-const txtMunicipality = document.getElementById('txtMunicipality')
+const cboDepartment = document.getElementById('cboDepartment')
+const cboMunicipality = document.getElementById('cboMunicipality')
 const txtNIT = document.getElementById('txtNIT')
 const txtSpin = document.getElementById('txtGiro')
 const txtReason = document.getElementById('txtRazon')
@@ -18,24 +18,13 @@ const txtAddress = document.getElementById('txtAddress')
 const btnNewCustom = document.getElementById('btnNewCustom')
 const btnSave = document.getElementById('btnSave')
 const btnDelete = document.querySelectorAll(".delete-button")
+const btnEdit = document.getElementById('btnEdit')
 
 //Capture class to hide controls
 const items = document.querySelectorAll(".hide")
 
-cboType.addEventListener('change', () => {
-    const selectedValue = cboType.value
-
-    items.forEach((item) => {
-        if (selectedValue === "1"){
-            item.style.display = "none"
-        }
-        else {
-            item.style.display = "block"
-        }
-    })
-})
-
 const add = (customId) => {
+    hideItems()
     const url = "http://localhost/LabSuelosUnivo/public/customer/getById/" + customId;
     fetch(url, {
         method: "GET",
@@ -50,12 +39,13 @@ const add = (customId) => {
             }
         })
         .then(data =>{
+            //const name_municipality = municipality(data.id_department)
             txtId.value = data.id_customer
             txtName.value = data.name_customer
             txtEmail.value = data.email
             txtCellphone.value = data.cell_phone
-            txtDepartment.value = data.department
-            txtMunicipality.value = data.municipality
+            cboDepartment.value = data.id_department
+            cboMunicipality.value = data.id_municipality
             txtNIT.value = data.number_nit
             txtSpin.value = data.spin
             txtReason.value = data.social_reason
@@ -63,6 +53,34 @@ const add = (customId) => {
             txtNoRegister.value = data.no_register_nrc
             txtAddress.value = data.address
             cboType.value = data.id_type_customer
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+}
+
+const municipality = (munId) => {
+    const url = "http://localhost/LabSuelosUnivo/public/customer/municipality/" + munId;
+    fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+    })
+        .then(response => {
+            if (response.ok){
+                return response.json()
+            }
+            else{
+
+            }
+        })
+        .then(data => {
+            data.forEach(element => {
+                cboMunicipality.innerHTML += `
+                    <option value="${element.id_municipality}">   
+                        ${element.name_municipality}
+                    </option>
+                `
+            });
         })
         .catch(error =>{
             console.log(error)
@@ -78,7 +96,32 @@ document.addEventListener("DOMContentLoaded", () => {
             add(customId)
         })
     })
+
+    cboDepartment.addEventListener('change', () => {
+        if (cboDepartment.value !== null){
+            cboMunicipality.options.length = 0
+            cboMunicipality.options[0] = new Option("-- Seleccionar un municipio --")
+            municipality(cboDepartment.value)
+        }
+    })
 })
+
+cboType.addEventListener('change', () => {
+    hideItems()
+})
+
+function hideItems (){
+    const selectedValue = cboType.value
+    
+    items.forEach((item) => {
+        if (selectedValue === "1"){
+            item.style.display = "none"
+        }
+        else {
+            item.style.display = "block"
+        }
+    })
+}
 
 const postData = async () =>{
     const formData = new FormData()
@@ -86,8 +129,8 @@ const postData = async () =>{
     formData.append("name_customer", txtName.value)
     formData.append("email", txtEmail.value)
     formData.append("cell_phone", txtCellphone.value)
-    formData.append("department", txtDepartment.value)
-    formData.append("municipality", txtMunicipality.value)
+    formData.append("id_department", cboDepartment.value)
+    formData.append("id_municipality", cboMunicipality.value)
     formData.append("number_nit", txtNIT.value)
     formData.append("number_dui", txtDUI.value)
     formData.append("spin", txtSpin.value)
@@ -127,8 +170,8 @@ btnSave.addEventListener('click', () =>{
         formData.append("name_customer", txtName.value)
         formData.append("email", txtEmail.value)
         formData.append("cell_phone", txtCellphone.value)
-        formData.append("department", txtDepartment.value)
-        formData.append("municipality", txtMunicipality.value)
+        formData.append("department", cboDepartment.value)
+        formData.append("municipality", cboMunicipality.value)
         formData.append("number_dui", txtDUI.value)
         formData.append("number_nit", txtNIT.value)
         formData.append("spin", txtSpin.value)
@@ -168,8 +211,8 @@ function clearFields() {
     cboType.value = "-- Seleccione tipo de cliente --"
     txtEmail.value = ""
     txtCellphone.value = ""
-    txtDepartment.value = ""
-    txtMunicipality.value = ""
+    cboDepartment.value = ""
+    cboMunicipality.value = ""
     txtNIT.value = ""
     txtSpin.value = ""
     txtReason.value = ""
