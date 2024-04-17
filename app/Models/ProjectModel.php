@@ -14,5 +14,5 @@ class ProjectModel extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['name', 'id_customer', 'date_register', 'lactitud', 'longitud', 'status', 'id_user'];
+    protected $allowedFields = ['name', 'codigo', 'id_customer', 'date_register', 'lactitud', 'longitud', 'status', 'id_user'];
 }

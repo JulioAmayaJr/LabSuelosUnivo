@@ -34,11 +34,10 @@
                     <thead>
                         <tr>
                             <th hidden>id_project</th>
+                            <th>Codigo</th>
                             <th>Nombre</th>
                             <th>Cliente</th>
                             <th>Fecha Registro</th>
-                            <th>Lactitud</th>
-                            <th>Longitud</th>
                             <th>Usuario</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -49,12 +48,17 @@
                         <?php foreach ($projects as $project) : ?>
                             <tr>
                                 <td hidden><?= $project["id_project"] ?></td>
+                                <td><?= $project["codigo"] ?></td>
                                 <td><?= $project["name"] ?></td>
                                 <td><?= $project["id_customer"] ?></td>
                                 <td><?= $project["date_register"] ?></td>
-                                <td><?= $project["lactitud"] ?></td>
-                                <td><?= $project["longitud"] ?></td>
-                                <td> <?= $project["id_user"] ?> </td>
+                                <?php foreach ($users as $user) :
+                                    if ($project["id_user"] == $user["id_user"]) {
+                                ?>
+
+                                        <td> <?= $user["full_name"] ?> </td>
+                                <?php }
+                                endforeach; ?>
                                 <?php if ($project["status"] == 1) { ?>
                                     <td><span class="badge badge-info">Activo</span></td>
                                 <?php } else { ?>
@@ -97,7 +101,7 @@
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="txtName">Nombre</label>
-                                <input type="text" class="form-control form-control-sm input-validar" id="txtFullName" name="name" required>
+                                <input type="text" class="form-control form-control-sm input-validar" id="txtName" name="name" required>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="cboCustomer">Cliente</label>
@@ -109,7 +113,13 @@
                             </div>
                         </div>
                         <div class="form-row">
-
+                            <div class="form-group col-sm-6 _hidden" id="divStatus">
+                                <label for="cboStatus">Estado</label>
+                                <select class="form-control form-control-sm" id="cboStatus">
+                                    <option value="1">Activo</option>
+                                    <option value="0">No Activo</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-sm-6">
@@ -118,7 +128,7 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="txtImage">Longitud</label>
-                                <input class="form-control" type="text" id="tctLongitud" name="longitud" required />
+                                <input class="form-control" type="text" id="txtLongitud" name="longitud" required />
                             </div>
                         </div>
                     </div>
@@ -143,8 +153,9 @@
 
 
 <?php echo $this->section("Scripts") ?>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap" async></script>
 <script src="js/project/project.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

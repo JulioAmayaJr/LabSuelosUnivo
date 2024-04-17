@@ -27,7 +27,6 @@ const add = (userId) => {
             txtFullName.value = data.full_name;
             cboRol.value = data.id_rol;
             txtId.value = data.id_user;
-            imgUser.src = "img/" + data.image;
             divStatus.classList.remove("_hidden");
 
             if (data.status == 1) {

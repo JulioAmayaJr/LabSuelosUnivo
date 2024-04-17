@@ -104,11 +104,8 @@
 
                             </div>
                         </div>
-                        <div class="form-row">
 
-                        </div>
                         <div class="form-row">
-
                             <div class="form-group col-sm-6 _hidden" id="divStatus">
                                 <label for="cboStatus">Estado</label>
                                 <select class="form-control form-control-sm" id="cboStatus">
@@ -125,17 +122,12 @@
                     <div class="col-sm-4">
                         <img id="imgUser" style="max-width:200px;" src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300" class="rounded mx-auto d-block" alt="Foto usuario">
                     </div>
-
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-sm" id="btnSave">Guardar</button>
-
-
                 <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
             </div>
-
         </div>
     </div>
 </div>

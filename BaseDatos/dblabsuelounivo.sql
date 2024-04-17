@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-04-2024 a las 03:19:07
+-- Tiempo de generación: 17-04-2024 a las 05:47:33
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,8 +18,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `dblabsuelosunivo`
+-- Base de datos: `dblabsuelounivo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_correlative`
+--
+
+CREATE TABLE `tbl_correlative` (
+  `id_correlative` int(11) NOT NULL,
+  `number_correlative` int(11) NOT NULL,
+  `number_quantity` int(11) NOT NULL,
+  `type` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_correlative`
+--
+
+INSERT INTO `tbl_correlative` (`id_correlative`, `number_correlative`, `number_quantity`, `type`) VALUES
+(1, 4, 6, 'project');
 
 -- --------------------------------------------------------
 
@@ -419,13 +439,23 @@ INSERT INTO `tbl_municipalities` (`id_municipality`, `name_municipality`, `id_de
 
 CREATE TABLE `tbl_project` (
   `id_project` int(11) NOT NULL,
+  `codigo` varchar(50) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `id_customer` int(11) DEFAULT NULL,
   `date_register` date DEFAULT NULL,
   `lactitud` varchar(50) NOT NULL,
   `longitud` varchar(50) NOT NULL,
+  `status` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_project`
+--
+
+INSERT INTO `tbl_project` (`id_project`, `codigo`, `name`, `id_customer`, `date_register`, `lactitud`, `longitud`, `status`, `id_user`) VALUES
+(12, '20240417-000003', 'jejeje', 2, '2024-04-16', '123', '231', 1, 17),
+(13, '20240417-000004', 'asdasd', 2, '2024-04-16', '23', '213', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -511,6 +541,12 @@ INSERT INTO `tbl_users` (`id_user`, `full_name`, `date_register`, `modification_
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `tbl_correlative`
+--
+ALTER TABLE `tbl_correlative`
+  ADD PRIMARY KEY (`id_correlative`);
 
 --
 -- Indices de la tabla `tbl_customer`
@@ -599,6 +635,12 @@ ALTER TABLE `tbl_users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `tbl_correlative`
+--
+ALTER TABLE `tbl_correlative`
+  MODIFY `id_correlative` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `tbl_customer`
 --
 ALTER TABLE `tbl_customer`
@@ -632,7 +674,7 @@ ALTER TABLE `tbl_method`
 -- AUTO_INCREMENT de la tabla `tbl_project`
 --
 ALTER TABLE `tbl_project`
-  MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_rol`

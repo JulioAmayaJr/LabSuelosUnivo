@@ -23,6 +23,7 @@ $routes->get("customer/getById/(:num)", "Customer::getById/$1");
 $routes->post("customer/update/(:num)", "Customer::updateCustomer/$1");
 //route to delete customer
 $routes->get("customer/delete/(:num)", "Customer::deleteCustomer/$1");
+
 //route para obtener municipios
 $routes->get("customer/municipality/(:num)", "Customer::getMunicipalities/$1");
 
@@ -37,5 +38,10 @@ $routes->post("groupSample/update/(:num)", "GroupSample::update/$1");
 $routes->get("groupSample/delete/(:num)", "GroupSample::delete/$1");
 //Project
 $routes->get('/project', 'Project::index');
+$routes->post('/project/save', 'Project::save');
+$routes->get("project/getById/(:num)", "Project::getById/$1");
+$routes->post("project/update/(:num)", "Project::updateProject/$1");
+$routes->get("project/delete/(:num)", "Project::deleteProject/$1");
+$routes->get("project/getNumberProject", "Project::getNumberProject");
 
 $routes->get('/error', 'Error::index');
