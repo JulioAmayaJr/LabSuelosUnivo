@@ -155,9 +155,9 @@ btnNewProject.addEventListener("click", () => {
 
 function clearFields() {
     txtName.value = "";
-    cboCustomer.value = ""
-    txtlactitude.value = ""
-    txtlength.value = ""
+    cboCustomer.value = "--Seleccione un cliente--";
+    txtlactitude.value = "";
+    txtlength.value = "";
 }
 
 btnDelete.forEach(element => {

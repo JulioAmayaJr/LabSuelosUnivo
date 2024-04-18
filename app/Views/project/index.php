@@ -105,7 +105,8 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="cboCustomer">Cliente</label>
-                                <select class="js-example-basic-multiple" name="states[]" multiple="multiple" id="cboCustomer" name="cboCustomer" required>
+                                <select class="js-example-basic-multiple" name="states" id="cboCustomer" name="cboCustomer" required>
+                                    <option selected disabled>--Seleccione un cliente--</option>
                                     <?php foreach ($clients as $client) { ?>
                                         <option value="<?= $client['id_customer'] ?>"><?= $client['name_customer'] ?></option>
                                     <?php } ?>
