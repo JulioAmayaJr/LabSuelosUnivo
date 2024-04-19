@@ -50,12 +50,16 @@
                                 <td hidden><?= $project["id_project"] ?></td>
                                 <td><?= $project["codigo"] ?></td>
                                 <td><?= $project["name"] ?></td>
-                                <td><?= $project["id_customer"] ?></td>
+                                <?php foreach ($clients as $client) :
+                                    if ($project["id_customer"] == $client["id_customer"]) {
+                                ?>
+                                        <td> <?= $client["name_customer"] ?> </td>
+                                <?php }
+                                endforeach; ?>
                                 <td><?= $project["date_register"] ?></td>
                                 <?php foreach ($users as $user) :
                                     if ($project["id_user"] == $user["id_user"]) {
                                 ?>
-
                                         <td> <?= $user["full_name"] ?> </td>
                                 <?php }
                                 endforeach; ?>

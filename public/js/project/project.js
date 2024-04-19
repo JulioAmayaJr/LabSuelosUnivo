@@ -40,6 +40,7 @@ const add = (projectId) => {
             cboCustomer.value = data.id_customer
             txtlactitude.value = data.lactitud
             txtlength.value = data.longitud
+            txtId.value = data.id_project;
             divStatus.classList.remove("_hidden");
 
             if (data.status == 1) {
@@ -59,6 +60,8 @@ btnSave.addEventListener('click', () => {
         if (validate()) {
             //Bloque para la creacion de un projecto
             postData();
+        } else {
+            console.log('Error de validacion');
         }
     } else if (txtId.value > 0) {
         //Bloque para la modificacion de un projecto

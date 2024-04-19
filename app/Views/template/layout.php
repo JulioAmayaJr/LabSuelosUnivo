@@ -95,7 +95,6 @@
                 <div id="collapseVenta" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="<?= base_url() ?>project">Proyecto</a>
-                        <a class="collapse-item" href="historial_venta.html">Historial Venta</a>
                     </div>
                 </div>
             </li>
