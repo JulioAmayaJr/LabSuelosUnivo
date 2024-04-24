@@ -1,0 +1,57 @@
+.conten{
+    background-color: aquamarine;
+}
+
+body{
+    background-color: #333333;
+}
+.principal{
+    width: 80%;
+    height: 25em;
+    margin-top: 8em;
+    margin-bottom: 8em;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    background-color: #CCCCCC;
+    border-radius:  1.5% / 1em;
+   
+}
+
+.segundo{
+    width: 35%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    
+
+}
+
+label{
+    font-size: x-large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   color: blue;
+}
+
+p{
+    font-size: small;
+    color: gray;
+}
+
+button{
+    width: 100%;
+}
+
+input::placeholder {
+    font-size: medium;
+   
+}
+
+
+::placeholder {
+    color: gray !important;
+}
+
+img{
+    width: 20%;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+

@@ -45,3 +45,6 @@ $routes->get("project/delete/(:num)", "Project::deleteProject/$1");
 $routes->get("project/getNumberProject", "Project::getNumberProject");
 
 $routes->get('/error', 'Error::index');
+
+//Login
+$routes->get('/login', 'Login::index');
