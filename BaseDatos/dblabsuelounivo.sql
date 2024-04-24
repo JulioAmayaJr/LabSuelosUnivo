@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2024 a las 05:47:33
+-- Tiempo de generación: 25-04-2024 a las 01:41:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `tbl_correlative` (
 --
 
 INSERT INTO `tbl_correlative` (`id_correlative`, `number_correlative`, `number_quantity`, `type`) VALUES
-(1, 4, 6, 'project');
+(1, 2, 6, 'project');
 
 -- --------------------------------------------------------
 
@@ -68,7 +68,8 @@ CREATE TABLE `tbl_customer` (
 --
 
 INSERT INTO `tbl_customer` (`id_customer`, `name_customer`, `email`, `number_dui`, `address`, `cell_phone`, `number_nit`, `spin`, `social_reason`, `no_register_nrc`, `id_type_customer`, `id_department`, `id_municipality`) VALUES
-(2, 'Irving Machado', 'irving@correo.com', '1212121212-0', 'Nuevo San Miguel', '79890101', '', '', '', '', 1, 9, 175);
+(2, 'Irving Machado', 'irving@correo.com', '1212121212-0', 'Nuevo San Miguel', '79890101', '', '', '', '', 1, 9, 175),
+(3, 'Fernando Cruz', 'fernando.cruz@gmail.com', '12343232', 'San miguel', NULL, NULL, NULL, NULL, NULL, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -454,8 +455,8 @@ CREATE TABLE `tbl_project` (
 --
 
 INSERT INTO `tbl_project` (`id_project`, `codigo`, `name`, `id_customer`, `date_register`, `lactitud`, `longitud`, `status`, `id_user`) VALUES
-(12, '20240417-000003', 'jejeje', 2, '2024-04-16', '123', '231', 1, 17),
-(13, '20240417-000004', 'asdasd', 2, '2024-04-16', '23', '213', 1, 2);
+(19, '20240419-000001', 'prueba', 2, '2024-04-18', '13.4254', '-88.33', 1, 2),
+(20, '20240419-000002', 'Proyecto1', 3, '2024-04-18', '13.50', '-88.23', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -525,18 +526,22 @@ CREATE TABLE `tbl_users` (
   `modification_date` date DEFAULT NULL,
   `image` varchar(100) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `id_rol` int(11) DEFAULT NULL
+  `id_rol` int(11) DEFAULT NULL,
+  `user_name` varchar(25) NOT NULL,
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`id_user`, `full_name`, `date_register`, `modification_date`, `image`, `status`, `id_rol`) VALUES
-(1, 'Michell Zelaya', '2024-03-19', '2024-03-27', 'avatar.png', 1, 1),
-(2, 'julio', '2024-03-26', '2024-03-27', 'avatar.png', 1, 1),
-(7, 'Ruthylia', '2024-03-26', '2024-03-27', 'avatar.png', 1, 4),
-(17, 'Irving', '2024-03-26', '2024-03-26', 'avatar.png', 1, 4);
+INSERT INTO `tbl_users` (`id_user`, `full_name`, `date_register`, `modification_date`, `image`, `status`, `id_rol`, `user_name`, `password`) VALUES
+(1, 'Michell Zelaya', '2024-03-19', '2024-03-27', 'avatar.png', 1, 1, '', ''),
+(2, 'julio', '2024-03-26', '2024-03-27', 'avatar.png', 1, 1, '', ''),
+(7, 'Ruthylia', '2024-03-26', '2024-03-27', 'avatar.png', 1, 4, '', ''),
+(17, 'Irving', '2024-03-26', '2024-03-26', 'avatar.png', 1, 4, '', ''),
+(24, 'Elias', '2024-04-16', '2024-04-23', 'yilcsm17tx.jpg', 0, 3, '', ''),
+(26, 'Julio Santos Gutierrez Amaya', '2024-04-23', '2024-04-23', 's7oiz5rq2b.jpg', 1, 2, 'pepito', '$2y$10$0PtXQ4cW1OLw1rl2RCdtduuAAtOu9wUoBbo1O6zyXKrVYzNxrHe7m');
 
 --
 -- Índices para tablas volcadas
@@ -644,7 +649,7 @@ ALTER TABLE `tbl_correlative`
 -- AUTO_INCREMENT de la tabla `tbl_customer`
 --
 ALTER TABLE `tbl_customer`
-  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_field`
@@ -674,7 +679,7 @@ ALTER TABLE `tbl_method`
 -- AUTO_INCREMENT de la tabla `tbl_project`
 --
 ALTER TABLE `tbl_project`
-  MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_rol`
@@ -698,7 +703,7 @@ ALTER TABLE `tbl_type_customer`
 -- AUTO_INCREMENT de la tabla `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Restricciones para tablas volcadas
