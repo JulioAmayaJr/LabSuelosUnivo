@@ -2,7 +2,7 @@
 
 <?php echo $this->section("content"); ?>
 <div>
-    <p>JEJE INDEX</p>
+    <p>Bienvenido <?= session("user")["full_name"] ?></p>
 </div>
 
-<?php echo $this->endSection(); ?>
+<?php echo $this->endSection();

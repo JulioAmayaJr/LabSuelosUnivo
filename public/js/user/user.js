@@ -1,6 +1,7 @@
 
 const btnNewUser = document.getElementById('btnNewUser');
 const txtFullName = document.getElementById("txtFullName");
+const txtUserName = document.getElementById("txtUserName");
 const cboRol = document.getElementById('cboRol');
 const imgUser = document.getElementById('imgUser');
 const divStatus = document.getElementById("divStatus");
@@ -28,6 +29,8 @@ const add = (userId) => {
             cboRol.value = data.id_rol;
             txtId.value = data.id_user;
             imgUser.src = "img/" + data.image;
+            txtUserName.value = data.user_name;
+
             divStatus.classList.remove("_hidden");
 
             if (data.status == 1) {
@@ -67,6 +70,7 @@ btnSave.addEventListener('click', () => {
         formData.append("id_rol", cboRol.value);
         formData.append("image", txtImage.files[0]);
         formData.append("status", cboStatus.value);
+        formData.append("user_name", txtUserName.value);
 
         const url = "http://localhost/LabSuelosUnivo/public/user/update/" + txtId.value;
         fetch(url, {
@@ -145,6 +149,7 @@ const postData = async () => {
     formData.append("name", txtFullName.value);
     formData.append("id_rol", cboRol.value);
     formData.append("image", txtImage.files[0]);
+    formData.append("user_name", txtUserName.value);
     try {
         const response = await fetch("http://localhost/LabSuelosUnivo/public/user/save",
             {

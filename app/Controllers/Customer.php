@@ -16,6 +16,13 @@ class Customer extends BaseController
 
     public function index()
     {
+
+        if (session("user") < 1) {
+            return view("/login/index");
+        } else if (session("user")) {
+            return view("index");
+        }
+
         $model = new CustomerModel();
         $typeCustomer = new TypeCustomerModel();
         $departMent = new DepartmentModel();
@@ -25,7 +32,7 @@ class Customer extends BaseController
         $resultType = $typeCustomer->findAll();
         $resultDepartment = $departMent->findAll();
         $resultMunicipality = $municipality->findAll();
-        
+
         $data = [
             "customers" => $result,
             "typecustomers" => $resultType,
@@ -62,7 +69,7 @@ class Customer extends BaseController
 
     public function getById($Id = null)
     {
-        if($Id == null){
+        if ($Id == null) {
             return redirect()->to(base_url('customer'));
         }
         $customModel = new CustomerModel();
@@ -73,8 +80,9 @@ class Customer extends BaseController
         die();
     }
 
-    public function getMunicipalities($id = null){
-        if($id == null){
+    public function getMunicipalities($id = null)
+    {
+        if ($id == null) {
             return redirect()->to(base_url('customer'));
         }
         $municipality = new MunicipalityModel();
@@ -85,9 +93,10 @@ class Customer extends BaseController
         die();
     }
 
-    public function updateCustomer($Id = null){
+    public function updateCustomer($Id = null)
+    {
         $customModel = new CustomerModel();
-        
+
         $updateData = [
             "address" => trim($_POST["address"]),
             "cell_phone" => trim($_POST["cell_phone"]),
@@ -108,8 +117,9 @@ class Customer extends BaseController
         echo json_encode(["message" => "Cliente actualizado correctamente"]);
     }
 
-    public function deleteCustomer($Id){
-        if(!is_numeric($Id)){
+    public function deleteCustomer($Id)
+    {
+        if (!is_numeric($Id)) {
             return redirect()->to(base_url('customer'))->with('error', 'El cliente no existe!');
         }
 
@@ -124,5 +134,4 @@ class Customer extends BaseController
             return redirect()->to(base_url('customer'))->with('error', 'Error al eliminar el cliente.');
         }
     }
-
 }

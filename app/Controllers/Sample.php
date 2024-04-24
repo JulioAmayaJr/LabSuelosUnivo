@@ -11,6 +11,11 @@ class Sample extends BaseController
 
     public function index()
     {
+        if (session("user") < 1) {
+            return view("/login/index");
+        } else if (session("user")) {
+            return view("index");
+        }
         return view('/sample/index');
     }
 

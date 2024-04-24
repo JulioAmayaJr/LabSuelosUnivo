@@ -10,6 +10,11 @@ class GroupSample extends BaseController
 
     public function index()
     {
+        if (session("user") < 1) {
+            return view("/login/index");
+        } else if (session("user")) {
+            return view("index");
+        }
         $groupSampleModel = new GroupSampleModel();
         $resultado = $groupSampleModel->findAll();
         $data = [
@@ -18,7 +23,8 @@ class GroupSample extends BaseController
         return view('groupSample/index', $data);
     }
 
-    public function save(){
+    public function save()
+    {
         $groupSampleModel = new GroupSampleModel();
 
         $success = $groupSampleModel->insert([
@@ -41,16 +47,16 @@ class GroupSample extends BaseController
         echo json_encode($data);
         die();
     }
-    
+
     public function update($id = null)
     {
-        
 
-        
+
+
         $groupSampleModel = new GroupSampleModel();
-        $groupData= $groupSampleModel->find($id);
+        $groupData = $groupSampleModel->find($id);
 
-       
+
         // Actualizar los datos del usuario, incluida la imagen si se cambió
         $updateData = [
             "name" => trim($_POST["name"]),
@@ -63,7 +69,7 @@ class GroupSample extends BaseController
 
     public function delete($id)
     {
-  
+
         $groupSampleModel = new GroupSampleModel();
         $group = $groupSampleModel->find($id);
         if (!$group) {
@@ -71,11 +77,9 @@ class GroupSample extends BaseController
         }
         // Eliminar el usuario seleccionado
         $deleted = $groupSampleModel->delete($id);
-       
+
         if ($deleted) {
             return redirect()->to(base_url('groupSample'))->with('success', 'El grupo se ha eliminado correctamente.');
-
-
         } else {
             return redirect()->to(base_url('groupSample'))->with('error', 'Error al eliminar el usuario.');
         }

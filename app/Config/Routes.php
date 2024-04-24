@@ -48,3 +48,5 @@ $routes->get('/error', 'Error::index');
 
 //Login
 $routes->get('/login', 'Login::index');
+$routes->post("/login/validate", "Login::do_login");
+$routes->get("/login/logout", "Login::logout");

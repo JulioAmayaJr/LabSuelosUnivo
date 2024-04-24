@@ -94,6 +94,13 @@
                                 <input type="text" class="form-control form-control-sm input-validar" id="txtFullName" name="name" required>
                             </div>
                             <div class="form-group col-sm-6">
+                                <label for="txtUserName">Usuario</label>
+                                <input type="text" class="form-control form-control-sm input-validar" id="txtUserName" name="name" required>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
                                 <label for="cboRol">Cargo</label>
                                 <select class="form-control form-control-sm" id="cboRol" name="cboRol" required>
                                     <option selected disabled>-- Seleccione un cargo --</option>

@@ -14,6 +14,11 @@ class Users extends BaseController
 
     public function index()
     {
+        if (session("user") < 1) {
+            return view("/login/index");
+        } else if (session("user")) {
+            return view("index");
+        }
         $model = new UserModel();
         $rolModel = new RolModel();
 
@@ -35,6 +40,9 @@ class Users extends BaseController
         $date = date('Y-m-d');
         $newDate = date('Y-m-d', strtotime($date . ' -1 day'));
         $userModel = new UserModel();
+        $usernamepost = $_POST["user_name"];
+        $password = $usernamepost . "123";
+        $password = password_hash($password, PASSWORD_BCRYPT);
 
         $success = $userModel->insert([
             "full_name" => trim($_POST["name"]),
@@ -42,7 +50,9 @@ class Users extends BaseController
             "date_register" => $newDate,
             "modification_date" => $newDate,
             "status" => '1',
-            "id_rol" => $_POST["id_rol"]
+            "id_rol" => $_POST["id_rol"],
+            "user_name" => $_POST["user_name"],
+            "password" => $password
         ]);
 
         // Devuelve true si la inserción fue exitosa, de lo contrario, devuelve false
