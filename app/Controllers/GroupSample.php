@@ -12,8 +12,6 @@ class GroupSample extends BaseController
     {
         if (session("user") < 1) {
             return view("/login/index");
-        } else if (session("user")) {
-            return view("index");
         }
         $groupSampleModel = new GroupSampleModel();
         $resultado = $groupSampleModel->findAll();

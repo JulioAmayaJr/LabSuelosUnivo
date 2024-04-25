@@ -13,8 +13,6 @@ class Project extends BaseController
     {
         if (session("user") < 1) {
             return view("/login/index");
-        } else if (session("user")) {
-            return view("index");
         }
         $model = new ProjectModel();
         $customerModel = new CustomerModel();
