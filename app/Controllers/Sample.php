@@ -13,12 +13,15 @@ class Sample extends BaseController
     {
         if (session("user") < 1) {
             return view("/login/index");
-        } else if (session("user")) {
-            return view("index");
         }
         return view('/sample/index');
     }
 
+    public function method()
+    {
+      
+        return view('/sample/method');
+    }
 
     public function saveField()
     {

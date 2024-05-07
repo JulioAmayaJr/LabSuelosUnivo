@@ -1,0 +1,12 @@
+.cont{
+    border: 1px solid rgb(218, 220, 215);
+    height: 25ch;
+}
+
+::placeholder{
+    font-size: 1em;
+}
+
+p{
+    font-size: 0.4cm;
+}
