@@ -60,7 +60,9 @@ btnSave.addEventListener('click', () => {
 
     if (txtId.value == 0) {
         //Bloque para la creacion de un usuario
-        postData();
+        if (validateField(txtFullName.value, txtUserName.value, cboStatus.value)) {
+         postData();
+       }
 
     } else if (txtId.value > 0) {
         //Bloque para la modificacion de un usuario
@@ -105,6 +107,28 @@ function clearFields() {
     txtId.value = 0;
     divStatus.classList.add("_hidden");
 }
+
+function validateField(fullName, userName, status) {
+
+  var regex = /[!@#$%^&*(),.?":{}|<>]/;
+
+  if (fullName === "" || status === "" || userName === "" || txtImage.files.length === 0 || cboRol.value<=0) {
+    Toastify({
+      text: "Por favor, complete correctamente todos los campos.",
+      duration: 3000
+    }).showToast();
+    return false;
+  } else if (regex.test(fullName) || regex.test(userName)) {
+    Toastify({
+      text: "Los campos no deben contener signos.",
+      duration: 3000
+    }).showToast();
+    return false;
+  } else {
+    return true;
+  }
+}
+
 
 btnNewUser.addEventListener('click', () => {
     clearFields();
@@ -167,7 +191,3 @@ const postData = async () => {
         console.log(error)
     }
 }
-
-
-
-

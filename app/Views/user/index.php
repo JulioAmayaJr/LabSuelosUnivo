@@ -1,8 +1,17 @@
 <?php echo $this->extend("/template/layout"); ?>
 <?php echo $this->section("css"); ?>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 <style>
     ._hidden {
         display: none;
+    }
+    .toastify {
+        background: linear-gradient(to right, #ff6e6e, #ffa2a2);
+        color: #fff;
+        border-radius: 8px;
+    }
+    .toastify__toast {
+        font-weight: bold;
     }
 </style>
 <?php echo $this->endSection() ?>
@@ -63,6 +72,7 @@
                                     </button>
                                 </td>
                             </tr>
+
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -143,6 +153,8 @@
 
 
 <?php echo $this->section("Scripts") ?>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 <script src="js/user/user.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
