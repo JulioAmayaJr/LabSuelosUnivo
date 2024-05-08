@@ -13,8 +13,6 @@ class Project extends BaseController
     {
         if (session("user") < 1) {
             return view("/login/index");
-        } else if (session("user")) {
-            return view("index");
         }
         $model = new ProjectModel();
         $customerModel = new CustomerModel();
@@ -49,7 +47,7 @@ class Project extends BaseController
             "lactitud" => trim($_POST["lactitud"]),
             "longitud" => trim($_POST["longitud"]),
             "status" => 1,
-            "id_user" => 2
+            "id_user" => trim($_POST["idUser"])
         ]);
         $correlativeModel = new CorrelativeModel();
         $correlative = $correlativeModel->where("type", "project")->first();

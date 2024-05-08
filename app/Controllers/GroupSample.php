@@ -10,11 +10,9 @@ class GroupSample extends BaseController
 
     public function index()
     {
-        if (session("user") < 1) {
+        if (session("user")["id_user"] < 1) {
             return view("/login/index");
-        } else if (session("user")) {
-            return view("index");
-        }
+        } 
         $groupSampleModel = new GroupSampleModel();
         $resultado = $groupSampleModel->findAll();
         $data = [

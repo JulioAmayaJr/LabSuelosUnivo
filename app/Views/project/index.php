@@ -16,7 +16,7 @@
 </style>
 <?php echo $this->endSection() ?>
 <?php echo $this->section("content"); ?>
-
+<input type="text" id="idUser" hidden value="<?= session("user")["id_user"]?>">
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-second-primary">
         <h6 class="m-0 font-weight-bold text-white">Lista de Projectos</h6>

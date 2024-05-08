@@ -112,7 +112,7 @@ function validateField(fullName, userName, status) {
 
   var regex = /[!@#$%^&*(),.?":{}|<>]/;
 
-  if (fullName === "" || status === "" || userName === "" || txtImage.files.length === 0 || cboRol.value<=0) {
+  if (fullName === "" || userName === "" || txtImage.files.length === 0 || cboRol.value<=0) {
     Toastify({
       text: "Por favor, complete correctamente todos los campos.",
       duration: 3000

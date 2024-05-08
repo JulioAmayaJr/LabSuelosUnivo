@@ -1,31 +1,30 @@
-const btnAddField=document.getElementById("addField");
+const btnAddField=document.getElementById("btnSave");
 const divFields=document.getElementById("divFields");
 const divMethod=document.getElementById("divMethod");
-const addBadgeButton=document.getElementById("addBadgeButton");
+const addBadgeButton=document.getElementById("btnSave");
 const btnAddSample=document.getElementById("btnAddSample");
-const btnAddMethod=document.getElementById("btnAddMethod");
-
-btnAddMethod.addEventListener("click",()=>{
-    divMethod.classList.remove("d-none");
-})
-
-btnAddField.addEventListener("click",()=>{
-    divFields.classList.remove("d-none");
-})
+const idUser=document.getElementById("idUser").value
+const modalData=document.getElementById("modalData")
+const nameSample=document.getElementById("nameSample")
+const nameRule=document.getElementById("nameRule")
+const cboGroupSample=document.getElementById("cboGroupSample")
 let listSample=[]
 addBadgeButton.addEventListener("click",()=>{
+
     const inputValue = document.getElementById('fieldValue').value.trim();
     const badgeContainer=document.getElementById("badgeContainer");
 
     const badge = document.createElement('span');
-    badge.classList.add('badge', 'bg-primary', 'mb-3', 'me-2');
+    badge.classList.add('badge','mt-1' ,'bg-primary', 'mb-3', 'me-2');
     badge.textContent = inputValue;
     let objectSample={
         name:inputValue,
         typeField: "text"
     }
-    
+
     listSample.push(objectSample)
+
+    $("#modalData").modal('hide');
 
     const closeButton = document.createElement('button');
     closeButton.classList.add('btn-close');
@@ -40,42 +39,50 @@ addBadgeButton.addEventListener("click",()=>{
         }
 
     });
-            
+
     badge.appendChild(closeButton);
     badgeContainer.appendChild(badge);
-    document.getElementById('fieldValue').value = '';
-    divFields.classList.add("d-none");
+    clearField();
     console.log(listSample)
 })
 
+function clearField(){
+  document.getElementById('fieldValue').value = '';
+  document.getElementById('typeField').value = '';
+}
 
 btnAddSample.addEventListener("click",()=>{
-    if(listSample.length>0){
+    if(listSample.length>0 && nameSample.value !="" && nameRule.value !="" && cboGroupSample.value>0){
         postData()
-        
+
     }else{
-        console.log("Ingrese data")
+      Toastify({
+
+      text: "No deje campos vacios, por favor!",
+
+      duration: 3000
+
+      }).showToast();
+
+
     }
 })
 
 
 const postData=async()=>{
     console.log(listSample)
+    console.log(idUser)
+    console.log(nameSample.value)
+    console.log(nameRule.value)
     try {
         const response=await fetch("http://localhost/LabSuelosUnivo/public/sample/saveField",
         {
             method: "POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({ list: listSample })
+            body:JSON.stringify({ list: listSample, idUser: idUser,nameSample: nameSample.value, nameRule: nameRule.value })
         });
         if(response.ok){
-            const contentType = response.headers.get('content-type');
-            if (contentType && contentType.indexOf('application/json') !== -1) {
-               
-                
-            } else {
-                console.log("Respuesta no es JSON");
-            }
+            location.href="http://localhost/LabSuelosUnivo/public/sample/method"
         }else{
             console.log("NOOO")
             console.log(response)
@@ -85,27 +92,3 @@ const postData=async()=>{
         console.log(error)
     }
 }
-
-
-new MultiSelectTag('countries', {
-    rounded: true,    // default true
-    shadow: true,      // default false
-    placeholder: 'Search',  // default Search...
-    tagColor: {
-        textColor: '#327b2c',
-        borderColor: '#92e681',
-        bgColor: '#eaffe6',
-    },
-    onChange: function(values) {
-        console.log(values)
-    }
-})
- $(".prompt").select2({
-         data:content,
-         minimumInputLength: 2,
-         width: '100%',
-         multiple:true,
-         placeholder:"Enter First Name",
-         templateResult:formatState
- 
-     });

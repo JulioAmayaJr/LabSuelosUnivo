@@ -21,7 +21,7 @@ const divStatus = document.getElementById("divStatus");
 const cboStatus = document.getElementById("cboStatus");
 const btnSave = document.querySelector('#btnSave');
 const btnDelete = document.querySelectorAll(".delete-button");
-
+const idUser=document.getElementById("idUser").value
 const add = (projectId) => {
     const url = "http://localhost/LabSuelosUnivo/public/project/getById/" + projectId;
     fetch(url, {
@@ -59,6 +59,7 @@ btnSave.addEventListener('click', () => {
     if (txtId.value == 0) {
         if (validate()) {
             //Bloque para la creacion de un projecto
+            console.log("ID:"+idUser)
             postData();
         } else {
             console.log('Error de validacion');
@@ -184,12 +185,14 @@ btnDelete.forEach(element => {
 });
 
 const postData = async () => {
+
     const formData = new FormData();
     console.log(formData)
     formData.append("name", txtName.value);
     formData.append("id_customer", cboCustomer.value);
     formData.append("lactitud", txtlactitude.value);
     formData.append("longitud", txtlength.value);
+    formData.append("idUser",idUser)
     try {
         const response = await fetch("http://localhost/LabSuelosUnivo/public/project/save",
             {

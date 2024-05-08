@@ -19,20 +19,23 @@ class Sample extends BaseController
 
     public function method()
     {
-      
+
         return view('/sample/method');
     }
 
     public function saveField()
     {
-
+      $data_post = json_decode(file_get_contents("php://input"), true);
         //Aqui se inserta los datos de la tabla tbl_sample
         $sampleModel = new SampleModel();
+        $idUSer=$data_post["idUser"];
+        $nameSample=$data_post["nameSample"];
+        $nameRule=$data_post["nameRule"];
         $sampleId = $this->insertAndGetId($sampleModel, [
-            "name" => "Cilindro",
-            'rules' => "000-1",
+            "name" => $nameSample,
+            'rules' => $nameRule,
             'id_group_sample' => 1,
-            'id_user' => 1,
+            'id_user' => $idUSer,
             'id_project' => null
         ]);
 
@@ -41,7 +44,7 @@ class Sample extends BaseController
 
 
         //Aqui se inserta los campos (field) en la base de datos
-        $data_post = json_decode(file_get_contents("php://input"), true);
+
         $list = $data_post['list'];
         $fieldModel = new FieldModel();
         foreach ($list as $object) {
