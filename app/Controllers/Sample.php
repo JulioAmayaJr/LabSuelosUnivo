@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\SampleModel;
 use App\Models\FieldModel;
 use App\Models\FieldSampleModel;
+use App\Models\GroupSampleModel;
 
 class Sample extends BaseController
 {
@@ -14,7 +15,19 @@ class Sample extends BaseController
         if (session("user") < 1) {
             return view("/login/index");
         }
-        return view('/sample/index');
+
+        $model = new SampleModel();
+        $groupSample = new GroupSampleModel();
+
+        $resultado = $model->findAll();
+        $resultadoGroupSample = $groupSample->findAll();
+
+        $data = [
+            "sample" => $resultado,
+            "groupSample" => $resultadoGroupSample
+        ];
+
+        return view('/sample/index', $data);
     }
 
     public function method()
@@ -25,12 +38,12 @@ class Sample extends BaseController
 
     public function saveField()
     {
-      $data_post = json_decode(file_get_contents("php://input"), true);
+        $data_post = json_decode(file_get_contents("php://input"), true);
         //Aqui se inserta los datos de la tabla tbl_sample
         $sampleModel = new SampleModel();
-        $idUSer=$data_post["idUser"];
-        $nameSample=$data_post["nameSample"];
-        $nameRule=$data_post["nameRule"];
+        $idUSer = $data_post["idUser"];
+        $nameSample = $data_post["nameSample"];
+        $nameRule = $data_post["nameRule"];
         $sampleId = $this->insertAndGetId($sampleModel, [
             "name" => $nameSample,
             'rules' => $nameRule,

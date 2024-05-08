@@ -17,6 +17,7 @@ class Users extends BaseController
         if (session("user") < 1) {
             return view("/login/index");
         }
+
         $model = new UserModel();
         $rolModel = new RolModel();
 
