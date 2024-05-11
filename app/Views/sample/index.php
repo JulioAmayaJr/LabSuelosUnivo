@@ -9,10 +9,7 @@
         display: none;
     }
 
-    #map {
-        height: 250px;
-        width: 100%;
-    }
+
 
     .js-example-basic-multiple {
         width: 250px;
@@ -61,9 +58,10 @@
             </div>
         </div>
         <hr />
-        <div class="row">
-            <div id="badgeContainer" class=" cont col-sm-12">
-
+        <div class="row ">
+            <div id="badgeContainer" class="este  col-sm-12">
+              
+              
 
             </div>
             <div class="linea"></div>
