@@ -30,10 +30,27 @@ class Sample extends BaseController
         return view('/sample/index', $data);
     }
 
-    public function method()
+    public function method($Id=null)
     {
+        if ($Id == null) {
+            return  redirect()->to(base_url('sample'));
+        }
+        $key= "LabSuelosUnivo";
+        $Id=$this->decrypt($Id,$key);
+        $sampleModel = new FieldSampleModel();
+        $data = $sampleModel->where("id_field_sample", $Id)->first();
 
-        return view('/sample/method');
+        if($data){
+          $data=[
+            "id"=>$data["id_field_sample"]
+          ];
+          return view('/sample/method',$data);
+        }else{
+
+          echo  $this->output->set_status_header('404');
+          die();
+        }
+
     }
 
     public function saveField()
@@ -75,8 +92,28 @@ class Sample extends BaseController
                 'status' => 1
             ]);
         }
+        $key= "LabSuelosUnivo";
+        $id=$fieldSampleId;
+        $id = $this->SHA256($id,$key);
+        header("Content-Type: application/json");
+        echo json_encode(["ID"=>$id]);
         die();
+
     }
+
+    private function SHA256($text, $key) {
+        $iv = random_bytes(16);
+        $sha = openssl_encrypt($text, 'aes-256-cbc', $key, 0, $iv);
+        return base64_encode($iv . $sha);
+    }
+
+    private function decrypt($text_encrypt,$key){
+      $text_encrypt = base64_decode($text_encrypt);
+      $iv = substr($text_encrypt, 0, 16);
+      $text = substr($text_encrypt, 16);
+      return openssl_decrypt($text, 'aes-256-cbc', $key, 0, $iv);
+    }
+
     //funcion para insertar y extraer el id del insert recien hecho
     private function insertAndGetId($model, $data)
     {

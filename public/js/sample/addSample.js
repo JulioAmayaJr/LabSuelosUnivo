@@ -74,21 +74,23 @@ const postData=async()=>{
     console.log(idUser)
     console.log(nameSample.value)
     console.log(nameRule.value)
-    try {
+
         const response=await fetch("http://localhost/LabSuelosUnivo/public/sample/saveField",
         {
             method: "POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({ list: listSample, idUser: idUser,nameSample: nameSample.value, nameRule: nameRule.value })
-        });
-        if(response.ok){
-            location.href="http://localhost/LabSuelosUnivo/public/sample/method"
-        }else{
-            console.log("NOOO")
-            console.log(response)
-        }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
 
-    } catch (error) {
-        console.log(error)
-    }
+            }
+        }).then(data => {
+          location.href="http://localhost/LabSuelosUnivo/public/sample/method/"+data.ID
+    })
+    .catch(error => {
+        console.log(error);
+    });
 }

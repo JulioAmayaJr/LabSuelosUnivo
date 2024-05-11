@@ -29,8 +29,9 @@ $routes->get("customer/municipality/(:num)", "Customer::getMunicipalities/$1");
 
 //Sample
 $routes->get('/sample', 'Sample::index');
-$routes->get('/sample/method', 'Sample::method');
+$routes->get('/sample/method/(.*)', 'Sample::method/$1');
 $routes->post("/sample/saveField", "Sample::saveField");
+
 //groupSample
 $routes->get('/groupSample', 'GroupSample::index');
 $routes->post("/groupSample/save", "GroupSample::save");

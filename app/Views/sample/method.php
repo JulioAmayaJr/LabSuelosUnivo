@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url('css/methood.css') ?>">
 <title>Document</title>
 
-
+  <input type="text" id="Id" value="<?=$id?>">
 <div class="container">
     <div class="card shadow mb-4 mt-3 ">
         <div style="background-color: #0d6efd;" class="card-header py-3 ">
@@ -70,7 +70,7 @@
                                             <div class="butt  input-group-text" id="result">0</button></div>
                                     </tr>
                                     <tr>
-                                        
+
                                         <td><button class="butt">&#8730;</button></td>
                                         <td><button class="butt">AC</button></td>
                                         <td colspan="2"><button class="butt"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="31" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
@@ -102,9 +102,9 @@
                                         <td colspan="1"><button class="butt">&#247; </button></td>
                                     </tr>
                                     <tr>
-                                        
-                                        
-                                        
+
+
+
                                     </tr>
                                 </table>
                             </div>
@@ -116,3 +116,6 @@
         </div>
     </div>
 </div>
+
+
+<script src="<?= base_url('js/sample/methodSample.js') ?>"></script>
