@@ -61,8 +61,8 @@ btnSave.addEventListener('click', () => {
     if (txtId.value == 0) {
         //Bloque para la creacion de un usuario
         if (validateField(txtFullName.value, txtUserName.value, cboStatus.value)) {
-         postData();
-       }
+            postData();
+        }
 
     } else if (txtId.value > 0) {
         //Bloque para la modificacion de un usuario
@@ -110,23 +110,23 @@ function clearFields() {
 
 function validateField(fullName, userName, status) {
 
-  var regex = /[!@#$%^&*(),.?":{}|<>]/;
+    var regex = /[!@#$%^&*(),.?":{}|<>]/;
 
-  if (fullName === "" || userName === "" || txtImage.files.length === 0 || cboRol.value<=0) {
-    Toastify({
-      text: "Por favor, complete correctamente todos los campos.",
-      duration: 3000
-    }).showToast();
-    return false;
-  } else if (regex.test(fullName) || regex.test(userName)) {
-    Toastify({
-      text: "Los campos no deben contener signos.",
-      duration: 3000
-    }).showToast();
-    return false;
-  } else {
-    return true;
-  }
+    if (fullName === "" || userName === "" || txtImage.files.length === 0 || cboRol.value <= 0) {
+        Toastify({
+            text: "Por favor, complete correctamente todos los campos.",
+            duration: 3000
+        }).showToast();
+        return false;
+    } else if (regex.test(fullName) || regex.test(userName)) {
+        Toastify({
+            text: "Los campos no deben contener signos.",
+            duration: 3000
+        }).showToast();
+        return false;
+    } else {
+        return true;
+    }
 }
 
 

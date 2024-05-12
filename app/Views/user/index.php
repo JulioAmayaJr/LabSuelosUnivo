@@ -5,11 +5,13 @@
     ._hidden {
         display: none;
     }
+
     .toastify {
         background: linear-gradient(to right, #ff6e6e, #ffa2a2);
         color: #fff;
         border-radius: 8px;
     }
+
     .toastify__toast {
         font-weight: bold;
     }
@@ -187,4 +189,4 @@
         });
     });
 </script>
-<?php echo $this->endSection(); ?>
+<?php echo $this->endSection();

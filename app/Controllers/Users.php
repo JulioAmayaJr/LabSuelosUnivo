@@ -17,17 +17,21 @@ class Users extends BaseController
         if (session("user") < 1) {
             return view("/login/index");
         }
+        $session = session();
+        $session = $session->get("user");
+        $sessionId = $session["id_user"];
 
         $model = new UserModel();
         $rolModel = new RolModel();
 
-        $resultado = $model->findAll();
+        $resultado = $model->where('id_user !=', $sessionId)->findAll();
         $resultadoRol = $rolModel->findAll();
 
         $data = [
             "users" => $resultado,
             "roles" => $resultadoRol
         ];
+
         helper("form");
         return view('/user/index', $data);
     }
