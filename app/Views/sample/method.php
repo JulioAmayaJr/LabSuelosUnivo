@@ -3,8 +3,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url('css/methood.css') ?>">
 <title>Document</title>
-
-  <input type="text" id="Id" value="<?=$id?>">
+<style >
+  .option{
+    cursor: pointer;
+  }
+  .option:hover,
+  .option.selected{
+    background-color: black;
+  }
+</style>
+  <input type="text" id="Id" hidden value="<?=$id?>">
 <div class="container">
     <div class="card shadow mb-4 mt-3 ">
         <div style="background-color: #0d6efd;" class="card-header py-3 ">
@@ -16,7 +24,8 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <div style="" class="py-5 input-group-text ">
+                  <!-- Aqui esta el div de la list1 -->
+                    <div style="" class="py-5 input-group-text " id="list1">
 
                     </div>
                 </div>
@@ -25,7 +34,7 @@
             <div class="row ">
                 <div class="col-sm-12 ">
                     <div class="mb-1 mt-1 d-flex justify-content-center ">
-                        <button type="button" class="btn btn-primary py-1  ">Bajar <i class="fa-solid fa-greater-than"></i></button>
+                        <button onclick="moveH('Down')" type="button" class="btn btn-primary py-1  ">Bajar <i class="fa-solid fa-greater-than"></i></button>
 
                     </div>
                     <div class="mb-1  d-flex justify-content-center position-relative">
@@ -41,9 +50,13 @@
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-3 input-group-sm ">
-                            <input style="text-align: center;" type="text" id="inpu" class="form-control" value="" placeholder="Ingrese el nombre de la formula">
+                            <input  style="text-align: center;" type="text" id="inpu" class="form-control" value="" placeholder="Ingrese el nombre de la formula">
                         </div>
                         <div class="col-sm-12 mb-3 mt-1">
+                            <!--Aqui el otro list2-->
+                            <div id="list2">
+
+                            </div>
                             <input type="text" id="inpu" class="form-control input-group-text" value="">
 
                         </div>

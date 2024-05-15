@@ -35,6 +35,7 @@ class Sample extends BaseController
         if ($Id == null) {
             return  redirect()->to(base_url('sample'));
         }
+        $IdEncrypt=$Id;
         $key= "LabSuelosUnivo";
         $Id=$this->decrypt($Id,$key);
         $sampleModel = new FieldSampleModel();
@@ -42,7 +43,7 @@ class Sample extends BaseController
 
         if($data){
           $data=[
-            "id"=>$data["id_field_sample"]
+            "id"=>$IdEncrypt
           ];
           return view('/sample/method',$data);
         }else{
@@ -101,18 +102,67 @@ class Sample extends BaseController
 
     }
 
-    private function SHA256($text, $key) {
-        $iv = random_bytes(16);
-        $sha = openssl_encrypt($text, 'aes-256-cbc', $key, 0, $iv);
-        return base64_encode($iv . $sha);
+    public function methodID($Id=null){
+      //Models
+      $sampleModel = new FieldSampleModel();
+      $fieldModel=new FieldModel();
+      if($Id==null){
+        header("Content-Type: application/json");
+        echo json_encode(["Error"=>"No se encontro registro"]);
+      }
+
+      $key= "LabSuelosUnivo";
+      $Id=$this->decrypt($Id,$key);
+      $data=$sampleModel->where("id_field_sample",$Id)->first();
+      $Id=$data["id_sample"];
+      $data = $sampleModel->where("id_sample", $Id)->findAll();
+
+      $idField=[];
+      foreach ($data as $dataFieldSample) {
+          $idField[]= $dataFieldSample["id_field"];
+
+        }
+        $dataField=[];
+        foreach ($idField as $key) {
+          $data=$fieldModel->where("id_field",$key)->first();
+          $data=[
+            "data"=>$data,
+            "selected"=>false
+          ];
+          $dataField[]=$data;
+
+        }
+
+      if($dataField){
+
+
+        header("Content-Type: application/json");
+        echo json_encode($dataField);
+        die();
+      }else{
+          header("Content-Type: application/json");
+        echo json_encode(["Error"=>"No se encontro registro"]);
+        die();
+      }
     }
 
-    private function decrypt($text_encrypt,$key){
+    private function SHA256($text, $key) {
+      $iv = random_bytes(16);
+      $encrypted_text = openssl_encrypt($text, 'aes-256-cbc', $key, 0, $iv);
+      $result = base64_encode($iv . $encrypted_text);
+
+      return $result;
+  }
+
+  private function decrypt($text_encrypt, $key) {
       $text_encrypt = base64_decode($text_encrypt);
       $iv = substr($text_encrypt, 0, 16);
       $text = substr($text_encrypt, 16);
-      return openssl_decrypt($text, 'aes-256-cbc', $key, 0, $iv);
-    }
+      $decrypted_text = openssl_decrypt($text, 'aes-256-cbc', $key, 0, $iv);
+      return $decrypted_text;
+  }
+
+
 
     //funcion para insertar y extraer el id del insert recien hecho
     private function insertAndGetId($model, $data)
