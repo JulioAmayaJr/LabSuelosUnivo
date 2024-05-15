@@ -57,7 +57,6 @@
                             <div class="py-3 input-group-text " id="list2">
 
                             </div>
-                            <input type="text" id="inpu" class="form-control input-group-text" value="">
 
                         </div>
                     </div>
