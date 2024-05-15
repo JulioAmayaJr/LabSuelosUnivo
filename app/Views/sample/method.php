@@ -38,7 +38,7 @@
 
                     </div>
                     <div class="mb-1  d-flex justify-content-center position-relative">
-                        <button type="button" class="btn btn-primary py-1 "><i class="fa-solid fa-less-than"></i> Subir</button>
+                        <button type="button" onclick="moveH('Up')" class="btn btn-primary py-1 "><i class="fa-solid fa-less-than"></i> Subir</button>
                         <button style="right: 0%;" type="button" class="btn btn-primary py-1 position-absolute top-0 end-0 p-3">Agregar Formula</button>
                     </div>
 
@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-sm-12 mb-3 mt-1">
                             <!--Aqui el otro list2-->
-                            <div id="list2">
+                            <div class="py-3 input-group-text " id="list2">
 
                             </div>
                             <input type="text" id="inpu" class="form-control input-group-text" value="">

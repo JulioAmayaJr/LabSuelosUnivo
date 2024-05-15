@@ -87,9 +87,21 @@ renderList();
 function moveH(direction){
   if(!selectedOption) return false;
 
-  if(direction=="Down"){
+  if(direction=="Down" && selectedOption.listType=="list1"){
     let optionMove=list1.splice(selectedOption.index,1)[0]
     list2.push(optionMove)
+    selectedOption={
+      index:list2.length-1,
+      listType: 'list2'
+    }
+
+  }else if(direction=="Up" && selectedOption.listType=="list2"){
+    let optionMove=list2.splice(selectedOption.index,1)[0]
+    list1.push(optionMove);
+    selectedOption={
+      index:list1.length-1,
+      listType: 'list1'
+    }
   }
   renderList();
 }
