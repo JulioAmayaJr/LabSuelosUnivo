@@ -23,6 +23,8 @@ const btnEdit = document.getElementById('btnEdit')
 //Capture class to hide controls
 const items = document.querySelectorAll(".hide")
 
+let idTypeCustomer
+
 const add = (customId) => {
     hideItems()
     const url = "http://localhost/LabSuelosUnivo/public/customer/getById/" + customId;
@@ -53,6 +55,13 @@ const add = (customId) => {
             txtNoRegister.value = data.no_register_nrc
             txtAddress.value = data.address
             cboType.value = data.id_type_customer
+            idTypeCustomer=data.id_type_customer
+
+            if(idTypeCustomer==1){
+              hideItems(idTypeCustomer)
+              console.log(idTypeCustomer)
+            }
+
         })
         .catch(error =>{
             console.log(error)
@@ -76,7 +85,7 @@ const municipality = (munId) => {
         .then(data => {
             data.forEach(element => {
                 cboMunicipality.innerHTML += `
-                    <option value="${element.id_municipality}">   
+                    <option value="${element.id_municipality}">
                         ${element.name_municipality}
                     </option>
                 `
@@ -92,8 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             const customId = button.dataset.id
-            console.log(customId)
+
             add(customId)
+
         })
     })
 
@@ -107,14 +117,15 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 cboType.addEventListener('change', () => {
-    hideItems()
+    const selectedValue = cboType.value
+    hideItems(selectedValue)
 })
 
-function hideItems (){
-    const selectedValue = cboType.value
-    
+function hideItems (id){
+
+
     items.forEach((item) => {
-        if (selectedValue === "1"){
+        if (id === "1"){
             item.style.display = "none"
         }
         else {
@@ -170,8 +181,8 @@ btnSave.addEventListener('click', () =>{
         formData.append("name_customer", txtName.value)
         formData.append("email", txtEmail.value)
         formData.append("cell_phone", txtCellphone.value)
-        formData.append("department", cboDepartment.value)
-        formData.append("municipality", cboMunicipality.value)
+        formData.append("id_department", cboDepartment.value)
+        formData.append("id_municipality", cboMunicipality.value)
         formData.append("number_dui", txtDUI.value)
         formData.append("number_nit", txtNIT.value)
         formData.append("spin", txtSpin.value)
@@ -179,6 +190,8 @@ btnSave.addEventListener('click', () =>{
         formData.append("no_register_nrc", txtNoRegister.value)
         formData.append("id_type_customer", cboType.value)
         formData.append("address", txtAddress.value)
+        console.log("ID del departamento"+cboDepartment.value)
+        console.log("ID del municipio"+cboMunicipality.value)
 
         const url = "http://localhost/LabSuelosUnivo/public/customer/update/" + txtId.value
         fetch(url, {
@@ -226,7 +239,7 @@ btnNewCustom.addEventListener('click', () => {
 })
 
 function validate(){
-    
+
 }
 
 btnDelete.forEach(element => {
@@ -248,4 +261,3 @@ btnDelete.forEach(element => {
         });
     });
 });
-

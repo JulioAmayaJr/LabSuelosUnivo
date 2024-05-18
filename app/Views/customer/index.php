@@ -27,11 +27,11 @@
                             <th>Telefono</th>
                             <th>DUI</th>
                             <th>Acciones</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($customers as $customer): ?> 
+                        <?php foreach ($customers as $customer): ?>
                             <tr>
                                 <td hidden><?= $customer["id_customer"]?></td>
                                 <td><?= $customer["name_customer"] ?></td>
@@ -79,7 +79,7 @@
                             <label for="cboType">Tipo de cliente</label>
                             <select class="form-control form-control-sm input-validar" name="id_type" id="cboType">
                                 <option selected disabled>-- Seleccione tipo de cliente --</option>
-                                <?php foreach ($typecustomers as $type){ ?> 
+                                <?php foreach ($typecustomers as $type){ ?>
                                     <option value="<?= $type["id_type_customer"] ?>"><?= $type["type_customer"] ?></option>
                                 <?php
                                 }
@@ -108,7 +108,7 @@
                                 <option selected disabled>-- Seleccionar departamento --</option>
                                 <?php foreach ($department as $dep) { ?>
                                     <option value="<?= $dep["id_deparment"] ?>"><?= $dep["name_deparment"] ?></option>
-                                <?php 
+                                <?php
                                 }
                                 ?>
                             </select>
@@ -120,7 +120,7 @@
                                 <?php foreach($municipality as $mun) { ?>
                                     <option value="<?= $mun["id_municipality"] ?>"><?= $mun["name_municipality"] ?></option>
                                 <?php
-                                }    
+                                }
                                 ?>
                             </select>
                         </div>
