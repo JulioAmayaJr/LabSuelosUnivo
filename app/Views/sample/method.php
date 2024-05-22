@@ -94,24 +94,24 @@
                                         <td><button class="butt">1</button></td>
                                         <td><button class="butt">2</button></td>
                                         <td><button class="butt">3</button></td>
-                                        <td><button class="butt">+</button></td>
+                                        <td><button class="butt" id="btnSum">+</button></td>
                                     </tr>
                                     <tr>
                                         <td><button class="butt">4</button></td>
                                         <td><button class="butt">5</button></td>
                                         <td><button class="butt">6</button></td>
-                                        <td><button class="butt">-</button></td>
+                                        <td><button class="butt" id="btnMinus">-</button></td>
                                     </tr>
                                     <tr>
                                         <td><button class="butt">7</button></td>
                                         <td><button class="butt">8</button></td>
                                         <td><button class="butt">9</button></td>
-                                        <td><button class="butt">x</button></td>
+                                        <td><button class="butt" id="btnMultiplication">x</button></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"><button class="butt">0</button></td>
                                         <td colspan="1" ><button class="butt">.</button></td>
-                                        <td colspan="1"><button class="butt">&#247; </button></td>
+                                        <td colspan="1"><button class="butt" id="btnDivision">&#247; </button></td>
                                     </tr>
                                     <tr>
 
