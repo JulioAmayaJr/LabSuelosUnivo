@@ -14,11 +14,9 @@ $routes->post("user/update/(:num)", "Users::updateUser/$1");
 $routes->get("user/delete/(:num)", "Users::deleteUser/$1");
 
 //profile
-$routes->get('/profile', 'Profile::index');
-$routes->get('/profile/save', 'Profile::save');
-$routes->get('/profile/getById', 'Profile::getById/$1');
-$routes->get('/profile/update', 'Profile::update/$1');
-$routes->get('/profile/delete', 'Profile::delete/$1');
+$routes->get("/profile", "Profile::index");
+$routes->post("profile/updateInfo", "Profile::updateInfo");
+$routes->post("profile/updatePass", "Profile::updatePassword");
 
 //Customer
 $routes->get('/customer', 'Customer::index');
