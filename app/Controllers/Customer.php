@@ -46,18 +46,18 @@ class Customer extends BaseController
         $customModel = new CustomerModel();
 
         $success = $customModel->insert([
-    "address" => isset($_POST["address"]) ? trim($_POST["address"]) : '',
-    "cell_phone" => isset($_POST["cell_phone"]) ? trim($_POST["cell_phone"]) : '',
-    "email" => isset($_POST["email"]) ? trim($_POST["email"]) : '',
-    "id_type_customer" => isset($_POST["id_type_customer"]) ? trim($_POST["id_type_customer"]) : '',
-    "name_customer" => isset($_POST["name_customer"]) ? trim($_POST["name_customer"]) : '',
-    "no_register_nrc" => isset($_POST["no_register_nrc"]) ? trim($_POST["no_register_nrc"]) : '',
-    "number_dui" => isset($_POST["number_dui"]) ? trim($_POST["number_dui"]) : '',
-    "number_nit" => isset($_POST["number_nit"]) ? trim($_POST["number_nit"]) : '',
-    "social_reason" => isset($_POST["social_reason"]) ? trim($_POST["social_reason"]) : '',
-    "spin" => isset($_POST["spin"]) ? trim($_POST["spin"]) : '',
-    "id_municipality" => isset($_POST["id_municipality"]) ? trim($_POST["id_municipality"]) : ''
-]);
+            "address" => isset($_POST["address"]) ? trim($_POST["address"]) : '',
+            "cell_phone" => isset($_POST["cell_phone"]) ? trim($_POST["cell_phone"]) : '',
+            "email" => isset($_POST["email"]) ? trim($_POST["email"]) : '',
+            "id_type_customer" => isset($_POST["id_type_customer"]) ? trim($_POST["id_type_customer"]) : '',
+            "name_customer" => isset($_POST["name_customer"]) ? trim($_POST["name_customer"]) : '',
+            "no_register_nrc" => isset($_POST["no_register_nrc"]) ? trim($_POST["no_register_nrc"]) : '',
+            "number_dui" => isset($_POST["number_dui"]) ? trim($_POST["number_dui"]) : '',
+            "number_nit" => isset($_POST["number_nit"]) ? trim($_POST["number_nit"]) : '',
+            "social_reason" => isset($_POST["social_reason"]) ? trim($_POST["social_reason"]) : '',
+            "spin" => isset($_POST["spin"]) ? trim($_POST["spin"]) : '',
+            "id_municipality" => isset($_POST["id_municipality"]) ? trim($_POST["id_municipality"]) : ''
+        ]);
 
         // Devuelve true si la inserción fue exitosa, de lo contrario, devuelve false
         echo $success;
@@ -90,6 +90,18 @@ class Customer extends BaseController
         die();
     }
 
+    public function getDepartment($id = null){
+        if ($id == null) {
+            return redirect()->to(base_url("customer"));
+        }
+        $departments = new DepartmentModel();
+        $data = $departments->where('id_deparment', $id)->findAll();
+
+        header('Content-Type: aplication/json');
+        echo json_encode($data);
+        die();
+    }
+
     public function updateCustomer($Id = null)
     {
         $customModel = new CustomerModel();
@@ -105,7 +117,6 @@ class Customer extends BaseController
           "number_nit" => isset($_POST["number_nit"]) ? trim($_POST["number_nit"]) : '',
           "social_reason" => isset($_POST["social_reason"]) ? trim($_POST["social_reason"]) : '',
           "spin" => isset($_POST["spin"]) ? trim($_POST["spin"]) : '',
-          "id_department" => isset($_POST["id_department"]) ? trim($_POST["id_department"]) : '',
           "id_municipality" => isset($_POST["id_municipality"]) ? trim($_POST["id_municipality"]) : ''
         ];
 
