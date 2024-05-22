@@ -96,6 +96,31 @@ const municipality = (munId) => {
         })
 }
 
+const department = (depId) => {
+    const url = "http://localhost/LabSuelosUnivo/public/customer/department/" + depId;
+    fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+    })
+        .then(response => {
+            if (response.ok){
+                return response.json()
+            }
+            else{
+
+            }
+        })
+        .then(data => {
+            data.forEach(element => {
+                cboDepartment.innerHTML = `
+                    <option value="${element.id_department}">
+                        ${element.name_department}
+                    </option>
+                `
+            })
+        })
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll("#tbdata .options button[data-id]")
     buttons.forEach(button => {
@@ -140,7 +165,6 @@ const postData = async () =>{
     formData.append("name_customer", txtName.value)
     formData.append("email", txtEmail.value)
     formData.append("cell_phone", txtCellphone.value)
-    formData.append("id_department", cboDepartment.value)
     formData.append("id_municipality", cboMunicipality.value)
     formData.append("number_nit", txtNIT.value)
     formData.append("number_dui", txtDUI.value)
@@ -181,7 +205,6 @@ btnSave.addEventListener('click', () =>{
         formData.append("name_customer", txtName.value)
         formData.append("email", txtEmail.value)
         formData.append("cell_phone", txtCellphone.value)
-        formData.append("id_department", cboDepartment.value)
         formData.append("id_municipality", cboMunicipality.value)
         formData.append("number_dui", txtDUI.value)
         formData.append("number_nit", txtNIT.value)
