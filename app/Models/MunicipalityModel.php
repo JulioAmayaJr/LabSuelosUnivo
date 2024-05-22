@@ -11,7 +11,10 @@ class MunicipalityModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['name_municipality'];
+    protected $allowedFields = [
+        'name_municipality',
+        'id_department'
+    ];
 }
 
 ?>

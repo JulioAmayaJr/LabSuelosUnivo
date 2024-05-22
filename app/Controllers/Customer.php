@@ -21,12 +21,12 @@ class Customer extends BaseController
             return view("/login/index");
         }
 
-        $model = new CustomerModel();
+        $customer = new CustomerModel();
         $typeCustomer = new TypeCustomerModel();
         $departMent = new DepartmentModel();
         $municipality = new MunicipalityModel();
 
-        $result = $model->findAll();
+        $result = $customer->findAll();
         $resultType = $typeCustomer->findAll();
         $resultDepartment = $departMent->findAll();
         $resultMunicipality = $municipality->findAll();
@@ -56,7 +56,6 @@ class Customer extends BaseController
     "number_nit" => isset($_POST["number_nit"]) ? trim($_POST["number_nit"]) : '',
     "social_reason" => isset($_POST["social_reason"]) ? trim($_POST["social_reason"]) : '',
     "spin" => isset($_POST["spin"]) ? trim($_POST["spin"]) : '',
-    "id_department" => isset($_POST["id_department"]) ? trim($_POST["id_department"]) : '',
     "id_municipality" => isset($_POST["id_municipality"]) ? trim($_POST["id_municipality"]) : ''
 ]);
 
