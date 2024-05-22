@@ -95,7 +95,7 @@ class Customer extends BaseController
             return redirect()->to(base_url("customer"));
         }
         $departments = new DepartmentModel();
-        $data = $departments->where('id_deparment', $id)->findAll();
+        $data = $departments->where('id_deparment', $id)->find();
 
         header('Content-Type: aplication/json');
         echo json_encode($data);

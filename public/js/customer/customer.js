@@ -139,6 +139,12 @@ document.addEventListener("DOMContentLoaded", () => {
             municipality(cboDepartment.value)
         }
     })
+
+    if (cboMunicipality.value !== null){
+        cboMunicipality.options.length = 0
+        cboMunicipality.options[0] = new Option("-- Seleccionar un municipio --")
+        department(cboMunicipality.value)
+    }
 })
 
 cboType.addEventListener('change', () => {
