@@ -27,6 +27,9 @@ $routes->get("customer/delete/(:num)", "Customer::deleteCustomer/$1");
 //route para obtener municipios
 $routes->get("customer/municipality/(:num)", "Customer::getMunicipalities/$1");
 
+//route to get department
+$routes->get("customer/department/(:num)", "Customer::getDepartment/$1");
+
 //Sample
 $routes->get('/sample', 'Sample::index');
 $routes->get('/sample/method/(.*)', 'Sample::method/$1');
