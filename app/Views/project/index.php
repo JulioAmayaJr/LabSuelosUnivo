@@ -18,6 +18,7 @@
 <?php echo $this->section("content"); ?>
 
 <div class="card shadow mb-4">
+    <input type="hidenn" id="idUser" value="<?=session("user")["id_user"]?>">
     <div class="card-header py-3 bg-second-primary">
         <h6 class="m-0 font-weight-bold text-white">Lista de Projectos</h6>
     </div>

@@ -183,7 +183,7 @@ const postData = async () => {
         if (response.ok) {
             location.href = "http://localhost/LabSuelosUnivo/public/user/";
         } else {
-            console.log("NOOO")
+            
             console.log(response)
         }
 

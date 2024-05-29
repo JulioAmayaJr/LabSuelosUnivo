@@ -45,7 +45,8 @@ class Users extends BaseController
         $userModel = new UserModel();
         $usernamepost = $_POST["user_name"];
         $password = $usernamepost . "123";
-        $password = password_hash($password, PASSWORD_BCRYPT);
+        $key= "LabSuelosUnivo";
+        $password = $this->SHA256($password, $key);
 
         $success = $userModel->insert([
             "full_name" => trim($_POST["name"]),
@@ -146,4 +147,12 @@ class Users extends BaseController
             return redirect()->to(base_url('user'))->with('error', 'Error al eliminar el usuario.');
         }
     }
+
+    private function SHA256($text, $key) {
+        $iv = random_bytes(16);
+        $encrypted_text = openssl_encrypt($text, 'aes-256-cbc', $key, 0, $iv);
+        return rtrim(strtr(base64_encode($iv . $encrypted_text), '+/', '-_'), '=');
+    }
+
+
 }

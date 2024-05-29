@@ -81,35 +81,32 @@ function selectOption(listType, optionIndex) {
 }
 
 function moveH(direction) {
-    if (!selectedOption) return false;
-
-    if (direction == "Down" && selectedOption.listType == "list1") {
-
+    if (direction === "Down" && selectedOption && selectedOption.listType === "list1") {
         if (list2.length === 0 || ['+', '-', '*', '/'].includes(list2[list2.length - 1].field)) {
-            let optionMove = list1.splice(selectedOption.index, 1)[0];
+            let optionMove = list1[selectedOption.index];
             list2.push(optionMove);
-            selectedOption = {
-                index: list2.length - 1,
-                listType: 'list2'
-            };
+            list1[selectedOption.index].selected = false; 
+            renderList();
+            return;
         }
-    } else if (direction == "Up" && selectedOption.listType == "list2") {
-        let optionMove = list2.splice(selectedOption.index, 1)[0];
-        list1.push(optionMove);
-        selectedOption = {
-            index: list1.length - 1,
-            listType: 'list1'
-        };
-
-
-        if (selectedOption.index > 0 && ['+', '-', '*', '/'].includes(list2[selectedOption.index - 1]?.field)) {
-            list2.splice(selectedOption.index - 1, 1);
-            selectedOption.index -= 1;
+    } else if (direction === "Up" && list2.length > 0) {
+        let lastElementIndex = list2.length - 1;
+        let lastElement = list2[lastElementIndex];
+        if (['+', '-', '*', '/'].includes(lastElement.field)) {
+            if (lastElementIndex > 0 && ['+', '-', '*', '/'].includes(list2[lastElementIndex - 1].field)) {
+                list2.splice(lastElementIndex - 1, 2); 
+            } else {
+                list2.pop(); 
+            }
+        } else {
+            list2.pop();
         }
+        renderList();
+        return;
     }
-
-    renderList();
 }
+
+
 
 
 btnSum.addEventListener("click", () => {

@@ -24,8 +24,11 @@ class Login extends BaseController
         $password = $_POST["password"];
 
         $result = $userModel->where("user_name", $userName)->first();
-
-        if ($result && password_verify($password, $result["password"])) {
+        $pass=$result["password"];
+        $key="LabSuelosUnivo";
+        $pass=$this->decrypt($pass,$key);
+    
+        if ($result && $pass==$password) {
             if ($result["status"] == 1) {
                 $this->session->set("user", $result);
                 return redirect()->to(base_url());
@@ -42,5 +45,19 @@ class Login extends BaseController
     {
         $this->session->destroy();
         return redirect()->to(base_url());
+    }
+
+
+    private function SHA256($text, $key) {
+        $iv = random_bytes(16);
+        $encrypted_text = openssl_encrypt($text, 'aes-256-cbc', $key, 0, $iv);
+        return rtrim(strtr(base64_encode($iv . $encrypted_text), '+/', '-_'), '=');
+    }
+
+  private function decrypt($encrypted_text, $key) {
+        $encrypted_text = base64_decode(str_pad(strtr($encrypted_text, '-_', '+/'), strlen($encrypted_text) % 4, '=', STR_PAD_RIGHT));
+        $iv = substr($encrypted_text, 0, 16);
+        $text = substr($encrypted_text, 16);
+        return openssl_decrypt($text, 'aes-256-cbc', $key, 0, $iv);
     }
 }

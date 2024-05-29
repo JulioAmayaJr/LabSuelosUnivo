@@ -13,41 +13,7 @@ const txtConfirmarClave = document.getElementById("txtConfirmarClave")
 
 const btnCambiarClave = document.getElementById("btnCambiarClave")
 
-btnGuardarCambios.addEventListener('click', () => {
-    
-    if (validateInfoFields(txtEmail.value, txtPhone.value)){
-        
-        const formData = new FormData()
-        formData.append("email", txtEmail.value)
-        formData.append("phone", txtPhone.value)
 
-        const url = "http://localhost/LabSuelosUnivo/public/profile/updateInfo";
-        fetch(url, {
-            method: "POST",
-            body: formData
-        })
-            .then(response => {
-                if (response.ok){
-                    location.href = "http://localhost/LabSuelosUnivo/public/profile"
-                }
-                else {
-                    console.log(response);
-                }
-            })
-            .then(data => {
-                if (data === "Se actualizo :D") {
-                    location.href = "http://localhost/LabSuelosUnivo/public/profile";
-                }
-                console.log(data)
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-    else {
-        console.log("no se guardo :c")
-    }
-})
 
 document.addEventListener("DOMContentLoaded", () =>{
    
@@ -67,64 +33,66 @@ function validateInfoFields(email, phone) {
 }
 
 btnCambiarClave.addEventListener('click', () => {
-    if (validatePasswordFields){
-        const formData = new FormData()
-        formData.append("password", txtClaveNueva.value)
+    if (txtClaveNueva.value && txtConfirmarClave.value && txtClaveNueva.value === txtConfirmarClave.value) {
+        const formData = new FormData();
+        formData.append('password', txtClaveNueva.value);
 
-        const url = "http://localhost/LabSuelosUnivo/public/profile/updatePassword"
-
+        const url = "http://localhost/LabSuelosUnivo/public/profile/updatePass";
+        console.log("se esta mandando la contraseña: "+txtClaveNueva.value)
         fetch(url, {
             method: "POST",
             body: formData
         })
-            .then(response => {
-                if (response.ok){
-                    location.href = "http://localhost/LabSuelosUnivo/public/profile"
-                }
-                else {
-                    console.log(response);
-                }
-            })
-            .then(data => {
-                if (data === "Se actualizo :D") {
-                    location.href = "http://localhost/LabSuelosUnivo/public/profile";
-                }
-                console.log(data)
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        .then(response => {
+            if (response.ok) {
+                Toastify({
+
+                    text: "El usuario se edito correctamente",
+                    
+                    duration: 3000
+                    
+                    }).showToast()
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+            } else {
+                console.log(response);
+                throw new Error('Error en la respuesta del servidor');
+            }
+        })
+        .then(data => {
+            if (data.message=== "Password actualizada correctamente") {
+                location.href = "http://localhost/LabSuelosUnivo/public/profile";
+            } else {
+                console.log(data);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    } else {
+        Toastify({
+
+            text: "Las contraseñas no coinciden",
+            
+            duration: 3000
+            
+            }).showToast()
     }
 })
 
-function validatePasswordFields(){
-    if (txtClaveActual.value === "" || txtClaveNueva.value === "" || txtConfirmarClave.value === "" ){
-        Toastify({
-            text: "Por favor, complete correctamente todos los campos.",
-            duration: 3000
-        }).showToast();
-        return false
-    }
-    else {
-        if (validateNewPassword()){
-            return true
-        }
-        else {
-            Toastify({
-                text: "Los valores de contraseña nueva no coinciden",
-                duration: 3000
-            }).showToast();
-        }
-    }
-}
 
-function validateNewPassword() {
-    if (txtClaveNueva.value !== "" && txtConfirmarClave.value !== ""){
-        if (txtClaveNueva.value === txtConfirmarClave.value){
-            return true
+document.querySelectorAll('.toggle-password').forEach(function (element) {
+    element.addEventListener('click', function () {
+        let input = this.previousElementSibling;
+        if (input.type === 'password') {
+            input.type = 'text';
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
         }
-        else {
-            return false;
-        }
-    }
-}
+    });
+});
