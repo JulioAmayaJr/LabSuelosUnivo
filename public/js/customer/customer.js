@@ -42,24 +42,26 @@ const add = (customId) => {
         })
         .then(data =>{
             //const name_municipality = municipality(data.id_department)
-            txtId.value = data.id_customer
-            txtName.value = data.name_customer
-            txtEmail.value = data.email
-            txtCellphone.value = data.cell_phone
-            cboDepartment.value = data.id_department
-            cboMunicipality.value = data.id_municipality
-            txtNIT.value = data.number_nit
-            txtSpin.value = data.spin
-            txtReason.value = data.social_reason
-            txtDUI.value = data.number_dui
-            txtNoRegister.value = data.no_register_nrc
-            txtAddress.value = data.address
-            cboType.value = data.id_type_customer
-            idTypeCustomer=data.id_type_customer
+            txtId.value = data.customer.id_customer
+            txtName.value = data.customer.name_customer
+            txtEmail.value = data.customer.email
+            txtCellphone.value = data.customer.cell_phone
+            cboMunicipality.value = data.customer.id_municipality
+            txtNIT.value = data.customer.number_nit
+            txtSpin.value = data.customer.spin
+            txtReason.value = data.customer.social_reason
+            txtDUI.value = data.customer.number_dui
+            txtNoRegister.value = data.customer.no_register_nrc
+            txtAddress.value = data.customer.address
+            cboType.value = data.customer.id_type_customer
+            idTypeCustomer= data.customer.id_type_customer
+
+            department(data.municipality.id_deparment)
+            //department(data.municipality.id_department)
 
             if(idTypeCustomer==1){
               hideItems(idTypeCustomer)
-              console.log(idTypeCustomer)
+              //console.log(idTypeCustomer)
             }
 
         })
@@ -111,13 +113,7 @@ const department = (depId) => {
             }
         })
         .then(data => {
-            data.forEach(element => {
-                cboDepartment.innerHTML = `
-                    <option value="${element.id_department}">
-                        ${element.name_department}
-                    </option>
-                `
-            })
+            cboDepartment.value = data[0].id_deparment
         })
 }
 
@@ -139,12 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
             municipality(cboDepartment.value)
         }
     })
-
-    if (cboMunicipality.value !== null){
-        cboMunicipality.options.length = 0
-        cboMunicipality.options[0] = new Option("-- Seleccionar un municipio --")
-        department(cboMunicipality.value)
-    }
 })
 
 cboType.addEventListener('change', () => {
@@ -249,6 +239,7 @@ btnSave.addEventListener('click', () =>{
 
 //Limpiar campos
 function clearFields() {
+    txtId.value = "0"
     txtName.value = ""
     cboType.value = "-- Seleccione tipo de cliente --"
     txtEmail.value = ""

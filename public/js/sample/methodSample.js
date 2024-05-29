@@ -53,7 +53,7 @@ function renderList() {
     list2.forEach((item, index) => {
         let selectedClass = item.selected ? "selected" : "";
         let isSign = ['+', '-', '*', '/'].includes(item.field);
-        listHtml2 += `<div onclick="${isSign ? '' : `selectOption('list2', ${index})`}" class="option ${selectedClass}" data-value="${item.field}">${item.field}</div>`;
+        listHtml2 += `<div onclick="${isSign ? '' : `selectOption('list2', ${index})`}"  data-value="${item.field}">${item.field}</div>`;
     });
 
     divList1.innerHTML = listHtml;

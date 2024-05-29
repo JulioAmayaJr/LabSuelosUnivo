@@ -70,7 +70,15 @@ class Customer extends BaseController
             return redirect()->to(base_url('customer'));
         }
         $customModel = new CustomerModel();
-        $data = $customModel->find($Id);
+        $customer = $customModel->find($Id);
+
+        $municipalityModel = new MunicipalityModel();
+        $municipality = $municipalityModel->where('id_municipality', $customer['id_municipality'])->first();
+
+        $data = [
+            "customer" => $customer,
+            "municipality" => $municipality
+        ];
 
         header("Content-Type: application/json");
         echo json_encode($data);

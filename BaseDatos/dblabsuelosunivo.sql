@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-04-2024 a las 01:41:45
+-- Tiempo de generación: 29-05-2024 a las 04:27:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `dblabsuelounivo`
+-- Base de datos: `dblabsuelosunivo`
 --
 
 -- --------------------------------------------------------
@@ -39,7 +39,7 @@ CREATE TABLE `tbl_correlative` (
 --
 
 INSERT INTO `tbl_correlative` (`id_correlative`, `number_correlative`, `number_quantity`, `type`) VALUES
-(1, 2, 6, 'project');
+(1, 4, 6, 'project');
 
 -- --------------------------------------------------------
 
@@ -59,7 +59,6 @@ CREATE TABLE `tbl_customer` (
   `social_reason` varchar(50) DEFAULT NULL,
   `no_register_nrc` varchar(50) DEFAULT NULL,
   `id_type_customer` int(11) DEFAULT NULL,
-  `id_department` int(11) NOT NULL,
   `id_municipality` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -67,9 +66,10 @@ CREATE TABLE `tbl_customer` (
 -- Volcado de datos para la tabla `tbl_customer`
 --
 
-INSERT INTO `tbl_customer` (`id_customer`, `name_customer`, `email`, `number_dui`, `address`, `cell_phone`, `number_nit`, `spin`, `social_reason`, `no_register_nrc`, `id_type_customer`, `id_department`, `id_municipality`) VALUES
-(2, 'Irving Machado', 'irving@correo.com', '1212121212-0', 'Nuevo San Miguel', '79890101', '', '', '', '', 1, 9, 175),
-(3, 'Fernando Cruz', 'fernando.cruz@gmail.com', '12343232', 'San miguel', NULL, NULL, NULL, NULL, NULL, 1, 0, 0);
+INSERT INTO `tbl_customer` (`id_customer`, `name_customer`, `email`, `number_dui`, `address`, `cell_phone`, `number_nit`, `spin`, `social_reason`, `no_register_nrc`, `id_type_customer`, `id_municipality`) VALUES
+(2, 'Irving Machado', 'irving@correo.com', '1212121212-0', 'Nuevo San Miguel', '79890101', '', '', '', '', 2, 175),
+(3, 'Fernando Cruz', 'fernando.cruz@gmail.com', '12343232', 'San miguel', '727835842', '', '', '', '', 1, 77),
+(6, 'Julio Santos Gutierrez Amaya', 'chatunivowhats@gmail.com', '000-6', 'jeje', '76565', '', '', '', '', 1, 188);
 
 -- --------------------------------------------------------
 
@@ -115,6 +115,137 @@ CREATE TABLE `tbl_field` (
   `type_field` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `tbl_field`
+--
+
+INSERT INTO `tbl_field` (`id_field`, `name_field`, `value_field`, `type_field`) VALUES
+(1, 'diametro1', '', 'Text'),
+(2, 'Diametro 1', '', 'Text'),
+(3, 'Diametro 2', '', 'Text'),
+(4, 'Diametro 1', '', 'Text'),
+(5, 'Diametro 2', '', 'Text'),
+(6, 'diametro1', '', 'Text'),
+(7, 'Campo 1', '', 'Text'),
+(8, 'Campo 2', '', 'Text'),
+(9, 'diametro1', '', 'Text'),
+(10, 'diametro1', '', 'Text'),
+(11, 'Diametro 1', '', 'Text'),
+(12, 'Diametro 2', '', 'Text'),
+(13, 'Diametro 1', '', 'Text'),
+(14, 'Diametro 2', '', 'Text'),
+(15, 'sds', '', 'Text'),
+(16, 'sdas', '', 'Text'),
+(17, 'asdas', '', 'Text'),
+(18, 'Campo peuba', '', 'Text'),
+(19, 'asd', '', 'Text'),
+(20, 'sd', '', 'Text'),
+(21, 'jjj', '', 'Text'),
+(22, '232', '', 'Text'),
+(23, 'diametro1', '', 'Text'),
+(24, 'diametro 2', '', 'Text'),
+(25, 'diametro1', '', 'Text'),
+(26, 'diametro 2', '', 'Text'),
+(27, 'diametro1', '', 'Text'),
+(28, 'diametro 2', '', 'Text'),
+(29, 'sd', '', 'Text'),
+(30, 'sd', '', 'Text'),
+(31, 'ds', '', 'Text'),
+(32, '23', '', 'Text'),
+(33, 'sd', '', 'Text'),
+(34, 'diametro1', '', 'Text'),
+(35, 'diametro 2', '', 'Text'),
+(36, 'diametro1', '', 'Text'),
+(37, 'diametro 2', '', 'Text'),
+(38, 'diametro1', '', 'Text'),
+(39, 'diametro 2', '', 'Text'),
+(40, 'diametro1', '', 'Text'),
+(41, 'diametro 2', '', 'Text'),
+(42, 'diametro1', '', 'Text'),
+(43, 'diametro 2', '', 'Text'),
+(44, 'diametro1', '', 'Text'),
+(45, 'diametro 2', '', 'Text'),
+(46, 'diametro1', '', 'Text'),
+(47, 'diametro 2', '', 'Text'),
+(48, 'diametro1', '', 'Text'),
+(49, 'diametro 2', '', 'Text'),
+(50, 'asd', '', 'Text'),
+(51, 'sd', '', 'Text'),
+(52, 'diametro1', '', 'Text'),
+(53, 'diametro 2', '', 'Text'),
+(54, 'sd', '', 'Text'),
+(55, 'sd', '', 'Text'),
+(56, 'sd', '', 'Text'),
+(57, 'sd', '', 'Text'),
+(58, '23', '', 'Text'),
+(59, 'sd', '', 'Text'),
+(60, 'sd', '', 'Text'),
+(61, 'diametro1', '', 'Text'),
+(62, 'diametro 2', '', 'Text'),
+(63, 'jh', '', 'Text'),
+(64, 'sds', '', 'Text'),
+(65, 'sdsa', '', 'Text'),
+(66, 'Campo2', '', 'Text'),
+(67, 'sdsa', '', 'Text'),
+(68, 'campo 1', '', 'Text'),
+(69, 'campo 2', '', 'Text'),
+(70, 'jejej', '', 'Text'),
+(71, 'jejeje', '', 'Text'),
+(72, 'f', '', 'Text'),
+(73, 'ff', '', 'Text'),
+(74, 'ff', '', 'Text'),
+(75, 'd', '', 'Text'),
+(76, 'd', '', 'Text'),
+(77, 'sd', '', 'Text'),
+(78, 'sd', '', 'Text'),
+(79, 'sds', '', 'Text'),
+(80, 'sds', '', 'Text'),
+(81, 'sds', '', 'Text'),
+(82, 'Diametro 1', '', 'Text'),
+(83, 'Diametro 2', '', 'Text'),
+(84, 'Diametro 1', '', 'Text'),
+(85, 'Diametro 2', '', 'Text'),
+(86, 'Diametro1', '', 'Text'),
+(87, 'Diametro 2', '', 'Text'),
+(88, 'diametro 1', '', 'Text'),
+(89, 'diametro 2', '', 'Text'),
+(90, 'Diametro 1', '', 'Text'),
+(91, 'Diametro 2', '', 'Text'),
+(92, 'Temperatura 1', '', 'Text'),
+(93, 'Temperatura 2', '', 'Text'),
+(94, 'Temperatura 1', '', 'Text'),
+(95, 'Temperatura 2', '', 'Text'),
+(96, 'ddd', '', 'Text'),
+(97, 'dddd', '', 'Text'),
+(98, 'ddd', '', 'Text'),
+(99, 'dddd', '', 'Text'),
+(100, 'aaaa', '', 'Text'),
+(101, 'aaa', '', 'Text'),
+(102, 'aaaa', '', 'Text'),
+(103, 'aaa', '', 'Text'),
+(104, 'aaa', '', 'Text'),
+(105, 'aaaa', '', 'Text'),
+(106, 'aaa', '', 'Text'),
+(107, 'aaaa', '', 'Text'),
+(108, 'aaaa', '', 'Text'),
+(109, 'aaa', '', 'Text'),
+(110, 'uno', '', 'Text'),
+(111, 'dos', '', 'Text'),
+(112, 'sds', '', 'Text'),
+(113, '342', '', 'Text'),
+(114, 'jeeje', '', 'Text'),
+(115, 'mmm', '', 'Text'),
+(116, 'juju', '', 'Text'),
+(117, 'campo1', '', 'Text'),
+(118, 'campo2', '', 'Text'),
+(119, 'campo 1', '', 'Text'),
+(120, 'campo 2', '', 'Text'),
+(121, 'campo 3', '', 'Text'),
+(122, 'campo 4', '', 'Text'),
+(123, 'campo 1', '', 'Text'),
+(124, 'campo 2', '', 'Text'),
+(125, 'campo 3', '', 'Text');
+
 -- --------------------------------------------------------
 
 --
@@ -128,6 +259,88 @@ CREATE TABLE `tbl_field_sample` (
   `status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `tbl_field_sample`
+--
+
+INSERT INTO `tbl_field_sample` (`id_field_sample`, `id_sample`, `id_field`, `status`) VALUES
+(51, 47, 51, 1),
+(52, 48, 52, 1),
+(53, 48, 53, 1),
+(54, 49, 54, 1),
+(55, 50, 55, 1),
+(56, 51, 56, 1),
+(57, 52, 57, 1),
+(58, 53, 58, 1),
+(59, 54, 59, 1),
+(60, 55, 60, 1),
+(61, 56, 61, 1),
+(62, 56, 62, 1),
+(63, 57, 63, 1),
+(64, 58, 64, 1),
+(65, 58, 65, 1),
+(66, 58, 66, 1),
+(67, 59, 67, 1),
+(68, 60, 68, 1),
+(69, 60, 69, 1),
+(70, 61, 70, 1),
+(71, 61, 71, 1),
+(72, 62, 72, 1),
+(73, 63, 73, 1),
+(74, 64, 74, 1),
+(75, 65, 75, 1),
+(76, 66, 76, 1),
+(77, 67, 77, 1),
+(78, 68, 78, 1),
+(79, 69, 79, 1),
+(80, 70, 80, 1),
+(81, 71, 81, 1),
+(82, 71, 80, 1),
+(83, 72, 82, 1),
+(84, 72, 83, 1),
+(85, 73, 84, 1),
+(86, 73, 85, 1),
+(87, 74, 86, 1),
+(88, 74, 87, 1),
+(89, 75, 88, 1),
+(90, 75, 89, 1),
+(91, 76, 90, 1),
+(92, 76, 91, 1),
+(93, 77, 92, 1),
+(94, 77, 93, 1),
+(95, 78, 94, 1),
+(96, 78, 95, 1),
+(97, 79, 96, 1),
+(98, 79, 97, 1),
+(99, 80, 98, 1),
+(100, 80, 99, 1),
+(101, 81, 100, 1),
+(102, 81, 101, 1),
+(103, 82, 102, 1),
+(104, 82, 103, 1),
+(105, 83, 104, 1),
+(106, 83, 105, 1),
+(107, 84, 106, 1),
+(108, 84, 107, 1),
+(109, 85, 108, 1),
+(110, 85, 109, 1),
+(111, 86, 110, 1),
+(112, 86, 111, 1),
+(113, 87, 112, 1),
+(114, 88, 113, 1),
+(115, 88, 114, 1),
+(116, 88, 115, 1),
+(117, 88, 116, 1),
+(118, 89, 117, 1),
+(119, 89, 118, 1),
+(120, 90, 119, 1),
+(121, 90, 120, 1),
+(122, 90, 121, 1),
+(123, 90, 122, 1),
+(124, 91, 123, 1),
+(125, 91, 124, 1),
+(126, 91, 125, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -139,6 +352,13 @@ CREATE TABLE `tbl_group_sample` (
   `name` varchar(50) DEFAULT NULL,
   `statu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_group_sample`
+--
+
+INSERT INTO `tbl_group_sample` (`id_group_sample`, `name`, `statu`) VALUES
+(1, 'Mortero', 1);
 
 -- --------------------------------------------------------
 
@@ -456,7 +676,9 @@ CREATE TABLE `tbl_project` (
 
 INSERT INTO `tbl_project` (`id_project`, `codigo`, `name`, `id_customer`, `date_register`, `lactitud`, `longitud`, `status`, `id_user`) VALUES
 (19, '20240419-000001', 'prueba', 2, '2024-04-18', '13.4254', '-88.33', 1, 2),
-(20, '20240419-000002', 'Proyecto1', 3, '2024-04-18', '13.50', '-88.23', 1, 2);
+(20, '20240419-000002', 'Proyecto1', 3, '2024-04-18', '13.50', '-88.23', 1, 2),
+(21, '20240508-000003', 'memito', 3, '2024-05-07', '14.56', '-87-56', 1, 2),
+(22, '20240508-000004', 'memito', 3, '2024-05-07', '14.56', '-89.199722', 1, 27);
 
 -- --------------------------------------------------------
 
@@ -493,6 +715,95 @@ CREATE TABLE `tbl_sample` (
   `id_user` int(11) DEFAULT NULL,
   `id_project` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_sample`
+--
+
+INSERT INTO `tbl_sample` (`id_sample`, `name`, `rules`, `id_group_sample`, `id_user`, `id_project`) VALUES
+(9, 'Cilindro', '000-1', 1, 26, NULL),
+(10, 'Cilindro', '000-1', 1, 26, NULL),
+(11, 'Cilindro', '000-1', 1, 26, NULL),
+(12, 'Cilindro', '000-1', 1, 26, NULL),
+(13, 'Cilindro', '000-1', 1, 26, NULL),
+(14, 'Cilindro', '000-1', 1, 26, NULL),
+(15, 'Cilindro', '000-1', 1, 26, NULL),
+(16, 'Cilindro', '000-1', 1, 26, NULL),
+(17, 'Cilindro', '000-1', 1, 26, NULL),
+(18, 'Cilindro', '000-1', 1, 26, NULL),
+(19, 'Cilindro', '000-1', 1, 27, NULL),
+(20, 'Cilindro', '000-1', 1, 27, NULL),
+(21, 'Cilindro', '000-1', 1, 26, NULL),
+(22, 'Cilindro', '000-1', 1, 27, NULL),
+(23, 'Cilindro', '000-1', 1, 27, NULL),
+(24, 'cilindro', '0000-2', 1, 27, NULL),
+(25, 'cilindro', '0000-4', 1, 26, NULL),
+(26, 'cilindro', '0000-4', 1, 26, NULL),
+(27, 'cilindro', '0000-4', 1, 27, NULL),
+(28, 'cilindro', '0000-4', 1, 27, NULL),
+(29, 'cilindro', '0000-4', 1, 27, NULL),
+(30, 'postman', 'post', 1, 27, NULL),
+(31, 'postman', 'post', 1, 27, NULL),
+(32, 'postman', 'post', 1, 27, NULL),
+(33, 'cilindro', '0000-4', 1, 27, NULL),
+(34, 'cilindro', '0000-4', 1, 27, NULL),
+(35, 'cilindro', 'sds', 1, 27, NULL),
+(36, 'cilindro', '23', 1, 27, NULL),
+(37, 'cilindro', '0000-4', 1, 27, NULL),
+(38, 'postman', 'post', 1, 27, NULL),
+(39, 'postman', 'post', 1, 27, NULL),
+(40, 'postman', 'post', 1, 27, NULL),
+(41, 'postman', 'post', 1, 27, NULL),
+(42, 'postman', 'post', 1, 27, NULL),
+(43, 'postman', 'post', 1, 27, NULL),
+(44, 'postman', 'post', 1, 27, NULL),
+(45, 'postman', 'post', 1, 27, NULL),
+(46, 'cilindro', '0000-4', 1, 27, NULL),
+(47, 'cilindro', '0000-4', 1, 27, NULL),
+(48, 'postman', 'post', 1, 27, NULL),
+(49, 'cilindro', '0000-4', 1, 27, NULL),
+(50, 'cilindro', '0000-4', 1, 27, NULL),
+(51, 'cilindro', '0000-4', 1, 27, NULL),
+(52, 'sd', '0000-4', 1, 27, NULL),
+(53, 'cilindro', '23', 1, 27, NULL),
+(54, 'sd', 'sds', 1, 27, NULL),
+(55, 'cilindro', '0000-4', 1, 26, NULL),
+(56, 'postman', 'post', 1, 27, NULL),
+(57, 'cilindro', '0000-4', 1, 26, NULL),
+(58, 'cilindro', 'sds', 1, 26, NULL),
+(59, 'cilindro', 'sds', 1, 26, NULL),
+(60, 'cilindro', 'sds', 1, 26, NULL),
+(61, 'cilindro', 'sds', 1, 26, NULL),
+(62, 'cilindro', '0000-4', 1, 26, NULL),
+(63, 'cilindro', '0000-4', 1, 26, NULL),
+(64, 'cilindro', '0000-4', 1, 26, NULL),
+(65, 'cilindro', '0000-4', 1, 26, NULL),
+(66, 'cilindro', '0000-4', 1, 26, NULL),
+(67, 'cilindro', '0000-4', 1, 26, NULL),
+(68, 'cilindro', '0000-4', 1, 26, NULL),
+(69, 'cilindro', '0000-4', 1, 26, NULL),
+(70, 'cilindro', '0000-4', 1, 26, NULL),
+(71, 'cilindro', '0000-4', 1, 26, NULL),
+(72, 'no se', '000-2', 1, 26, NULL),
+(73, 'no se', '000-2', 1, 26, NULL),
+(74, 'nose', '000-2', 1, 26, NULL),
+(75, 'nose ', '000-3', 1, 26, NULL),
+(76, 'nose ', '000-3', 1, 26, NULL),
+(77, 'Nose', '000-4', 1, 26, NULL),
+(78, 'Nose', '000-4', 1, 26, NULL),
+(79, 'cilindro', '0000-4', 1, 26, NULL),
+(80, 'cilindro', '0000-4', 1, 26, NULL),
+(81, 'cilindro', '0000-4', 1, 26, NULL),
+(82, 'cilindro', '0000-4', 1, 26, NULL),
+(83, 'cilindro', '0000-4', 1, 26, NULL),
+(84, 'cilindro', '0000-4', 1, 26, NULL),
+(85, 'cilindro', '0000-4', 1, 26, NULL),
+(86, 'cilindro', '0000-4', 1, 26, NULL),
+(87, 'cilindro', '0000-4', 1, 26, NULL),
+(88, 'cilindro', '0000-4', 1, 26, NULL),
+(89, 'cilindro', '0000-4', 1, 26, NULL),
+(90, 'cilindro', '000-3', 1, 28, NULL),
+(91, 'cilindro', '3301', 1, 26, NULL);
 
 -- --------------------------------------------------------
 
@@ -538,10 +849,12 @@ CREATE TABLE `tbl_users` (
 INSERT INTO `tbl_users` (`id_user`, `full_name`, `date_register`, `modification_date`, `image`, `status`, `id_rol`, `user_name`, `password`) VALUES
 (1, 'Michell Zelaya', '2024-03-19', '2024-03-27', 'avatar.png', 1, 1, '', ''),
 (2, 'julio', '2024-03-26', '2024-03-27', 'avatar.png', 1, 1, '', ''),
-(7, 'Ruthylia', '2024-03-26', '2024-03-27', 'avatar.png', 1, 4, '', ''),
+(7, 'Ruthylia', '2024-03-26', '2024-05-27', 'avatar.png', 0, 4, '', ''),
 (17, 'Irving', '2024-03-26', '2024-03-26', 'avatar.png', 1, 4, '', ''),
-(24, 'Elias', '2024-04-16', '2024-04-23', 'yilcsm17tx.jpg', 0, 3, '', ''),
-(26, 'Julio Santos Gutierrez Amaya', '2024-04-23', '2024-04-23', 's7oiz5rq2b.jpg', 1, 2, 'pepito', '$2y$10$0PtXQ4cW1OLw1rl2RCdtduuAAtOu9wUoBbo1O6zyXKrVYzNxrHe7m');
+(24, 'Elias', '2024-04-16', '2024-05-27', 'yilcsm17tx.jpg', 1, 3, '', ''),
+(26, 'Julio Santos Gutierrez Amaya', '2024-04-23', '2024-05-10', 'rpg7qkmiuf.jpg', 1, 2, 'pepito', 'nawgf2K7bmiTaWKbo6LDW3hWcWhmQVNNVHdCRVplQW9ZVDgzWFE9PQ'),
+(27, 'Erick Santos', '2024-04-27', '2024-04-27', 'eg8iyr91l6.jpg', 1, 2, 's', '-gfFI_mvoTWekoj_jin7A2JtS2NnOXpad2Y2Y2VkaTg2SWx5Q1E9PQ'),
+(28, 'Julio Santos Gutierrez Amaya', '2024-05-21', '2024-05-21', '3fm0ytad5z.jpg', 1, 1, 'amaya', 'OS9j08yec65r-hB0mg-ilC8vNE0zTVFVNXY5ekZVMlZvRGZLb1E9PQ');
 
 --
 -- Índices para tablas volcadas
@@ -558,6 +871,7 @@ ALTER TABLE `tbl_correlative`
 --
 ALTER TABLE `tbl_customer`
   ADD PRIMARY KEY (`id_customer`),
+  ADD UNIQUE KEY `id_municipality` (`id_municipality`),
   ADD KEY `id_type_customer` (`id_type_customer`);
 
 --
@@ -649,25 +963,25 @@ ALTER TABLE `tbl_correlative`
 -- AUTO_INCREMENT de la tabla `tbl_customer`
 --
 ALTER TABLE `tbl_customer`
-  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_field`
 --
 ALTER TABLE `tbl_field`
-  MODIFY `id_field` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_field` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_field_sample`
 --
 ALTER TABLE `tbl_field_sample`
-  MODIFY `id_field_sample` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_field_sample` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_group_sample`
 --
 ALTER TABLE `tbl_group_sample`
-  MODIFY `id_group_sample` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_group_sample` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_method`
@@ -679,7 +993,7 @@ ALTER TABLE `tbl_method`
 -- AUTO_INCREMENT de la tabla `tbl_project`
 --
 ALTER TABLE `tbl_project`
-  MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_rol`
@@ -691,7 +1005,7 @@ ALTER TABLE `tbl_rol`
 -- AUTO_INCREMENT de la tabla `tbl_sample`
 --
 ALTER TABLE `tbl_sample`
-  MODIFY `id_sample` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sample` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_type_customer`
@@ -703,7 +1017,7 @@ ALTER TABLE `tbl_type_customer`
 -- AUTO_INCREMENT de la tabla `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Restricciones para tablas volcadas
@@ -713,7 +1027,8 @@ ALTER TABLE `tbl_users`
 -- Filtros para la tabla `tbl_customer`
 --
 ALTER TABLE `tbl_customer`
-  ADD CONSTRAINT `tbl_customer_deparments` FOREIGN KEY (`id_type_customer`) REFERENCES `tbl_type_customer` (`id_type_customer`);
+  ADD CONSTRAINT `tbl_customer_deparments` FOREIGN KEY (`id_type_customer`) REFERENCES `tbl_type_customer` (`id_type_customer`),
+  ADD CONSTRAINT `tbl_customer_ibfk_2` FOREIGN KEY (`id_municipality`) REFERENCES `tbl_municipalities` (`id_municipality`);
 
 --
 -- Filtros para la tabla `tbl_field_sample`

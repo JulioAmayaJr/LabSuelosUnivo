@@ -73,7 +73,7 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <input type="hidden" value="0" id="txtId">
+                    <input type="text" value="0" id="txtId" hidden>
                     <div class="row">
                         <div class="form-group col-sm-4">
                             <label for="cboType">Tipo de cliente</label>
