@@ -50,13 +50,15 @@ function renderList() {
 
     list1.forEach((item, index) => {
         let selectedClass = item.selected ? "selected" : "";
-        listHtml += `<div onclick="selectOption('list1', ${index})" class="option ${selectedClass}" data-value="${item.field}">${item.field}</div>`;
+        let d="d-sm-inline-block btn btn-secondary m-1 "
+        listHtml += `<div onclick="selectOption('list1', ${index})" class="option ${d} ${selectedClass}" data-value="${item.field}">${item.field}</div>`;
     });
 
     list2.forEach((item, index) => {
         let selectedClass = item.selected ? "selected" : "";
+        let d="d-sm-inline-block"
         let isSign = ['+', '-', '*', '/'].includes(item.field);
-        listHtml2 += `<div onclick="${isSign ? '' : `selectOption('list2', ${index})`}" data-value="${item.field}">${item.field}</div>`;
+        listHtml2 += `<div onclick="${isSign ? '' : `selectOption('list2', ${index})`}" class=" ${d}" data-value="${item.field}">${item.field}</div>`;
     });
 
     divList1.innerHTML = listHtml;
@@ -132,8 +134,9 @@ const valueMethod=document.getElementById("valueMethod")
 addMethod.addEventListener("click", () => {
     const divMethod = document.getElementById("divMethod");
     let methodHtml = '';
+    let d="d-sm-inline-block";
     list2.forEach(item => {
-        methodHtml += `<div>${item.field}</div>`;
+        methodHtml += `<div class="${d}">${item.field}</div>`;
     });
     divMethod.innerHTML += methodHtml;
     list2 = [];

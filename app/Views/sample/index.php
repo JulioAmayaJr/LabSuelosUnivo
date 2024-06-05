@@ -1,7 +1,7 @@
 <?php echo $this->extend("/template/layout"); ?>
 
 <?php echo $this->section("css"); ?>
-<link rel="stylesheet" href="css/sample.css">
+
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 <style>
@@ -17,7 +17,7 @@
 
     .linea {
         width: 100%;
-        border-bottom: 0.1px solid rgb(218, 220, 215);
+       
         margin-bottom: 10px;
         margin-top: 10px;
 
@@ -25,8 +25,9 @@
 
     .pad {}
 </style>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="css/sample.css">
 <?php echo $this->endSection() ?>
 
 
@@ -34,7 +35,7 @@
 <input type="text" id="idUser" hidden value="<?= session("user")["id_user"] ?>">
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-second-primary">
-        <h6 class="m-0 font-weight-bold text-white">Agregar Muestra</h6>
+        <h6 class="m-0 font-weight-bold text-white">Crear Muestra</h6>
     </div>
     <div class="card-body">
         <div class="row">
@@ -59,8 +60,8 @@
         </div>
         <hr />
         <div class="row ">
-            <div id="badgeContainer" class="este  col-sm-12">
-              
+            <div id="badgeContainer" class="este col-sm-12">
+           
               
 
             </div>

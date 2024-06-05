@@ -72,17 +72,24 @@ const createInputs = (fields) => {
 
     fields.forEach(field => {
         const inputWrapper = document.createElement("div");
-        inputWrapper.className = "input-wrapper";
+        inputWrapper.classList.add("input-wrapper","m-2");
+      
 
         const label = document.createElement("label");
         label.htmlFor = field.id_field;
         label.innerText = field.name_field;
+        label.className="form-label";
 
         const input = document.createElement("input");
         input.type = field.type_field.toLowerCase();
         input.id = field.id_field;
         input.name = field.name_field;
         input.value = field.value_field;
+       
+        input.classList.add("form-control");
+
+
+       console.log(input.className);
 
         inputWrapper.appendChild(label);
         inputWrapper.appendChild(input);
