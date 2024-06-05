@@ -96,11 +96,11 @@
                     <p>Tipo Del Campo</p>
                     <select name="" id="typeField" class="form-select">
                         <option value="0" selected disabled>-- Seleccione --</option>
-                        <option value="1">Texto</option>
-                        <option value="2">Numero</option>
+                        <option value="Text">Texto</option>
+                        <option value="Number">Numero</option>
                     </select>
                     <!--Campo antiguo de captura de tipo de dato. Oculto-->
-                    <input class="form-control" id="typeField" type="text" hidden>
+                    <input class="form-control" id="" type="text" hidden>
                 </div>
 
             </div>
@@ -123,37 +123,6 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#tbdata').DataTable({
-            "language": {
-                "sProcessing": "Procesando...",
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ningún dato disponible en esta tabla",
-                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix": "",
-                "sSearch": "Buscar:",
-                "sUrl": "",
-                "sInfoThousands": ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast": "Último",
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                }
-            }
-        });
-    });
-
-    $(document).ready(function() {
-        $('.js-example-basic-multiple').select2();
-    });
+   
 </script>
 <?php echo $this->endSection(); ?>

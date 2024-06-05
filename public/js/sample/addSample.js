@@ -8,18 +8,21 @@ const modalData=document.getElementById("modalData")
 const nameSample=document.getElementById("nameSample")
 const nameRule=document.getElementById("nameRule")
 const cboGroupSample=document.getElementById("cboGroupSample")
+
+
 let listSample=[]
 addBadgeButton.addEventListener("click",()=>{
 
     const inputValue = document.getElementById('fieldValue').value.trim();
     const badgeContainer=document.getElementById("badgeContainer");
+    const typeField=document.getElementById("typeField")
 
     const badge = document.createElement('span');
     badge.classList.add('badge','mt-1' ,'bg-primary', 'mb-3', 'me-2');
     badge.textContent = inputValue;
     let objectSample={
         name:inputValue,
-        typeField: "text"
+        typeField: typeField.value
     }
 
     listSample.push(objectSample)
@@ -74,12 +77,12 @@ const postData=async()=>{
     console.log(idUser)
     console.log(nameSample.value)
     console.log(nameRule.value)
-
+    console.log(cboGroupSample.value)
         const response=await fetch("http://localhost/LabSuelosUnivo/public/sample/saveField",
         {
             method: "POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({ list: listSample, idUser: idUser,nameSample: nameSample.value, nameRule: nameRule.value })
+            body:JSON.stringify({ list: listSample, idUser: idUser,nameSample: nameSample.value, nameRule: nameRule.value,id_group_sample:cboGroupSample.value })
         })
         .then(response => {
             if (response.ok) {

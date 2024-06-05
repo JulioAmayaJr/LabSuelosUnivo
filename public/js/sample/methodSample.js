@@ -8,10 +8,13 @@ const btnSum = document.getElementById("btnSum");
 const btnMinus = document.getElementById("btnMinus");
 const btnMultiplication = document.getElementById("btnMultiplication");
 const btnDivision = document.getElementById("btnDivision");
+const deleteAll = document.getElementById("deleteAll");
+const addMethod=document.getElementById("addMethod");
 
 document.addEventListener("DOMContentLoaded", () => {
     add(Id);
     renderList();
+    attachNumberButtonEvents();
 });
 
 const add = (Id) => {
@@ -53,11 +56,13 @@ function renderList() {
     list2.forEach((item, index) => {
         let selectedClass = item.selected ? "selected" : "";
         let isSign = ['+', '-', '*', '/'].includes(item.field);
-        listHtml2 += `<div onclick="${isSign ? '' : `selectOption('list2', ${index})`}"  data-value="${item.field}">${item.field}</div>`;
+        listHtml2 += `<div onclick="${isSign ? '' : `selectOption('list2', ${index})`}" data-value="${item.field}">${item.field}</div>`;
     });
 
     divList1.innerHTML = listHtml;
     divList2.innerHTML = listHtml2;
+
+    
 }
 
 function selectOption(listType, optionIndex) {
@@ -106,29 +111,65 @@ function moveH(direction) {
     }
 }
 
-
-
-
 btnSum.addEventListener("click", () => {
-  addSign('+')
+    addSign('+');
 });
 btnMinus.addEventListener("click", () => {
-  addSign('-')
+    addSign('-');
 });
 btnMultiplication.addEventListener("click", () => {
-  addSign('*')
+    addSign('*');
 });
 btnDivision.addEventListener("click", () => {
-  addSign('/')
+    addSign('/');
+});
+deleteAll.addEventListener("click", () => {
+    list2 = [];
+    renderList();
+});
+const valueMethod=document.getElementById("valueMethod")
+
+addMethod.addEventListener("click", () => {
+    const divMethod = document.getElementById("divMethod");
+    let methodHtml = '';
+    list2.forEach(item => {
+        methodHtml += `<div>${item.field}</div>`;
+    });
+    divMethod.innerHTML += methodHtml;
+    list2 = [];
+    renderList();
+
+    if (valueMethod) {
+        list1.push({
+            field: valueMethod.value,
+            selected: false 
+        });
+    }
+    valueMethod.value=""
+    renderList();
 });
 
-
 function addSign(sign) {
-
     if (list2.length > 0 && ['+', '-', '*', '/'].includes(list2[list2.length - 1].field)) {
         list2[list2.length - 1] = { field: sign, selected: false };
     } else {
         list2.push({ field: sign, selected: false });
     }
+    renderList();
+}
+
+function attachNumberButtonEvents() {
+    document.querySelectorAll('.butt').forEach(button => {
+        button.addEventListener('click', () => {
+            const value = button.textContent.trim();
+            if (!isNaN(value) || value === '.') {
+                addNumber(value);
+            }
+        });
+    });
+}
+
+function addNumber(value) {
+    list2.push({ field: value, selected: false });
     renderList();
 }

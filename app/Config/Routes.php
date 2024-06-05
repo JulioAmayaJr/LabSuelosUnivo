@@ -61,3 +61,7 @@ $routes->get('/error', 'Error::index');
 $routes->get('/login', 'Login::index');
 $routes->post("/login/validate", "Login::do_login");
 $routes->get("/login/logout", "Login::logout");
+
+$routes->get("/samples","Samples::index");
+$routes->post("/samples/getFields","Samples::getFields");
+$routes->post("/samples/save","Samples::save");

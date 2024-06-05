@@ -62,10 +62,11 @@ class Sample extends BaseController
         $idUSer = $data_post["idUser"];
         $nameSample = $data_post["nameSample"];
         $nameRule = $data_post["nameRule"];
+        $idGroup=$data_post["id_group_sample"];
         $sampleId = $this->insertAndGetId($sampleModel, [
             "name" => $nameSample,
             'rules' => $nameRule,
-            'id_group_sample' => 1,
+            'id_group_sample' => $idGroup,
             'id_user' => $idUSer,
             'id_project' => null
         ]);
@@ -81,11 +82,12 @@ class Sample extends BaseController
         foreach ($list as $object) {
 
             $name = $object['name'];
+            $type=$object["typeField"];
 
             $fieldId = $this->insertAndGetId($fieldModel, [
                 "name_field" => $name,
                 "value_field" => "",
-                "type_field" => "Text"
+                "type_field" => $type
             ]);
             $fieldSampleId = $this->insertAndGetId($fieldSampleModel, [
                 'id_sample' => $sampleId,
@@ -102,49 +104,55 @@ class Sample extends BaseController
 
     }
 
-    public function methodID($Id=null){
-      //Models
+    public function methodID($Id = null) {
+      // Models
       $sampleModel = new FieldSampleModel();
-      $fieldModel=new FieldModel();
-      if($Id==null){
-        header("Content-Type: application/json");
-        echo json_encode(["Error"=>"No se encontro registro"]);
-      }
-
-      $key= "LabSuelosUnivo";
-      $Id=$this->decrypt($Id,$key);
-      $data=$sampleModel->where("id_field_sample",$Id)->first();
-      $Id=$data["id_sample"];
-      $data = $sampleModel->where("id_sample", $Id)->findAll();
-
-      $idField=[];
-      foreach ($data as $dataFieldSample) {
-          $idField[]= $dataFieldSample["id_field"];
-
-        }
-        $dataField=[];
-        foreach ($idField as $key) {
-          $data=$fieldModel->where("id_field",$key)->first();
-          $data=[
-            "data"=>$data,
-            "selected"=>false
-          ];
-          $dataField[]=$data;
-
-        }
-
-      if($dataField){
-
-
-        header("Content-Type: application/json");
-        echo json_encode($dataField);
-        die();
-      }else{
+      $fieldModel = new FieldModel();
+      
+      if ($Id == null) {
           header("Content-Type: application/json");
-        echo json_encode(["Error"=>"No se encontro registro"]);
-        die();
+          echo json_encode(["Error" => "No se encontro registro"]);
+          return;
       }
-    }
+  
+      $key = "LabSuelosUnivo";
+      $Id = $this->decrypt($Id, $key);
+      $data = $sampleModel->where("id_field_sample", $Id)->first();
+  
+      if (!$data) {
+          header("Content-Type: application/json");
+          echo json_encode(["Error" => "No se encontro registro"]);
+          return;
+      }
+  
+      $Id = $data["id_sample"];
+      $data = $sampleModel->where("id_sample", $Id)->findAll();
+  
+      $idField = [];
+      foreach ($data as $dataFieldSample) {
+          $idField[] = $dataFieldSample["id_field"];
+      }
+  
+      $dataField = [];
+      foreach ($idField as $key) {
+          $fieldData = $fieldModel->where("id_field", $key)->where("type_field", "Number")->first();
+          if ($fieldData) {
+              $dataField[] = [
+                  "data" => $fieldData,
+                  "selected" => false
+              ];
+          }
+      }
+  
+      header("Content-Type: application/json");
+      if (!empty($dataField)) {
+          echo json_encode($dataField);
+          die();
+      } else {
+          echo json_encode(["Error" => "No se encontro registro"]);
+      }
+  }
+  
 
     private function SHA256($text, $key) {
         $iv = random_bytes(16);
