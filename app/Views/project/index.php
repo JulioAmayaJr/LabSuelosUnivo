@@ -110,14 +110,14 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="cboCustomer">Cliente</label>
-                                <select class="js-example-basic-multiple" name="states" id="cboCustomer" name="cboCustomer" required>
+                                <select class="js-example-basic-multiple form-control form-control-sm" name="states" id="cboCustomer" name="cboCustomer" required>
                                     <option selected disabled>--Seleccione un cliente--</option>
                                     <?php foreach ($clients as $client) { ?>
                                         <option value="<?= $client['id_customer'] ?>"><?= $client['name_customer'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
-                        </div>
+                        </div>  
                         <div class="form-row">
                             <div class="form-group col-sm-6 _hidden" id="divStatus">
                                 <label for="cboStatus">Estado</label>
@@ -195,8 +195,8 @@
         });
     });
 
-    $(document).ready(function() {
-        $('.js-example-basic-multiple').select2();
-    });
+    // $(document).ready(function() {
+    //     $('.js-example-basic-multiple').select2();
+    // });
 </script>
 <?php echo $this->endSection(); ?>
