@@ -22,6 +22,7 @@ const cboStatus = document.getElementById("cboStatus");
 const btnSave = document.querySelector('#btnSave');
 const btnDelete = document.querySelectorAll(".delete-button");
 const idUser=document.getElementById("idUser").value
+
 const add = (projectId) => {
     const url = "http://localhost/LabSuelosUnivo/public/project/getById/" + projectId;
     fetch(url, {
@@ -159,7 +160,7 @@ btnNewProject.addEventListener("click", () => {
 
 function clearFields() {
     txtName.value = "";
-    cboCustomer.value = "--Seleccione un cliente--";
+    cboCustomer.value = "";
     txtlactitude.value = "";
     txtlength.value = "";
 }
