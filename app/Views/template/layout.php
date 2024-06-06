@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="<?= base_url() ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -74,13 +74,14 @@
             <!-- Nav Item - Inventario Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario">
-                    <i class="fas fa-fw fa-clipboard-list"></i>
+                <i class="fa-solid fa-vial"></i>
                     <span>Muestras</span>
                 </a>
                 <div id="collapseInventario" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?= base_url() ?>sample">Agregar Muestra</a>
-                        <a class="collapse-item" href="productos.html">Mostrar Muestra</a>
+                    <a class="collapse-item" href="<?= base_url() ?>sample">Crear Muestras</a>
+                        <a class="collapse-item" href="<?= base_url() ?>samples">Agregar Muestra</a>
+                        <a class="collapse-item" href="allSample">Mostrar Muestra</a>
                         <a class="collapse-item" href="<?= base_url() ?>groupSample">Ramas</a>
                     </div>
                 </div>
@@ -89,7 +90,7 @@
             <!-- Nav Item - Venta Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVenta">
-                    <i class="fas fa-fw fa-tags"></i>
+                <i class="fa-solid fa-folder-open"></i>
                     <span>Proyectos</span>
                 </a>
                 <div id="collapseVenta" class="collapse" data-parent="#accordionSidebar">
@@ -102,12 +103,12 @@
             <!-- Nav Item - Reportes Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                <i class="fa-solid fa-clipboard-list"></i>
                     <span>Reportes</span>
                 </a>
                 <div id="collapseReportes" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="reporte_venta.html">Reporte de Ventas</a>
+                        <a class="collapse-item" href="report">Reporte</a>
                     </div>
                 </div>
             </li>

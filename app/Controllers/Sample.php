@@ -20,7 +20,7 @@ class Sample extends BaseController
         $groupSample = new GroupSampleModel();
 
         $resultado = $model->findAll();
-        $resultadoGroupSample = $groupSample->findAll();
+        $resultadoGroupSample = $groupSample->where("statu",1)->findAll();
 
         $data = [
             "sample" => $resultado,

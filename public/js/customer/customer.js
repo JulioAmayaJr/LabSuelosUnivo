@@ -169,6 +169,8 @@ const postData = async () =>{
     formData.append("no_register_nrc", txtNoRegister.value)
     formData.append("id_type_customer", cboType.value)
     formData.append("address", txtAddress.value)
+    console.log(cboMunicipality.value)
+    console.log(cboType.value)
 
     try {
         const response = await fetch("http://localhost/LabSuelosUnivo/public/customer/save",

@@ -1,6 +1,7 @@
 <?php echo $this->extend("/template/layout"); ?>
 <?php echo $this->section("css"); ?>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <?php echo $this->endSection(); ?>
 <?php echo $this->section("content") ?>
 
@@ -18,6 +19,7 @@
 
         height: 1em;
     }
+    
 </style>
 
 
@@ -94,14 +96,15 @@
 <?php echo $this->endSection(); ?>
 <?php echo $this->section("Scripts") ?>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="js/samples/createSample.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
 
 
 
